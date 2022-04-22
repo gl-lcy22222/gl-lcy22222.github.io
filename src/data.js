@@ -5,10 +5,10 @@ import villager from './picSrc/villager.jpg';
 import { LOCKING_SOUND, TAPPING_SOUND } from './redux/constants';
 
 export const apps = [
-    // {
-    //     name: 'Hi',
-    //     collection: [bt21]
-    // },
+    {
+        name: 'Hi',
+        collection: [bt21]
+    },
     {
         name: 'dabinPic',
         collection: [dabinPic, SleepyBeauty, bt21]
