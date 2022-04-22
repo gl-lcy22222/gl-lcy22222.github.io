@@ -10,7 +10,7 @@ import {
 } from './constants';
 
 const initialState = {
-    screen: BLACK_SCREEN,
+    screen: HOME_SCREEN,
     passcodeEntry: '',
     lockedStatus: LOCKED,
     soundStatus: SOUND_ON,
