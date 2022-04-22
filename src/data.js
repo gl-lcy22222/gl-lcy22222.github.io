@@ -34,7 +34,9 @@ import Sleepyhead2 from './picSrc/Sleepyhead2.JPG';
 import Sleepyhead3 from './picSrc/Sleepyhead3.JPG';
 import Sleepyhead4 from './picSrc/Sleepyhead4.JPG';
 
-// import  from './picSrc/'
+const multiple = (arr, times) => Array(times).fill(0).flatMap(() => arr);
+
+console.log(performance.getEntriesByName(dabinPic)[0])
 
 export const apps = [
     {
@@ -45,17 +47,17 @@ export const apps = [
         name: 'Sleepy head',
         collection: [SleepyBeauty, Sleepyhead, Sleepyhead1, Sleepyhead2, Sleepyhead3, Sleepyhead4],
     },
-    {
-        name: 'Cutie 3.14',
-        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
-    },
     // {
     //     name: 'Cutie 3.14',
-    //     collection: [Cutie3_14P, Cutie3_14_1P, Cutie3_14_2P],
+    //     collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
     // },
     {
+        name: 'Cutie 3.14',
+        collection: [Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P],
+    },
+    {
         name: 'Dabin',
-        collection: [dabinPic, Dabin, Dabin1, Dabin2, Dabin3, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
+        collection: multiple([dabinPic, Dabin, Dabin1, Dabin2, Dabin3, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9], 3),
     },
     // {
     //     name: 'Dabin',

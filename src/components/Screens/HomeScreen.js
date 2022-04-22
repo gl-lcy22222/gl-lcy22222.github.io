@@ -11,7 +11,6 @@ import { ESCAPE_KEY } from "../../redux/constants";
 const activeTime = 3000;
 const transitionTime = 2000;
 const centeringTime = 1500;
-const expandingTime = 1000;
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -70,7 +69,7 @@ const useStyles = makeStyles({
         width: '100%',
         height: '100%',
         borderRadius: '25%',
-        transition: `opacity ${centeringTime}ms ease-in-out`,
+        transition: `opacity ${transitionTime}ms ease-in-out`,
 
     },
     appName: {
@@ -249,6 +248,7 @@ const App = ({
     const [height, setHeight] = useState();
     const [current, setCurrent] = useState(0);
     const [transitioning, setTransitioning] = useState(null);
+    console.log(current);
     
     const app = useRef();
     const firstRender = useRef(true);
@@ -286,9 +286,9 @@ const App = ({
             else if (transitioning === false) {
                 transitionTimer = setTimeout(() => {
                     if (current + 1 < collection.length) {
+                        setCurrent(current + 1);
                         setTransitioning(true);
                         style.opacity = "1";
-                        setCurrent(current + 1);
                     }
                     else {
                         setCurrent(0);
