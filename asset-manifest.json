@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7ae79d8f.css",
-    "main.js": "/static/js/main.1b8a954b.js",
+    "main.js": "/static/js/main.e678bcea.js",
     "static/js/787.95b9bf10.chunk.js": "/static/js/787.95b9bf10.chunk.js",
     "static/media/First Date2.PNG": "/static/media/First Date2.3f8e29c591bb370e025f.PNG",
     "static/media/Cutie3.14_2.PNG": "/static/media/Cutie3.14_2.76866c3e512586faf0d5.PNG",
@@ -20,7 +20,6 @@
     "static/media/Dabin1.JPG": "/static/media/Dabin1.33bb62a12d2363060417.JPG",
     "static/media/Universal2.JPG": "/static/media/Universal2.bd18ae37b4665d9f249e.JPG",
     "static/media/Cutie3.14_2.JPG": "/static/media/Cutie3.14_2.f0db0492388b6a811bb5.JPG",
-    "static/media/Cutie3.14_4.JPG": "/static/media/Cutie3.14_4.f0db0492388b6a811bb5.JPG",
     "static/media/Cutie3.14_3.JPG": "/static/media/Cutie3.14_3.b61b3f1dd966078e75c3.JPG",
     "static/media/Universal1.JPG": "/static/media/Universal1.014e46c92a40e24e2754.JPG",
     "static/media/Sleepyhead3.JPG": "/static/media/Sleepyhead3.4de0cf46a4e038944aab.JPG",
@@ -41,11 +40,11 @@
     "static/media/background.jpg": "/static/media/background.9337c63a3c4b269adfb1.jpg",
     "index.html": "/index.html",
     "main.7ae79d8f.css.map": "/static/css/main.7ae79d8f.css.map",
-    "main.1b8a954b.js.map": "/static/js/main.1b8a954b.js.map",
+    "main.e678bcea.js.map": "/static/js/main.e678bcea.js.map",
     "787.95b9bf10.chunk.js.map": "/static/js/787.95b9bf10.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7ae79d8f.css",
-    "static/js/main.1b8a954b.js"
+    "static/js/main.e678bcea.js"
   ]
 }
