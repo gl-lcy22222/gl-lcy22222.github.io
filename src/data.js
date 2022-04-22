@@ -1,7 +1,6 @@
 import { LOCKING_SOUND, TAPPING_SOUND } from './redux/constants';
 
 import bt21 from './picSrc/bt21.jpg';
-import villager from './picSrc/villager.jpg';
 
 import Brat from './picSrc/Brat.JPG';
 import Brat1 from './picSrc/Brat1.JPG';
@@ -34,11 +33,25 @@ import Sleepyhead2 from './picSrc/Sleepyhead2.JPG';
 import Sleepyhead3 from './picSrc/Sleepyhead3.JPG';
 import Sleepyhead4 from './picSrc/Sleepyhead4.JPG';
 
+import First_Date from './picSrc/First Date.JPG';
+import First_Date_1 from './picSrc/First Date1.JPG';
+import First_Date_2 from './picSrc/First Date2.PNG';
+
+import Universal from './picSrc/Universal.JPG';
+import Universal1 from './picSrc/Universal1.JPG';
+import Universal2 from './picSrc/Universal2.JPG';
+import Universal3 from './picSrc/Universal3.JPG';
+import Universal4 from './picSrc/Universal4.JPG';
+
 const multiple = (arr, times) => Array(times).fill(0).flatMap(() => arr);
 
 console.log(performance.getEntriesByName(dabinPic)[0])
 
 export const apps = [
+    {
+        name: 'First Date',
+        collection: [ First_Date,First_Date_2, First_Date_1],
+    },
     {
         name: 'Brat',
         collection: [Brat1, Brat, Brat2]
@@ -47,26 +60,23 @@ export const apps = [
         name: 'Sleepy head',
         collection: [SleepyBeauty, Sleepyhead, Sleepyhead1, Sleepyhead2, Sleepyhead3, Sleepyhead4],
     },
-    // {
-    //     name: 'Cutie 3.14',
-    //     collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
-    // },
+    {
+        name: 'Cutie 3.14',
+        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
+    },
     {
         name: 'Cutie 3.14',
         collection: [Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P],
     },
     {
         name: 'Dabin',
-        collection: multiple([dabinPic, Dabin, Dabin1, Dabin2, Dabin3, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9], 3),
+        collection: multiple([ Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9], 3),
     },
-    // {
-    //     name: 'Dabin',
-    //     collection: [],
-    // },
-    // {
-    //     name: '',
-    //     collection: [],
-    // },
+
+    {
+        name: 'Universal',
+        collection: [Universal, Universal1, Universal2, Universal3, Universal4],
+    },
     // {
     //     name: '',
     //     collection: [],
