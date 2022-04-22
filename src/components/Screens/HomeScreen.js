@@ -248,7 +248,6 @@ const App = ({
     const [height, setHeight] = useState();
     const [current, setCurrent] = useState(0);
     const [transitioning, setTransitioning] = useState(null);
-    console.log(current);
     
     const app = useRef();
     const firstRender = useRef(true);
@@ -383,7 +382,6 @@ const App = ({
                         opacity: isActive() ? 1 : 0,
                     }}
                     alt={appName}
-                    onChange={e => console.log(e)}
                 />
             </div>
             <div className={classes.appName}
