@@ -139,8 +139,6 @@ const HomeScreen = () => {
     const [prevPage, setPrevPage] = useState(0);
     const [transitionX, setTransitionX] = useState(0);
 
-    const url = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-    
     const homeScreenRef = useRef();
     const initialRender = useRef(true);
 
