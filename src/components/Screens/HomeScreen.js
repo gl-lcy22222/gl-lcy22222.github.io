@@ -384,6 +384,7 @@ const App = ({
                     style={{
                         opacity: isActive() ? 1 : 0,
                     }}
+                    alt={appName}
                     onChange={e => console.log(e)}
                 />
             </div>
