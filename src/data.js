@@ -51,18 +51,18 @@ export const apps = [
         name: 'Sleepy head',
         collection: [SleepyBeauty, Sleepyhead, Sleepyhead1, Sleepyhead2, Sleepyhead3, Sleepyhead4],
     },
-    // {
-    //     name: 'Cutie 3.14',
-    //     collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
-    // },
+    {
+        name: 'Cutie 3.14',
+        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
+    },
     {
         name: 'Cutie 3.14',
         collection: [Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P],
     },
-    // {
-    //     name: 'Dabin',
-    //     collection: multiple([ Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9], 3),
-    // },
+    {
+        name: 'Dabin',
+        collection: multiple([ Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9], 3),
+    },
 
     {
         name: 'First Date',

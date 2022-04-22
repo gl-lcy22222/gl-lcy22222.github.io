@@ -159,7 +159,7 @@ const HomeScreen = () => {
         collection: [],
     };
 
-    while (currentSection.length !== 4) {
+    while (currentSection.length % 4 !== 0) {
         currentSection.push(fillerApp);
     }
 
