@@ -13,7 +13,6 @@ import Cutie3_14_2P from './picSrc/Cutie3.14_2.PNG';
 import Cutie3_14_1 from './picSrc/Cutie3.14_1.JPG';
 import Cutie3_14_2 from './picSrc/Cutie3.14_2.JPG';
 import Cutie3_14_3 from './picSrc/Cutie3.14_3.JPG';
-import Cutie3_14_4 from './picSrc/Cutie3.14_4.JPG';
 
 import dabinPic from './picSrc/dabinPic.jpg';
 import Dabin from './picSrc/Dabin.JPG';
@@ -62,15 +61,11 @@ export const apps = [
     },
     {
         name: 'Cutie 3.14',
-        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
-    },
-    {
-        name: 'Cutie 3.14',
-        collection: [Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P],
+        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P],
     },
     {
         name: 'Dabin',
-        collection: multiple([ Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9], 3),
+        collection: [ Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
     },
 
     {
