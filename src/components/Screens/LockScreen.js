@@ -4,11 +4,16 @@ import { connect } from "react-redux";
 import {
     updatePasscodeEntry,
     updateScreen,
+    playAudio,
 } from '../../redux/actions';
 import {
     PASSCODE,
     HOME_SCREEN,
+    TAPPING_SOUND,
 } from '../../redux/constants';
+import {
+    sound
+} from '../../data';
 import LockIcon from "../LockIcon";
 import backgroundPic from '../../picSrc/background.jpg';
 
@@ -104,8 +109,10 @@ const useStyles = makeStyles({
 
 const LockScreen = ({
     passcodeEntry,
+    volume,
     updatePasscodeEntry,
     updateScreen,
+    playAudio,
 }) => {
     const classes = useStyles();
 
@@ -120,10 +127,13 @@ const LockScreen = ({
             />
             <NumPad
                 passcodeEntry={passcodeEntry}
+                volume={volume}
+                playAudio={playAudio}
                 updatePasscodeEntry={updatePasscodeEntry}
             />
             <DeleteButton
                 passcodeEntry={passcodeEntry}
+                volume={volume}
                 updatePasscodeEntry={updatePasscodeEntry}
             />
         </div>
@@ -190,7 +200,6 @@ const ConfirmButton = ({
     const classes = useStyles();
 
     const handleConfirm = () => {
-
         if (passcodeEntry === PASSCODE) {
             updateScreen(HOME_SCREEN);
         }
@@ -210,7 +219,9 @@ const ConfirmButton = ({
 
 const NumPad = ({
     passcodeEntry,
+    volume,
     updatePasscodeEntry,
+    playAudio,
 }) => {
     const classes = useStyles();
 
@@ -235,6 +246,8 @@ const NumPad = ({
                         number={key}
                         alpha={numPadMapping[key]}
                         passcodeEntry={passcodeEntry}
+                        volume={volume}
+                        playAudio={playAudio}
                         updatePasscodeEntry={updatePasscodeEntry}
                     />
                 );
@@ -242,6 +255,8 @@ const NumPad = ({
             <NumPadButton
                 number={0}
                 passcodeEntry={passcodeEntry}
+                volume={volume}
+                playAudio={playAudio}
                 updatePasscodeEntry={updatePasscodeEntry}
             />
         </div>
@@ -252,16 +267,21 @@ const NumPadButton = ({
     number,
     alpha,
     passcodeEntry,
-    updatePasscodeEntry
+    volume,
+    updatePasscodeEntry,
+    playAudio,
 }) => {
     const classes = useStyles();
     const [height, setHeight] = useState();
-
+    
     return (
         <div className={classes.numPadButton}
             ref={e => e && setHeight(e.clientWidth)}
             style={{height}}
-            onClick={() => updatePasscodeEntry(passcodeEntry + number)}
+            onClick={() => {
+                updatePasscodeEntry(passcodeEntry + number);
+                playAudio(sound[TAPPING_SOUND]);
+            }}
         >
             <div style={{
                 fontSize: 30
@@ -296,16 +316,19 @@ const DeleteButton = ({
 
 const mapStateToProps = ({
     passcodeEntry,
+    volume,
 }) => {
 
     return {
-        passcodeEntry
+        passcodeEntry,
+        volume,
     };
 };
 
 const mapDispatchToProps = {
     updatePasscodeEntry,
     updateScreen,
+    playAudio,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LockScreen);

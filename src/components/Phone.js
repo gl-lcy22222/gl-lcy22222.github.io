@@ -2,9 +2,23 @@ import { makeStyles } from '@material-ui/styles';
 import { useState } from 'react';
 import SideButton from './SideButton';
 import Screen from './Screen';
-import { updateScreen } from '../redux/actions';
-import { BLACK_SCREEN, LOCKED_SCREEN } from '../redux/constants';
+import {
+    playAudio,
+    updateScreen,
+    updateSoundStatus,
+    updateVolume
+} from '../redux/actions';
+import {
+    BLACK_SCREEN,
+    LOCKED_SCREEN,
+    LOCKING_SOUND,
+    SOUND_OFF,
+    SOUND_ON,
+    VOLUME_DOWN,
+    VOLUME_UP
+} from '../redux/constants';
 import { connect } from 'react-redux';
+import { sound } from '../data';
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -16,6 +30,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
+        zIndex: 10,
     },
     innerContainer: {
         height: '99.2%',
@@ -90,7 +105,11 @@ const useStyles = makeStyles({
 
 const Phone = ({
     screen,
+    soundStatus,
     updateScreen,
+    updateSoundStatus,
+    updateVolume,
+    playAudio,
 }) => {
     const classes = useStyles();
     const [outerContainerWidth, setOuterContainerWidth] = useState(0);
@@ -113,42 +132,60 @@ const Phone = ({
                 <SideButton
                     side={"left"}
                     top={"20%"}
+                    action={() => {
+                        updateSoundStatus(soundStatus === SOUND_ON ? SOUND_OFF : SOUND_ON);
+                    }}
                 />
                 {/* Up Volume SideButton */}
                 <SideButton
                     side={"left"}
                     top={"30%"}
                     height={"7%"}
+                    action={() => updateVolume(VOLUME_UP)}
                 />
                 {/* Down Volume SideButton */}
                 <SideButton
                     side={"left"}
                     top={"39%"}
                     height={"7%"}
+                    action={() => updateVolume(VOLUME_DOWN)}
                 />
                 {/* Power SideButton */}
                 <SideButton
                     side={"right"}
                     top={"25%"}
                     height={"7%"}
-                    action={() => updateScreen(screen === BLACK_SCREEN ? LOCKED_SCREEN : BLACK_SCREEN)}
+                    action={() => {
+                        if (screen === BLACK_SCREEN) {
+                            updateScreen(LOCKED_SCREEN);
+                        }
+                        else {
+                            updateScreen(BLACK_SCREEN);
+                            playAudio(sound[LOCKING_SOUND]);
+                        }
+                    }}
                 />
-                <Screen/>
+                <Screen />
             </div>
         </div>
     );
 };
 
 const mapStateToProps = ({
-    screen
+    screen,
+    soundStatus,
 }) => {
     return {
         screen,
+        soundStatus,
     };
 };
 
 const mapDispatchToProps = {
     updateScreen,
+    updateSoundStatus,
+    updateVolume,
+    playAudio,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phone);

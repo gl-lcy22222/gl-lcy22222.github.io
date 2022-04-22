@@ -1,7 +1,9 @@
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useRef, useState } from "react";
 
-import apps from '../../apps';
+import {
+    apps
+} from '../../data';
 
 import backgroundPic from '../../picSrc/background.jpg';
 import { ESCAPE_KEY } from "../../redux/constants";
@@ -30,34 +32,18 @@ const useStyles = makeStyles({
     },
     appSectionContainer: {
         height: '100%',
-
-        paddingTop: '15%',
         width: '100%',
         overflow: 'hidden',
-
         display: 'flex',
     },
     appContentContainer: {
+        paddingTop: '15%',
         width: '90%',
         minWidth: '100%',
-        // margin: '0 5%',
-
-        // display: 'flex',
-        // flexWrap: 'wrap',
-        // justifyContent: 'center',
-        // justifyItems: 'flex-start',
-        // alignContent: 'flex-start',
-        // alignItems: 'flex-start',
-
-
         transition: `all 750ms ease`,
-
-        
         display: 'flex',
-        // flexDirection: 'row',
         flexWrap: 'wrap',
-        // alignItems: 'flex-start',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         alignContent: 'flex-start',
         
     },
@@ -67,7 +53,6 @@ const useStyles = makeStyles({
         color: 'white',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
 
         '&:hover': {
             cursor: 'pointer'
@@ -153,6 +138,8 @@ const HomeScreen = () => {
     const [page, setPage] = useState(0);
     const [prevPage, setPrevPage] = useState(0);
     const [transitionX, setTransitionX] = useState(0);
+
+    const url = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
     
     const homeScreenRef = useRef();
     const initialRender = useRef(true);
@@ -170,6 +157,15 @@ const HomeScreen = () => {
         }
     }
     
+    const fillerApp = {
+        name: '',
+        collection: [],
+    };
+
+    while (currentSection.length !== 4) {
+        currentSection.push(fillerApp);
+    }
+
     appSections.push(currentSection);
 
     useEffect(() => {
@@ -186,17 +182,18 @@ const HomeScreen = () => {
         <div className={classes.rootContainer}
             ref={homeScreenRef}
             style={{
-                pointerEvents: active ? 'none' : null,
+                pointerEvents: active !== null ? 'none' : null,
             }}
         >
             <div className={classes.appSectionContainer}>
-                {/* {appSections.map((section, sectionNum) => ( */}
+                {appSections.map((section, sectionNum) => (
                     <div className={classes.appContentContainer}
+                        key={sectionNum}
                         style={{
                             transform:  `translate(${transitionX}px, 0px)`,
                         }}
                     >
-                        {appSections[0].map((app, i) => (
+                        {appSections[sectionNum].map((app, i) => (
                             <App
                                 homeScreen={homeScreenRef}
                                 key={i}
@@ -209,28 +206,11 @@ const HomeScreen = () => {
                         ))}
                     </div>
 
-                    <div className={classes.appContentContainer}
-                        style={{
-                            transform:  `translate(${transitionX}px, 0px)`,
-                        }}
-                    >
-                        {appSections[0].map((app, i) => (
-                            <App
-                                homeScreen={homeScreenRef}
-                                key={i}
-                                num={i}
-                                appName={app.name}
-                                collection={app.collection}
-                                active={active}
-                                setActive={setActive}
-                            />
-                        ))}
-                    </div>
-                {/* ))} */}
+            ))}
             </div>
             <div className={classes.pageSectionDotsContainer}
                 style={{
-                    opacity: active ? 0 : 1
+                    opacity: active !== null ? 0 : 1
                 }}
             >
                 {appSections.map((section, num) => (
@@ -246,7 +226,7 @@ const HomeScreen = () => {
             </div>
             <div className={classes.deckContainer}
                 style={{
-                    opacity: active ? 0 : 1
+                    opacity: active !== null ? 0 : 1
                 }}
             >
                 <DeckApp />
@@ -261,8 +241,8 @@ const HomeScreen = () => {
 const App = ({
     num,
     appName,
-    collection,
     active,
+    collection,
     homeScreen,
     setActive,
 }) => {
@@ -276,6 +256,7 @@ const App = ({
     const firstRender = useRef(true);
     const timers = useRef({});
     
+    const filler = !collection.length;
     const style = app.current?.style;
 
     const isActive = () => active === num || active === null;
@@ -339,11 +320,17 @@ const App = ({
     }, [active]);
 
     return (
-        <div className={classes.appContainer}>
+        <div className={classes.appContainer}
+            style={{
+                visibility: filler ? 'hidden' : 'visible',
+            }}
+        >
             <div className={classes.appImgContainer}
                 ref={e => e && setHeight(e.clientWidth)}
                 style={{ height }}
                 onClick={() => {
+                    if (filler) return;
+
                     if (isActive() && transitioning === null) {
                         const { clientWidth, clientHeight } = homeScreen.current;
                         const { offsetLeft, offsetTop } = app.current;
@@ -361,8 +348,6 @@ const App = ({
                             const halfAppX = appWidth / 2;
                             const halfAppY = appHeight / 2;
 
-                            console.log(clientHeight, offsetTop, appHeight)
-                            
                             const x = negativeX() ? halfX - offsetLeft - halfAppX : -(offsetLeft - halfX + halfAppX);
                             const y = negativeY() ? -(offsetTop - halfY + halfAppY) : halfY - offsetTop - halfAppY;
 
@@ -399,6 +384,7 @@ const App = ({
                     style={{
                         opacity: isActive() ? 1 : 0,
                     }}
+                    onChange={e => console.log(e)}
                 />
             </div>
             <div className={classes.appName}
@@ -437,7 +423,6 @@ const DeckApp = () => {
     return (
         <div className={classes.deckAppContainer}
             ref={e => e && setHeight(e.clientWidth)}
-
             style={{ height }}
         >
             
