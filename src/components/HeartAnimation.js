@@ -74,7 +74,7 @@ const Heart = ({
             style.transform = `translate(0, -${startY}px)`;
             style.opacity = 0;
         }, 1500);
-    }, []);
+    }, [canvas]);
 
     return (
         <div className={classes.heart}
