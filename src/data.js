@@ -1,7 +1,6 @@
 import { LOCKING_SOUND, TAPPING_SOUND } from './redux/constants';
 
 import bt21 from './picSrc/bt21.jpg';
-import SleepyBeauty from './picSrc/SleepyBeauty.jpg';
 import villager from './picSrc/villager.jpg';
 
 import Brat from './picSrc/Brat.JPG';
@@ -28,6 +27,13 @@ import Dabin6 from './picSrc/Dabin6.JPG';
 import Dabin8 from './picSrc/Dabin8.JPG';
 import Dabin9 from './picSrc/Dabin9.JPG';
 
+import SleepyBeauty from './picSrc/SleepyBeauty.jpg';
+import Sleepyhead from './picSrc/Sleepyhead.JPG';
+import Sleepyhead1 from './picSrc/Sleepyhead1.JPG';
+import Sleepyhead2 from './picSrc/Sleepyhead2.JPG';
+import Sleepyhead3 from './picSrc/Sleepyhead3.JPG';
+import Sleepyhead4 from './picSrc/Sleepyhead4.JPG';
+
 // import  from './picSrc/'
 
 export const apps = [
@@ -36,20 +42,24 @@ export const apps = [
         collection: [Brat1, Brat, Brat2]
     },
     {
-        name: 'bt21',
-        collection: [bt21],
+        name: 'Sleepy head',
+        collection: [SleepyBeauty, Sleepyhead, Sleepyhead1, Sleepyhead2, Sleepyhead3, Sleepyhead4],
     },
     {
         name: 'Cutie 3.14',
         collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_4],
     },
+    // {
+    //     name: 'Cutie 3.14',
+    //     collection: [Cutie3_14P, Cutie3_14_1P, Cutie3_14_2P],
+    // },
     {
-        name: 'Cutie 3.14',
-        collection: [Cutie3_14P, Cutie3_14_1P, Cutie3_14_2P],
+        name: 'Dabin',
+        collection: [dabinPic, Dabin, Dabin1, Dabin2, Dabin3, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
     },
     // {
     //     name: 'Dabin',
-    //     collection: [dabinPic, Dabin, Dabin1, Dabin2, Dabin3, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
+    //     collection: [],
     // },
     // {
     //     name: '',
