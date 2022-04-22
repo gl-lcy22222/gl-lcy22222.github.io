@@ -44,12 +44,10 @@ import Universal4 from './picSrc/Universal4.JPG';
 
 const multiple = (arr, times) => Array(times).fill(0).flatMap(() => arr);
 
-console.log(performance.getEntriesByName(dabinPic)[0])
-
 export const apps = [
     {
         name: 'First Date',
-        collection: [ First_Date,First_Date_2, First_Date_1],
+        collection: [First_Date, First_Date_2, First_Date_1],
     },
     {
         name: 'Brat',
@@ -65,7 +63,7 @@ export const apps = [
     },
     {
         name: 'Dabin',
-        collection: [ Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
+        collection: [Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
     },
 
     {
@@ -100,7 +98,14 @@ export const apps = [
     //     name: '',
     //     collection: [],
     // },
-];
+]
+    .map(d => {
+        for (const img of d.collection) {
+            new Image().src = img;
+        }
+
+        return d;
+    });
 
 export const sound = {
     [TAPPING_SOUND]: "https://picturetosound.com/content/6E7D3368222284596F5DFD361B8D41D1B7B87CC0/audio_preview.mp3",
