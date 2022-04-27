@@ -9,10 +9,13 @@ import Brat2 from './picSrc/Brat2.JPG';
 import Cutie3_14P from './picSrc/Cutie3.14.PNG';
 import Cutie3_14_1P from './picSrc/Cutie3.14_1.PNG';
 import Cutie3_14_2P from './picSrc/Cutie3.14_2.PNG';
+import Cutie3_14_3P from './picSrc/Cutie3.14_3.PNG';
+import Cutie3_14_4P from './picSrc/Cutie3.14_4.PNG';
 
 import Cutie3_14_1 from './picSrc/Cutie3.14_1.JPG';
 import Cutie3_14_2 from './picSrc/Cutie3.14_2.JPG';
 import Cutie3_14_3 from './picSrc/Cutie3.14_3.JPG';
+import Cutie3_14_4 from './picSrc/Cutie3.14_4.JPG';
 
 import dabinPic from './picSrc/dabinPic.jpg';
 import Dabin from './picSrc/Dabin.JPG';
@@ -24,6 +27,7 @@ import Dabin5 from './picSrc/Dabin5.JPG';
 import Dabin6 from './picSrc/Dabin6.JPG';
 import Dabin8 from './picSrc/Dabin8.JPG';
 import Dabin9 from './picSrc/Dabin9.JPG';
+import Dabin10 from './picSrc/Dabin10.JPG';
 
 import SleepyBeauty from './picSrc/SleepyBeauty.jpg';
 import Sleepyhead from './picSrc/Sleepyhead.JPG';
@@ -41,6 +45,16 @@ import Universal1 from './picSrc/Universal1.JPG';
 import Universal2 from './picSrc/Universal2.JPG';
 import Universal3 from './picSrc/Universal3.JPG';
 import Universal4 from './picSrc/Universal4.JPG';
+import Universal5 from './picSrc/Universal4.JPG';
+
+import SanDiego from './picSrc/SanDiego.JPG';
+
+import DateNights from './picSrc/DateNights.JPG';
+
+import ChristmasLights from './picSrc/Christmas Lights.JPG';
+import ChristmasLights2 from './picSrc/Christmas Lights2.JPG';
+
+import Sus from './picSrc/Sus.JPG';
 
 const multiple = (arr, times) => Array(times).fill(0).flatMap(() => arr);
 
@@ -59,33 +73,33 @@ export const apps = [
     },
     {
         name: 'Cutie 3.14',
-        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P],
+        collection: [Cutie3_14_1, Cutie3_14_2, Cutie3_14_3, Cutie3_14_2P, Cutie3_14P, Cutie3_14_1P, Cutie3_14_4, Cutie3_14_3P, Cutie3_14_4P],
     },
     {
         name: 'Dabin',
-        collection: [Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9],
+        collection: [Dabin3, dabinPic, Dabin, Dabin1, Dabin2, Dabin4, Dabin5, Dabin6, Dabin8, Dabin9, Dabin10],
     },
 
     {
         name: 'Universal',
-        collection: [Universal, Universal1, Universal2, Universal3, Universal4],
+        collection: [Universal, Universal1, Universal2, Universal3, Universal4, Universal5],
     },
-    // {
-    //     name: '',
-    //     collection: [],
-    // },
-    // {
-    //     name: '',
-    //     collection: [],
-    // },
-    // {
-    //     name: '',
-    //     collection: [],
-    // },
-    // {
-    //     name: '',
-    //     collection: [],
-    // },
+    {
+        name: 'San Diego',
+        collection: [SanDiego],
+    },
+    {
+        name: 'Date Nights',
+        collection: [DateNights],
+    },
+    {
+        name: 'Christmas Lights',
+        collection: [ChristmasLights, ChristmasLights2],
+    },
+    {
+        name: 'Sus',
+        collection: [Sus],
+    },
     // {
     //     name: '',
     //     collection: [],
