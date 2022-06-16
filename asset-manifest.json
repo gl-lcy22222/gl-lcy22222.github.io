@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7ae79d8f.css",
-    "main.js": "/static/js/main.34bf6c06.js",
+    "main.js": "/static/js/main.17c18c4c.js",
     "static/js/787.95b9bf10.chunk.js": "/static/js/787.95b9bf10.chunk.js",
     "static/media/First Date2.PNG": "/static/media/First Date2.3f8e29c591bb370e025f.PNG",
     "static/media/Cutie3.14_2.PNG": "/static/media/Cutie3.14_2.76866c3e512586faf0d5.PNG",
@@ -25,6 +25,8 @@
     "static/media/Graduation_Pic4.JPEG": "/static/media/Graduation_Pic4.7812b3e33ee0c7bc8f4e.JPEG",
     "static/media/Graduation_Pic5.JPEG": "/static/media/Graduation_Pic5.5b1d8aa18684e10219e1.JPEG",
     "static/media/Dabin1.JPG": "/static/media/Dabin1.33bb62a12d2363060417.JPG",
+    "static/media/Vegas EDC2.jpg": "/static/media/Vegas EDC2.39bcdb02d03f2ad619f5.jpg",
+    "static/media/Vegas EDC4.jpg": "/static/media/Vegas EDC4.8bc6b2e7d9f1c8037ddc.jpg",
     "static/media/Universal2.JPG": "/static/media/Universal2.bd18ae37b4665d9f249e.JPG",
     "static/media/Cutie3.14_2.JPG": "/static/media/Cutie3.14_2.f0db0492388b6a811bb5.JPG",
     "static/media/Cutie3.14_3.JPG": "/static/media/Cutie3.14_3.b61b3f1dd966078e75c3.JPG",
@@ -41,12 +43,14 @@
     "static/media/DateNights.JPG": "/static/media/DateNights.1061453457abf062c499.JPG",
     "static/media/Brat1.JPG": "/static/media/Brat1.1860d089646291a7e744.JPG",
     "static/media/Brat.JPG": "/static/media/Brat.c640167099b3de840769.JPG",
+    "static/media/Vegas EDC3.jpg": "/static/media/Vegas EDC3.2d005e39ed2b12376794.jpg",
     "static/media/Brat2.JPG": "/static/media/Brat2.0695649ab46727ef8029.JPG",
     "static/media/First Date1.JPG": "/static/media/First Date1.4924f40814d520c5a0fa.JPG",
     "static/media/First Date.JPG": "/static/media/First Date.a519694d190360320833.JPG",
     "static/media/Cutie3.14_4.JPG": "/static/media/Cutie3.14_4.a5d8c392ebf9e080e367.JPG",
     "static/media/SanDiego.JPG": "/static/media/SanDiego.8fe7a670967d51bc2b5f.JPG",
     "static/media/Sus.JPG": "/static/media/Sus.2386a0d88dab84d76a24.JPG",
+    "static/media/Vegas EDC1.jpg": "/static/media/Vegas EDC1.3793ba7d299398948972.jpg",
     "static/media/SleepyBeauty.jpg": "/static/media/SleepyBeauty.21b39951ebdd6651763f.jpg",
     "static/media/Cutie3.14_1.JPG": "/static/media/Cutie3.14_1.6068ad9982bea6a1cbed.JPG",
     "static/media/Dabin10.JPG": "/static/media/Dabin10.82fc8afb1425abbbdd42.JPG",
@@ -54,11 +58,11 @@
     "static/media/background.jpg": "/static/media/background.9337c63a3c4b269adfb1.jpg",
     "index.html": "/index.html",
     "main.7ae79d8f.css.map": "/static/css/main.7ae79d8f.css.map",
-    "main.34bf6c06.js.map": "/static/js/main.34bf6c06.js.map",
+    "main.17c18c4c.js.map": "/static/js/main.17c18c4c.js.map",
     "787.95b9bf10.chunk.js.map": "/static/js/787.95b9bf10.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7ae79d8f.css",
-    "static/js/main.34bf6c06.js"
+    "static/js/main.17c18c4c.js"
   ]
 }
