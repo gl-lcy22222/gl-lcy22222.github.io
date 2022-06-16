@@ -59,9 +59,21 @@ const Time = () => {
 
     const padding = min => min < 10 ? '0' + min : min;
 
+    const getHour = () => {
+        if (date.getHours() === 0) {
+            return 12;
+        }
+        else if (date.getHours() > 12) {
+            return date.getHours() - 12;
+        }
+        else {
+            return date.getHours();
+        }
+    };
+
     return (
         <div className={classes.timeContainer}>
-            {`${date.getHours()}:${padding(date.getMinutes())}`}
+            {`${getHour()}:${padding(date.getMinutes())}`}
         </div>
     );
 };

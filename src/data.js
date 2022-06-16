@@ -56,6 +56,12 @@ import ChristmasLights2 from './picSrc/Christmas Lights2.JPG';
 
 import Sus from './picSrc/Sus.JPG';
 
+import Graduation_Pic1 from './picSrc/Graduation_Pic1.JPEG';
+import Graduation_Pic2 from './picSrc/Graduation_Pic2.JPEG';
+import Graduation_Pic3 from './picSrc/Graduation_Pic3.JPEG';
+import Graduation_Pic4 from './picSrc/Graduation_Pic4.JPEG';
+import Graduation_Pic5 from './picSrc/Graduation_Pic5.JPEG';
+
 const multiple = (arr, times) => Array(times).fill(0).flatMap(() => arr);
 
 export const apps = [
@@ -100,10 +106,10 @@ export const apps = [
         name: 'Sus',
         collection: [Sus],
     },
-    // {
-    //     name: '',
-    //     collection: [],
-    // },
+    {
+        name: 'Grad Pix',
+        collection: [Graduation_Pic3, Graduation_Pic5, Graduation_Pic2, Graduation_Pic1, Graduation_Pic4],
+    },
     // {
     //     name: '',
     //     collection: [],

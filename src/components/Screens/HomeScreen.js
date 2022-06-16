@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/styles";
 import { useEffect, useRef, useState } from "react";
 
 import {
-    apps
+    apps,
+    additionalImages
 } from '../../data';
 
 import backgroundPic from '../../picSrc/background.jpg';
@@ -70,7 +71,6 @@ const useStyles = makeStyles({
         height: '100%',
         borderRadius: '25%',
         transition: `opacity ${transitionTime}ms ease-in-out`,
-
     },
     appName: {
         marginTop: 5,
@@ -88,7 +88,6 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         transition: `opacity ${centeringTime}ms ease-in-out`,
-
     },
     pageSectionDots: {
         height: '10px',
@@ -256,6 +255,8 @@ const App = ({
     const filler = !collection.length;
     const style = app.current?.style;
 
+    const SPECIAL_PRE_LOAD_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
     const isActive = () => active === num || active === null;
 
     const inactiveCleanup = () => {
@@ -285,6 +286,7 @@ const App = ({
             else if (transitioning === false) {
                 transitionTimer = setTimeout(() => {
                     if (current + 1 < collection.length) {
+                        app.current.src = SPECIAL_PRE_LOAD_IMAGE;
                         setCurrent(current + 1);
                         setTransitioning(true);
                         style.opacity = "1";
@@ -378,6 +380,8 @@ const App = ({
                 <img ref={app}
                     className={classes.app}
                     src={collection[current]}
+                    onLoad={()  => console.log(collection[current])}
+                    onMouseDown={e => e.preventDefault()}
                     style={{
                         opacity: isActive() ? 1 : 0,
                     }}
