@@ -62,6 +62,11 @@ import Graduation_Pic3 from './picSrc/Graduation_Pic3.JPEG';
 import Graduation_Pic4 from './picSrc/Graduation_Pic4.JPEG';
 import Graduation_Pic5 from './picSrc/Graduation_Pic5.JPEG';
 
+import Vegas_EDC1 from './picSrc/Vegas EDC1.jpg';
+import Vegas_EDC2 from './picSrc/Vegas EDC2.jpg';
+import Vegas_EDC3 from './picSrc/Vegas EDC3.jpg';
+import Vegas_EDC4 from './picSrc/Vegas EDC4.jpg';
+
 const multiple = (arr, times) => Array(times).fill(0).flatMap(() => arr);
 
 export const apps = [
@@ -105,6 +110,10 @@ export const apps = [
     {
         name: 'Sus',
         collection: [Sus],
+    },
+    {
+        name: 'Vegas EDC',
+        collection: [Vegas_EDC1, Vegas_EDC2, Vegas_EDC3, Vegas_EDC4],
     },
     {
         name: 'Grad Pix',
