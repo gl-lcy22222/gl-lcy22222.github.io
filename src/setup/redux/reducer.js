@@ -5,6 +5,7 @@ import {
 } from '../../configs/constants';
 
 import appHandler from '../../containers/App/App/redux/handler';
+import screenHandler from '../../containers/Screen/redux/handler';
 
 const initialState = {
     screen: BLACK_SCREEN,
@@ -18,7 +19,7 @@ const initialState = {
 };
 
 const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {
-    const handlers = [appHandler];
+    const handlers = [appHandler, screenHandler];
 
     const handler = handlers.find(handler => handler(state, action));
 

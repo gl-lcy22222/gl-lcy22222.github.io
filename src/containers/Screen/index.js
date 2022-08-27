@@ -1,19 +1,16 @@
 import { makeStyles } from "@material-ui/styles";
-import {
-    connect
-} from 'react-redux';
-// import {
-//     updateScreen,
-// } from '../redux/actions';
-// import {
-//     BLACK_SCREEN,
-//     LOCK_SCREEN,
-//     HOME_SCREEN,
-//     LOCKED_SCREEN,
-//     UPLOAD_SCREEN,
-// } from '../redux/constants';
+import { connect } from "react-redux";
 
-// import BlackScreen from './Screens/BlackScreen';
+import { states, dispatches } from "./redux/redux";
+import {
+    BLACK_SCREEN,
+    // LOCK_SCREEN,
+    // HOME_SCREEN,
+    // LOCKED_SCREEN,
+    // UPLOAD_SCREEN,
+} from "../../configs/constants";
+
+import BlackScreen from "../Screens/BlackScreen/BlackScreen";
 // import LockScreen from './Screens/LockScreen';
 // import HomeScreen from './Screens/HomeScreen';
 // import LockedScreen from "./Screens/LockedScreen";
@@ -21,12 +18,12 @@ import {
 
 const useStyles = makeStyles({
     rootContainer: {
-        height: '100%',
-        width: '100%',
-        transition: '1s', //DELETE?
+        height: "100%",
+        width: "100%",
+        transition: "1s", //DELETE?
 
-        backgroundColor: 'red',
-        position: 'relative',
+        position: "relative",
+        zIndex: 1,
 
         // "& > :nth-child(2)": {
         //     borderRadius: 90,
@@ -35,36 +32,18 @@ const useStyles = makeStyles({
     },
 });
 
-const Screen = ({
-    screen,
-}) => {
+const screenMapping = {
+    [BLACK_SCREEN]: <BlackScreen />,
+    // [LOCKED_SCREEN]: <LockedScreen />,
+    // [LOCK_SCREEN]: <LockScreen />,
+    // [HOME_SCREEN]: <HomeScreen />,
+    // [UPLOAD_SCREEN]: <UploadScreen />,
+};
+
+const Screen = ({ screen }) => {
     const classes = useStyles();
-    const screenMapping = {
-        // [BLACK_SCREEN]: <BlackScreen />,
-        // [LOCKED_SCREEN]: <LockedScreen />,
-        // [LOCK_SCREEN]: <LockScreen />,
-        // [HOME_SCREEN]: <HomeScreen />,
-        // [UPLOAD_SCREEN]: <UploadScreen />,
-    };
 
-    return (
-        <div className={classes.rootContainer}>
-            {screenMapping[screen]}
-        </div>
-    );
+    return <div className={classes.rootContainer}>{screenMapping[screen]}</div>;
 };
 
-const mapStateToProps = ({
-    screen,
-}) => {
-
-    return {
-        screen
-    };
-};
-
-const mapDispatchToProps = {
-    // updateScreen,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Screen);
+export default connect(states, dispatches)(Screen);
