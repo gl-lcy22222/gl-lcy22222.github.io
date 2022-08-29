@@ -1,17 +1,9 @@
 import { makeStyles } from "@material-ui/styles";
-import { connect } from "react-redux";
-// import {
-//     updateScreen,
-// } from '../../redux/actions';
-// import {
-//     LOCK_SCREEN,
-// } from '../../redux/constants';
-// import LockIcon from "../LockIcon";
 
-import backgroundPic from '../../../../sources/background.jpg';
-import LockIcon from "../LockIcon";
-import Time from "../Time";
-import TodaysDate from "../TodaysDate";
+import backgroundPic from '../../../sources/background.jpg';
+import LockIcon from "./LockIcon";
+import Time from "./Time";
+import TodaysDate from "./TodaysDate";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -44,10 +36,4 @@ const LockedScreen = ({
     );
 };
 
-
-// const mapDispatchToProps = {
-//     updateScreen,
-// };
-
-// export default connect(null, mapDispatchToProps)(LockedScreen);
 export default LockedScreen;

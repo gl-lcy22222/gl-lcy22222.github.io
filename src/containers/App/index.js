@@ -2,14 +2,14 @@ import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 
-import HeartAnimation from "../../Heart Animation/Heart Animation";
-import Phone from "../../Phone/Phone";
-import Screen from "../../Screen/Screen";
+import HeartAnimation from "../Heart Animation";
+import Phone from "../Phone";
+import Screen from "../Screen";
 
 import {
     states,
     dispatches,
-} from '../redux';
+} from './redux';
 
 const useStyles = makeStyles({
     rootContainer: {

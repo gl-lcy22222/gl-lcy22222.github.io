@@ -1,17 +1,17 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 
-import { states, dispatches } from "../redux/redux";
+import { states, dispatches } from "./redux/redux";
 import {
     BLACK_SCREEN,
     // LOCK_SCREEN,
     // HOME_SCREEN,
     LOCK_SCREEN,
     // UPLOAD_SCREEN,
-} from "../../../configs/constants";
+} from "../../configs/constants";
 
-import BlackScreen from "../../Screens/BlackScreen/BlackScreen";
-import LockedScreen from "../../Screens/LockScreen/LockScreen";
+import BlackScreen from "../Screens/BlackScreen";
+import LockScreen from "../Screens/LockScreen";
 // import LockScreen from "../Screens/LockScreen/LockScreen";
 // import HomeScreen from './Screens/HomeScreen';
 // import UploadScreen from "./Screens/UploadScreen";
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 
 const screenMapping = {
     [BLACK_SCREEN]: <BlackScreen />,
-    [LOCK_SCREEN]: <LockedScreen />,
+    [LOCK_SCREEN]: <LockScreen />,
     // [LOCK_SCREEN]: <LockScreen />,
     // [HOME_SCREEN]: <HomeScreen />,
     // [UPLOAD_SCREEN]: <UploadScreen />,

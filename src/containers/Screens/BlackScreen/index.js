@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { LOCK_SCREEN } from "../../../../configs/constants";
+import { LOCK_SCREEN } from "../../../configs/constants";
 
-import { dispatches } from "../redux/redux";
+import { dispatches } from "./redux/redux";
 
 const useStyles = makeStyles({
     rootContainer: {

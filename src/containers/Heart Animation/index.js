@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useRef, useState } from "react";
-import Heart from "../Heart";
+import Heart from "./Heart";
 
 const useStyles = makeStyles({
     rootContainer: {
