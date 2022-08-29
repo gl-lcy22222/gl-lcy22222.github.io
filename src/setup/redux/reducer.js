@@ -1,16 +1,17 @@
 import {
     BLACK_SCREEN,
     LOCKED,
+    LOCK_SCREEN,
     SOUND_ON,
 } from '../../configs/constants';
 
-import appHandler from '../../containers/App/App/redux/handler';
+import appHandler from '../../containers/App/redux/handler';
 import screenHandler from '../../containers/Screen/redux/handler';
 
 const initialState = {
-    screen: BLACK_SCREEN,
+    screen: LOCK_SCREEN,
     passcodeEntry: '',
-    lockedStatus: LOCKED,
+    // lockedStatus: LOCKED,
     soundStatus: SOUND_ON,
     volume: 10,
     initialized: false,

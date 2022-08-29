@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { LOCKED_SCREEN } from "../../../../configs/constants";
+import { LOCK_SCREEN } from "../../../../configs/constants";
 
-import { dispatches } from "./redux/redux";
+import { dispatches } from "../redux/redux";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -22,7 +22,7 @@ const BlackScreen = ({ updateScreen }) => {
     return (
         <div
             className={classes.rootContainer}
-            onClick={() => updateScreen(LOCKED_SCREEN)}
+            onClick={() => updateScreen(LOCK_SCREEN)}
         />
     );
 };

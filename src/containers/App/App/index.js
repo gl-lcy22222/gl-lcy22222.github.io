@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 import HeartAnimation from "../../Heart Animation/Heart Animation";
 import Phone from "../../Phone/Phone";
-import Screen from "../../Screen";
+import Screen from "../../Screen/Screen";
 
 import {
     states,
     dispatches,
-} from './redux/redux';
+} from '../redux';
 
 const useStyles = makeStyles({
     rootContainer: {
