@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 
 import HeartAnimation from "../Heart Animation";
-import Phone from "../Phone";
+// import Phone from "../Phone";
 import Screen from "../Screen";
 
 import {
@@ -35,7 +35,7 @@ const App = ({
 
     useEffect(() => {
         setIsMobile();
-    }, []);
+    }, [setIsMobile]);
 
     return (
         <div

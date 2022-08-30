@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 
-import { states, dispatches } from "./redux/redux";
+import { states, dispatches } from "./redux";
 import {
     BLACK_SCREEN,
     // LOCK_SCREEN,
