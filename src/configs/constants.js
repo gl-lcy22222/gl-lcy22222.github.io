@@ -1,5 +1,6 @@
 export const BLACK_SCREEN = 'BLACK_SCREEN';
 export const LOCK_SCREEN = 'LOCK_SCREEN';
+export const PASSCODE_SCREEN = 'PASSCODE_SCREEN';
 export const HOME_SCREEN = 'HOME_SCREEN';
 export const UPLOAD_SCREEN = 'UPLOAD_SCREEN';
 

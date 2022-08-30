@@ -1,4 +1,4 @@
-import { SET_IS_MOBILE } from "../../../configs/redux-types";
+import { SET_IS_MOBILE } from "./types";
 
 const appHandler = (state, action) => {
     switch (action.type) {

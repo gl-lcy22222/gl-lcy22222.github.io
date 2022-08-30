@@ -1,4 +1,4 @@
-import { UPDATE_SCREEN } from "../../../configs/redux-types";
+import { UPDATE_SCREEN } from "./types";
 
 const screenHandler = (state, action) => {
     switch (action.type) {

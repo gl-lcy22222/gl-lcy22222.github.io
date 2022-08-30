@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 import { states, dispatches } from "./redux";
 import {
     BLACK_SCREEN,
-    // LOCK_SCREEN,
-    // HOME_SCREEN,
     LOCK_SCREEN,
+    PASSCODE_SCREEN,
+    // HOME_SCREEN,
     // UPLOAD_SCREEN,
 } from "../../configs/constants";
 
 import BlackScreen from "../Screens/BlackScreen";
 import LockScreen from "../Screens/LockScreen";
-// import LockScreen from "../Screens/LockScreen/LockScreen";
+import PasscodeScreen from "../Screens/PasscodeScreen";
 // import HomeScreen from './Screens/HomeScreen';
 // import UploadScreen from "./Screens/UploadScreen";
 
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 const screenMapping = {
     [BLACK_SCREEN]: <BlackScreen />,
     [LOCK_SCREEN]: <LockScreen />,
-    // [LOCK_SCREEN]: <LockScreen />,
+    [PASSCODE_SCREEN]: <PasscodeScreen />,
     // [HOME_SCREEN]: <HomeScreen />,
     // [UPLOAD_SCREEN]: <UploadScreen />,
 };

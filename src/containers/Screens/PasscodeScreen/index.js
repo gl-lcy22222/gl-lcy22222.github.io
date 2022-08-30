@@ -1,13 +1,10 @@
 import { makeStyles } from "@material-ui/styles";
-import { connect } from "react-redux";
 
+import DeleteButton from "./DeleteButton";
+import InputBox from "./InputBox";
+import NumPad from "./NumPad";
+import Text from "./Text";
 import LockIcon from "../../../components/LockIcon";
-import Time from "./Time";
-import TodaysDate from "./TodaysDate";
-
-import { dispatches } from "./redux";
-
-import { PASSCODE_SCREEN } from "../../../configs/constants";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -20,23 +17,22 @@ const useStyles = makeStyles({
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        cursor: "pointer",
+        "-webkit-tap-highlight-color": "transparent",
     },
 });
 
-const LockScreen = ({ updateScreen }) => {
+const PasscodeScreen = () => {
     const classes = useStyles();
 
     return (
-        <div
-            className={classes.rootContainer}
-            onClick={() => updateScreen(PASSCODE_SCREEN)}
-        >
+        <div className={classes.rootContainer}>
             <LockIcon />
-            <Time />
-            <TodaysDate />
+            <Text />
+            <InputBox />
+            <NumPad />
+            <DeleteButton />
         </div>
     );
 };
 
-export default connect(null, dispatches)(LockScreen);
+export default PasscodeScreen;

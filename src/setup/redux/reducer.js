@@ -1,17 +1,18 @@
 import {
     BLACK_SCREEN,
-    LOCKED,
     LOCK_SCREEN,
+    PASSCODE_SCREEN,
+    LOCKED,
     SOUND_ON,
-} from '../../configs/constants';
+} from "../../configs/constants";
 
-import appHandler from '../../containers/App/redux/handler';
-import screenHandler from '../../containers/Screen/redux/handler';
+import appHandler from "../../containers/App/redux/handler";
+import screenHandler from "../../containers/Screen/redux/handler";
+import passcodeScreenHandler from "../../containers/Screens/PasscodeScreen/redux/handler";
 
 const initialState = {
     screen: LOCK_SCREEN,
-    passcodeEntry: '',
-    // lockedStatus: LOCKED,
+    passcodeEntry: "",
     soundStatus: SOUND_ON,
     volume: 10,
     initialized: false,
@@ -20,9 +21,9 @@ const initialState = {
 };
 
 const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {
-    const handlers = [appHandler, screenHandler];
+    const handlers = [appHandler, screenHandler, passcodeScreenHandler];
 
-    const handler = handlers.find(handler => handler(state, action));
+    const handler = handlers.find((handler) => handler(state, action));
 
     if (handler) {
         return handler(state, action);

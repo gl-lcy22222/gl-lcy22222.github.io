@@ -5,7 +5,7 @@ const useStyles = makeStyles({
         fontSize: 60,
         color: 'white',
         textAlign: 'center',
-        height: '10%',
+        marginTop: '5%',
     },
 });
 
