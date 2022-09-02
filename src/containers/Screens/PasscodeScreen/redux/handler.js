@@ -5,6 +5,7 @@ import {
 } from "./types";
 
 const passcodeScreenHandler = (state, action) => {
+
     switch (action.type) {
         case UPDATE_PASSCODE_ENTRY:
             return {

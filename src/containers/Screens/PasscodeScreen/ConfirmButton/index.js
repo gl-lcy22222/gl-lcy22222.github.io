@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { BLACK_SCREEN, HOME_SCREEN, PASSCODE } from "../../../../configs/constants";
+import { HOME_SCREEN } from "../../../../configs/constants";
 import { dispatches, states } from "../redux";
 
 const useStyles = makeStyles({
@@ -24,7 +24,7 @@ const ConfirmButton = ({
 
     const handleConfirm = () => {
         if (passcodeEntry === PASSCODE) {
-            updateScreen(BLACK_SCREEN);
+            updateScreen(HOME_SCREEN);
         }
 
         console.log("Passcode is 22222");
@@ -39,5 +39,7 @@ const ConfirmButton = ({
         </div>
     );
 };
+
+const PASSCODE = '22222';
 
 export default connect(states, dispatches)(ConfirmButton);
