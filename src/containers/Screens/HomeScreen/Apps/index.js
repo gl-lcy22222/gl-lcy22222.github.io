@@ -96,6 +96,7 @@ const handleRef = (
     calcRowsPerPage(ref, appSize, setRowsPerPage);
     calculateAppSize(ref, setAppSize);
 
+    // TODO?
     // if (!Object.keys(playground).length) console.log("D")
     // setPlaygroundInfo(ref.clientWidth);
 };

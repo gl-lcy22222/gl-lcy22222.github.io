@@ -53,6 +53,7 @@ const App = ({
 }) => {
     const inactiveCleanup = () => {
         if (appRef.current) {
+            appRef.current.style.transition = `opacity ${CENTERING_TIME}ms ease-in-out`;
             appRef.current.style = null;
         }
     };
@@ -60,8 +61,6 @@ const App = ({
     const classes = useStyles();
 
     const [currentMedia, setCurrentMedia] = useState(0);
-
-    console.log('currentMedia', currentMedia);
 
     const appRef = useRef();
 
@@ -98,6 +97,7 @@ const App = ({
                     collection,
                     currentMedia,
                     setCurrentMedia,
+                    setActiveApp,
                 };
 
                 startAnimation(info);
@@ -130,7 +130,7 @@ const App = ({
                         src={collection?.[currentMedia]?.baseUrl}
                         ref={appRef}
                         alt=""
-                        onClick={() => setActiveApp(appNumber)}
+                        onClick={() => (!isActive || animationInactive) && setActiveApp(appNumber)}
                         style={{
                             height: appSize,
                             width: appSize,
@@ -258,7 +258,8 @@ const expand = async (info) => {
 };
 
 const transition = async info => {
-    const { collection, currentMedia, style, setCurrentMedia } = info;
+    // TODO: need to fix clicking an app to make active, then quickly inactivate it then click another app, itll stay opened miday 
+    const { collection, currentMedia, style, setCurrentMedia, setActiveApp } = info;
     const fadeOut = async () => {
         style.opacity = '0';
         await sleep(TRANSITIONING_TIME);
@@ -281,7 +282,7 @@ const transition = async info => {
         transition(info);
     }
     else {
-
+        setActiveApp(null);
     }
 };
 
