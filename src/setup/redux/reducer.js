@@ -26,10 +26,7 @@ export const initialState = {
     currentPage: 0,
     isMobile: false,
     activeApp: null,
-    playground: {
-        height: 915,
-        width: 412,
-    },
+    playground: {},
 };
 
 const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {

@@ -4,13 +4,6 @@
 * swipe to switch pages
 
 
-// need to fix expanding and make it center
-// need to figure out why page containers aren't flex rows
-// prob want to take out page containers into its own component in apps
-// remove reducer playground info
-// need to set playground in  a way that it wont exceed max rerenders
-
-
 // add tests
 // thik of ways to optimize
 // pass in only the required variables <-- google this? 

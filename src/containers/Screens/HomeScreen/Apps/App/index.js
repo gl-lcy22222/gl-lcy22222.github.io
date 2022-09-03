@@ -53,7 +53,6 @@ const App = ({
 }) => {
     const inactiveCleanup = () => {
         if (appRef.current) {
-            appRef.current.style.transition = `opacity ${CENTERING_TIME}ms ease-in-out`;
             appRef.current.style = null;
         }
     };
@@ -102,6 +101,7 @@ const App = ({
 
                 startAnimation(info);
             } else {
+                console.log('cleaning up')
                 inactiveCleanup();
             }
         }

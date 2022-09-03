@@ -4,6 +4,7 @@ import { APP_CONTAINER_WIDTH, APP_LEVEL_GAPS, APP_SIZE } from "../../../../confi
 import { dispatches, states } from "../redux";
 import { percent } from "../../../../helpers";
 import Page from "./Page";
+import { useEffect, useRef } from "react";
 
 const marginTop = 10;
 
@@ -36,22 +37,26 @@ const Apps = ({
 
     const classes = useStyles();
 
+    const containerRef = useRef();
+
     const isActive = activeApp !== null;
+
+    useEffect(() => {
+        if (containerRef.current) {
+            const ref = containerRef.current;
+            calcRowsPerPage(ref, appSize, setRowsPerPage);
+            calculateAppSize(ref, setAppSize);
+            setPlaygroundInfo({
+                width: ref.clientWidth,
+                height: ref.clientHeight,
+            });
+        }
+    }, containerRef);
 
     return (
         <div
             className={classes.rootContainer}
-            ref={ref =>
-                handleRef(
-                    ref,
-                    appSize,
-                    playground,
-                    setAppSize,
-                    setRowsPerPage,
-                    setPlaygroundInfo,
-                    setPlaygroundInfo
-                )
-            }
+            ref={containerRef}
             onClick={() => isActive && inactiveCleanup()}
         >
             {Array(numOfPages)
@@ -79,26 +84,6 @@ const calculateAppSize = (ref, setAppSize) => {
     const homeScreenWidth = homeScreen.clientWidth;
 
     setAppSize(homeScreenWidth * percent(APP_SIZE));
-};
-
-const handleRef = (
-    ref,
-    appSize,
-    playground,
-    setAppSize,
-    setRowsPerPage,
-    setPlaygroundInfo
-) => {
-    if (!ref) return;
-
-    console.log(ref)
-
-    calcRowsPerPage(ref, appSize, setRowsPerPage);
-    calculateAppSize(ref, setAppSize);
-
-    // TODO?
-    // if (!Object.keys(playground).length) console.log("D")
-    // setPlaygroundInfo(ref.clientWidth);
 };
 
 export default connect(states, dispatches)(Apps);
