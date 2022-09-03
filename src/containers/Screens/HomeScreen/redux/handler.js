@@ -1,4 +1,4 @@
-import { SET_ROWS_PER_PAGE, SET_APP_SIZE, SET_CURRENT_PAGE, SET_ACTIVE_APP } from "./types";
+import { SET_ROWS_PER_PAGE, SET_APP_SIZE, SET_CURRENT_PAGE, SET_ACTIVE_APP, SET_PLAYGROUND_INFO } from "./types";
 
 const homeScreenHandler = (state, action) => {
     switch (action.type) {
@@ -21,6 +21,13 @@ const homeScreenHandler = (state, action) => {
             return {
                 ...state,
                 activeApp: action.activeApp,
+            };
+        case SET_PLAYGROUND_INFO:
+            return {
+                ...state,
+                playground: {
+                    ...action.playgroundInfo
+                }
             };
     }
 };

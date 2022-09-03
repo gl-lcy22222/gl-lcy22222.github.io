@@ -1,91 +1,63 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { APP_LEVEL_GAPS, APP_SIZE } from "../../../../configs/constants";
+import { APP_CONTAINER_WIDTH, APP_LEVEL_GAPS, APP_SIZE } from "../../../../configs/constants";
 import { dispatches, states } from "../redux";
-import App from "./App";
 import { percent } from "../../../../helpers";
-import { useEffect, useState } from "react";
+import Page from "./Page";
 
 const marginTop = 10;
-const appContainerWidth = 90;
 
 const useStyles = makeStyles({
     rootContainer: {
-        flex: 1,
+        flex: '1 1 auto',
+
         width: "100%",
         display: "flex",
         flexDirection: "row",
         marginTop: `${marginTop}%`,
-        overflow: "hidden",
-    },
-    appsContainer: {
-        margin: "0% 5%",
-        width: `${appContainerWidth}%`,
-        minWidth: `${appContainerWidth}%`,
-        height: "100%",
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "row",
-        alignContent: "flex-start",
-        justifyContent: "space-evenly",
 
-        transition: `all 750ms ease`,
+        overflow: 'hidden',
     },
 });
 
 const Apps = ({
-    apps,
     appSize,
-    maxAppsPerPage,
     numOfPages,
     activeApp,
-    currentPage,
+    playground,
     setAppSize,
     setRowsPerPage,
+    setActiveApp,
+    setPlaygroundInfo,
 }) => {
+    const inactiveCleanup = () => {
+        setActiveApp(null);
+    };
+
     const classes = useStyles();
 
-    const [transformAmount, setTransformAmount] = useState(0);
-    const [prevPage, setPrevPage] = useState(0);
-    const [clientWidth, setClientWidth] = useState(0);
-
-    useEffect(() => {
-        if (prevPage > currentPage) setTransformAmount(transformAmount + (clientWidth * (prevPage - currentPage)));
-        else if (prevPage < currentPage) setTransformAmount(transformAmount - (clientWidth * (currentPage - prevPage)));
-
-        setPrevPage(currentPage);
-    }, [currentPage, prevPage]);
+    const isActive = activeApp !== null;
 
     return (
-        <div className={classes.rootContainer}
-            ref={ref => handleRef(ref, appSize, setAppSize, setRowsPerPage, setClientWidth)}>
+        <div
+            className={classes.rootContainer}
+            ref={ref =>
+                handleRef(
+                    ref,
+                    appSize,
+                    playground,
+                    setAppSize,
+                    setRowsPerPage,
+                    setPlaygroundInfo,
+                    setPlaygroundInfo
+                )
+            }
+            onClick={() => isActive && inactiveCleanup()}
+        >
             {Array(numOfPages)
                 .fill(0)
                 .map((page, pageNum) => (
-                    <div
-                        key={pageNum}
-                        className={classes.appsContainer}
-                        style={{
-                            transform: `translate(${transformAmount}px, 0px)`,
-                        }}
-                    >
-                        {apps
-                            .slice(
-                                pageNum * maxAppsPerPage,
-                                (pageNum + 1) * maxAppsPerPage
-                            )
-                            .map((app, i) => (
-                                <App
-                                    key={i}
-                                    appNumber={pageNum * maxAppsPerPage + i}
-                                    name={app.name}
-                                    collection={app.collection}
-                                />
-                            ))}
-                        {numOfPages === pageNum + 1 && (
-                            Array(2).fill(0).map(() => <App key={Math.random()}/>)
-                        )}
-                    </div>
+                    <Page pageNum={pageNum} />
                 ))}
         </div>
     );
@@ -93,7 +65,7 @@ const Apps = ({
 
 const calcRowsPerPage = (ref, appSize, setRowsPerPage) => {
     const height = ref.clientHeight;
-    const width = ref.clientWidth * percent(appContainerWidth);
+    const width = ref.clientWidth * percent(APP_CONTAINER_WIDTH);
     const appMarginTop = width * percent(APP_LEVEL_GAPS);
     const appMarginBottom = appSize * percent(10);
     const appNameHeight = appSize * percent(50);
@@ -109,12 +81,23 @@ const calculateAppSize = (ref, setAppSize) => {
     setAppSize(homeScreenWidth * percent(APP_SIZE));
 };
 
-const handleRef = (ref, appSize, setAppSize, setRowsPerPage, setClientWidth) => {
+const handleRef = (
+    ref,
+    appSize,
+    playground,
+    setAppSize,
+    setRowsPerPage,
+    setPlaygroundInfo
+) => {
     if (!ref) return;
+
+    console.log(ref)
 
     calcRowsPerPage(ref, appSize, setRowsPerPage);
     calculateAppSize(ref, setAppSize);
-    setClientWidth(ref.clientWidth);
+
+    // if (!Object.keys(playground).length) console.log("D")
+    // setPlaygroundInfo(ref.clientWidth);
 };
 
 export default connect(states, dispatches)(Apps);

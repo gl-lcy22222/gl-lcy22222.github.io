@@ -1,21 +1,32 @@
-import { SET_ROWS_PER_PAGE, SET_APP_SIZE, SET_CURRENT_PAGE, SET_ACTIVE_APP } from "./types";
+import {
+    SET_ROWS_PER_PAGE,
+    SET_APP_SIZE,
+    SET_CURRENT_PAGE,
+    SET_ACTIVE_APP,
+    SET_PLAYGROUND_INFO,
+} from "./types";
 
-export const setAppSize = appSize => ({
+export const setAppSize = (appSize) => ({
     type: SET_APP_SIZE,
     appSize,
 });
 
-export const setRowsPerPage = rowsPerPage => ({
+export const setRowsPerPage = (rowsPerPage) => ({
     type: SET_ROWS_PER_PAGE,
     rowsPerPage,
 });
 
-export const setCurrentPage = currentPage => ({
+export const setCurrentPage = (currentPage) => ({
     type: SET_CURRENT_PAGE,
     currentPage,
 });
 
-export const setActiveApp = activeApp => ({
+export const setActiveApp = (activeApp) => ({
     type: SET_ACTIVE_APP,
     activeApp,
+});
+
+export const setPlaygroundInfo = playgroundInfo => ({
+    type: SET_PLAYGROUND_INFO,
+    playgroundInfo,
 });

@@ -22,10 +22,12 @@ const Dock = ({
 }) => {
     const classes = useStyles();
 
+    const isActive = activeApp !== null;
+
     return (
         <div className={classes.rootContainer}
             style={{
-                opacity: activeApp ? 0 : 1,
+                opacity: isActive ? 0 : 1,
             }}
         >
             <DockApp />

@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     rootContainer: {
         height: "5%",
         minHeight: "5%",
+        maxHeight: "5%",
         width: "100%",
         overflow: "auto",
         display: "flex",
@@ -22,10 +23,12 @@ const PageSelection = ({
 }) => {
     const classes = useStyles();
 
+    const isActive = activeApp !== null;
+
     return (
         <div className={classes.rootContainer}
             style={{
-                opacity: activeApp ? 0 : 1
+                opacity: isActive ? 0 : 1
             }}
         >
             {Array(numOfPages)

@@ -1,11 +1,13 @@
 import { makeStyles } from "@material-ui/styles";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import {
     APP_LEVEL_GAPS,
     APP_SIDE_GAPS,
     CENTERING_TIME,
+    zIndex,
 } from "../../../../../configs/constants";
+import { percent, sleep } from "../../../../../helpers";
 import { dispatches, states } from "../../redux";
 
 const useStyles = makeStyles({
@@ -26,7 +28,7 @@ const useStyles = makeStyles({
         borderRadius: "25%",
         height: "100%",
         width: "100%",
-        transition: `all ${CENTERING_TIME}ms ease`,
+        transition: `opacity ${CENTERING_TIME}ms ease-in-out`,
     },
     appName: {
         width: "100%",
@@ -44,69 +46,56 @@ const App = ({
     activeApp,
     collection,
     appSize,
+    playground,
     setActiveApp,
 }) => {
-    const classes = useStyles();
+    const inactiveCleanup = () => {
+        if (appRef.current) {
+            appRef.current.style = null;
+        }
+    };
 
-    const [centerAmountX, setCenterAmountX] = useState(0);
-    const [centerAmountY, setCenterAmountY] = useState(0);
+    const classes = useStyles();
 
     const appRef = useRef();
 
     const animationInactive = activeApp === null;
     const isActive = activeApp === appNumber;
-    
+
     useEffect(() => {
-        const root = document.getElementById("root");
-        const { clientWidth, clientHeight } = root;
-        const appLeft = appRef.current?.offsetLeft;
-        const appTop = appRef.current?.offsetTop;
+        if (playground) {
+            const { width, height } = playground;
+            const playgroundWidth = width;
+            const playgroundHeight = height;
+            const appLeft = appRef.current?.offsetLeft;
+            const appTop = appRef.current?.offsetTop;
 
-        if (isActive) {
-            const { x, y } = appRef.current.getBoundingClientRect();
-            const clientCenterX = clientWidth / 2;
-            const clientCenterY = clientHeight / 2;
-            const appCenterX = x + (appSize / 2);
-            const appCenterY = y + (appSize / 2);
-            const quadrant = calculateQuadrant(
-                clientCenterX,
-                clientCenterY,
-                appLeft,
-                appTop
-            );
+            if (isActive) {
+                const { x, y } = appRef.current.getBoundingClientRect();
+                const clientCenterX = playgroundWidth / 2;
+                const clientCenterY = playgroundHeight / 2;
+                const quadrant = calculateQuadrant(
+                    clientCenterX,
+                    clientCenterY,
+                    appLeft,
+                    appTop
+                );
+                const style = appRef.current.style;
+                const info = {
+                    x,
+                    y,
+                    quadrant,
+                    style,
+                    clientCenterX,
+                    clientCenterY,
+                    appSize,
+                };
 
-            let centerAmountX;
-            let centerAmountY;
-
-            switch (quadrant) {
-                case 1:
-                    centerAmountX = -(appCenterX - clientCenterX);
-                    centerAmountY = clientCenterY - appCenterY;
-                    break;
-                case 2:
-                    centerAmountX = clientCenterX - appCenterX;
-                    centerAmountY = clientCenterY - appCenterY;
-                    break;
-                case 3:
-                    centerAmountX = clientCenterX - appCenterX;
-                    centerAmountY = -(appCenterY - clientCenterY);
-                    break;
-                default:
-                    centerAmountX = -(appCenterX - clientCenterX);
-                    centerAmountY = -(appCenterY - clientCenterY);
-                    break;
+                animationLogic(info);
+            } else {
+                inactiveCleanup();
             }
-
-
-            setCenterAmountX(centerAmountX);
-            setCenterAmountY(centerAmountY);
-
-            // // appRef.current.style = {
-            // //     position: "absolute",
-            // //     height: "300px",
-            // // };
         }
-
     }, [isActive]);
 
     return (
@@ -138,7 +127,7 @@ const App = ({
                             width: appSize,
                             minHeight: appSize,
                             minWidth: appSize,
-                            transform: `translate(${centerAmountX}px, ${centerAmountY}px)`,
+                            opacity: isActive || activeApp === null ? 1 : 0,
                         }}
                     />
                 )}
@@ -195,6 +184,65 @@ const calculateQuadrant = (gridX, gridY, appLeft, appTop) => {
             return 3;
         }
     }
+};
+
+const animationLogic = async (info) => {
+    await centeringLogic(info);
+    await expandingLogic(info);
+};
+
+const centeringLogic = async (info) => {
+    const {
+        x,
+        y,
+        quadrant,
+        clientCenterX,
+        clientCenterY,
+        style,
+        appSize,
+    } = info;
+
+    const appCenterX = x + appSize / 2;
+    const appCenterY = y + appSize / 2;
+
+    let centerAmountX;
+    let centerAmountY;
+
+    switch (quadrant) {
+        case 1:
+            centerAmountX = -(appCenterX - clientCenterX);
+            centerAmountY = clientCenterY - appCenterY;
+            break;
+        case 2:
+            centerAmountX = clientCenterX - appCenterX;
+            centerAmountY = clientCenterY - appCenterY;
+            break;
+        case 3:
+            centerAmountX = clientCenterX - appCenterX;
+            centerAmountY = -(appCenterY - clientCenterY);
+            break;
+        default:
+            centerAmountX = -(appCenterX - clientCenterX);
+            centerAmountY = -(appCenterY - clientCenterY);
+            break;
+    }
+
+    style.transition = `all ${CENTERING_TIME}ms ease`;
+    style.transform = `translate(${centerAmountX}px, ${centerAmountY}px)`;
+    style.zIndex = zIndex.app;
+    style.position = "absolute";
+    style.maxHeight = `${appSize}px`;
+    style.maxWidth = `${appSize}px`;
+
+    await sleep(CENTERING_TIME);
+};
+
+const expandingLogic = async (info) => {
+    const { clientCenterX } = info;
+    const maxAppSizeRatio = percent(80);
+    const maxAppSize = clientCenterX * 2 * maxAppSizeRatio;
+    info.appSize = maxAppSize;
+    await centeringLogic(info);
 };
 
 export default connect(states, dispatches)(App);
