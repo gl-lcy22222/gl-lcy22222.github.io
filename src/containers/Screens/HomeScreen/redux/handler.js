@@ -4,7 +4,6 @@ import {
     SET_CURRENT_PAGE,
     SET_ACTIVE_APP,
     SET_PLAYGROUND_INFO,
-    SET_DESCRIPTION,
 } from "./types";
 
 const homeScreenHandler = (state, action) => {
@@ -35,11 +34,6 @@ const homeScreenHandler = (state, action) => {
                 playground: {
                     ...action.playgroundInfo,
                 },
-            };
-        case SET_DESCRIPTION:
-            return {
-                ...state,
-                description: action.description,
             };
     }
 };

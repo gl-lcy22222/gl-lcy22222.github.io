@@ -89,12 +89,13 @@ export default Array(numOfApps)
             const randomImage = randomImages[randomImageNumber];
             collection.push({
                 baseUrl: randomImage,
-                description: 'HENLOOOO :D e 🤗',
+                description: 'HdsdsdsENLO fds fsfs df sfdf s fsd fss ffds  sfOOf  f d   O :D e 🤗',
             });
         }
 
+        const nameNumber = generateNumber(names.length - 1);
         return {
-            name: names[generateNumber(names.length)],
+            name: names[nameNumber],
             collection,
         };
     });

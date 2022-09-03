@@ -39,6 +39,7 @@ const useStyles = makeStyles({
         color: "white",
         textAlign: "center",
         transition: `all ${CENTERING_TIME}ms ease`,
+        position: 'relative'
     },
     descriptionBubble: {
         backgroundColor: "white",
@@ -48,10 +49,8 @@ const useStyles = makeStyles({
         borderRadius: 10,
         border: "1px solid black",
         zIndex: 1,
-        top: "100%",
+        top: "110%",
         padding: "5%",
-
-        fontSize: 9,
     },
 });
 
@@ -62,21 +61,21 @@ const App = ({
     collection,
     appSize,
     playground,
-    description,
     setActiveApp,
-    setDescription,
 }) => {
     const inactiveCleanup = () => {
         if (appRef.current) {
             appRef.current.style = null;
             animationRef.current.active = false;
             wake(animationRef.current);
+            setDescription(null);
         }
     };
 
     const classes = useStyles();
 
     const [currentMedia, setCurrentMedia] = useState(0);
+    const [description, setDescription] = useState();
 
     const appRef = useRef();
     const animationRef = useRef({
@@ -116,11 +115,11 @@ const App = ({
                     collection,
                     currentMedia,
                     animationRef,
-                    setCurrentMedia,
                     setActiveApp,
+                    setCurrentMedia,
+                    setDescription,
                 };
 
-                animationRef.current.active = true;
                 startAnimation(info);
             } else if (!isActive && animationRef.current.active) {
                 inactiveCleanup();
@@ -148,6 +147,7 @@ const App = ({
                     width: appSize,
                     minHeight: appSize,
                     minWidth: appSize,
+                    position: description ? 'relative' : null,
                 }}
             >
                 {collection && (
@@ -157,14 +157,17 @@ const App = ({
                         ref={appRef}
                         alt=""
                         onClick={() => {
-                            // if (!isActive || activeApp !== null)
                             if (inactiveAnimation)
                                 setActiveApp(appNumber);
                         }}
                     />
                 )}
                 {description && (
-                    <div className={classes.descriptionBubble}>
+                    <div className={classes.descriptionBubble}
+                        style={{
+                            fontSize: calcFontSize(appSize),
+                        }}
+                    >
                         {description}
                     </div>
                 )}
@@ -223,6 +226,11 @@ const calculateQuadrant = (gridX, gridY, appLeft, appTop) => {
 };
 
 const startAnimation = async (info) => {
+    const { animationRef, setDescription} = info;
+
+    animationRef.current.active = true;
+    setDescription(null);
+
     await center(info);
     await expand(info);
     await transition(info);
