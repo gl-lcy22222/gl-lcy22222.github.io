@@ -13,6 +13,8 @@ export const APP_LEVEL_GAPS = 4;
 export const APP_CONTAINER_WIDTH = 90;
 
 export const CENTERING_TIME = 1500;
+export const TRANSITIONING_TIME = 2000;
+export const ACTIVE_TIME = 3000;
 
 export const zIndex = {
     app: 1,

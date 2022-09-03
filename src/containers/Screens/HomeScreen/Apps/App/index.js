@@ -1,10 +1,12 @@
 import { makeStyles } from "@material-ui/styles";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import {
+    ACTIVE_TIME,
     APP_LEVEL_GAPS,
     APP_SIDE_GAPS,
     CENTERING_TIME,
+    TRANSITIONING_TIME,
     zIndex,
 } from "../../../../../configs/constants";
 import { percent, sleep } from "../../../../../helpers";
@@ -57,6 +59,10 @@ const App = ({
 
     const classes = useStyles();
 
+    const [currentMedia, setCurrentMedia] = useState(0);
+
+    console.log('currentMedia', currentMedia);
+
     const appRef = useRef();
 
     const animationInactive = activeApp === null;
@@ -89,9 +95,12 @@ const App = ({
                     clientCenterX,
                     clientCenterY,
                     appSize,
+                    collection,
+                    currentMedia,
+                    setCurrentMedia,
                 };
 
-                animationLogic(info);
+                startAnimation(info);
             } else {
                 inactiveCleanup();
             }
@@ -118,7 +127,7 @@ const App = ({
                 {collection && (
                     <img
                         className={classes.image}
-                        src={collection?.[0]?.baseUrl}
+                        src={collection?.[currentMedia]?.baseUrl}
                         ref={appRef}
                         alt=""
                         onClick={() => setActiveApp(appNumber)}
@@ -186,12 +195,13 @@ const calculateQuadrant = (gridX, gridY, appLeft, appTop) => {
     }
 };
 
-const animationLogic = async (info) => {
-    await centeringLogic(info);
-    await expandingLogic(info);
+const startAnimation = async (info) => {
+    await center(info);
+    await expand(info);
+    await transition(info);
 };
 
-const centeringLogic = async (info) => {
+const center = async (info) => {
     const {
         x,
         y,
@@ -237,12 +247,42 @@ const centeringLogic = async (info) => {
     await sleep(CENTERING_TIME);
 };
 
-const expandingLogic = async (info) => {
+const expand = async (info) => {
+    console.log("HERE-x-x-")
+
     const { clientCenterX } = info;
     const maxAppSizeRatio = percent(80);
     const maxAppSize = clientCenterX * 2 * maxAppSizeRatio;
     info.appSize = maxAppSize;
-    await centeringLogic(info);
+    await center(info);
+};
+
+const transition = async info => {
+    const { collection, currentMedia, style, setCurrentMedia } = info;
+    const fadeOut = async () => {
+        style.opacity = '0';
+        await sleep(TRANSITIONING_TIME);
+    };
+    const fadeIn = async () => {
+        style.opacity = '1';
+        await sleep(TRANSITIONING_TIME);
+    };
+    const changeMedia = async () => {
+        info.currentMedia += 1;
+        setCurrentMedia(currentMedia + 1);
+    };
+
+    await sleep(ACTIVE_TIME);
+
+    if (currentMedia + 1 < collection.length) {
+        await fadeOut();
+        await changeMedia();
+        await fadeIn();
+        transition(info);
+    }
+    else {
+
+    }
 };
 
 export default connect(states, dispatches)(App);
