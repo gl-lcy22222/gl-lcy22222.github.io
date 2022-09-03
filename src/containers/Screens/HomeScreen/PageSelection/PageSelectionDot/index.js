@@ -1,33 +1,56 @@
 import { makeStyles } from "@material-ui/styles";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { dispatches, states } from "../../redux";
 
 const useStyles = makeStyles({
     rootContainer: {
-        height: "10px",
-        width: "10px",
+        margin: "0 1%",
+        height: '100%',
+        display: 'flex',
+        alignItems: "center",
+    },
+    dotContainer: {
         borderRadius: "50%",
         backgroundColor: "white",
-        margin: "0 1%",
+        height: '100%',
+        width: '100%',
 
         "&:hover": {
             cursor: "pointer",
         },
-    },
+    }
 });
 
 const PageSectionDots = ({ pageNum, currentPage, setCurrentPage }) => {
     const classes = useStyles();
 
+    const [size, setSize] = useState(0);
+
     return (
         <div
             className={classes.rootContainer}
             style={{
+                width: size,
                 opacity: pageNum === currentPage ? 1 : 0.3,
             }}
+            ref={ref => ref && calcSize(ref, setSize)}
             onClick={() => setCurrentPage(pageNum)}
-        />
+        >
+            <div className={classes.dotContainer}
+                style={{
+                    height: size,
+                    width: size,
+                }}
+            />
+        </div>
     );
+};
+
+const calcSize = (ref, setSize) => {
+    const parent = ref.parentNode;
+    const clientHeight = parent.clientHeight;
+    setSize(clientHeight / 3);
 };
 
 export default connect(states, dispatches)(PageSectionDots);

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
         width: "100%",
         transition: "1s", //DELETE?
 
-        position: "relative",
+        // position: "relative",
         // zIndex: 1, //DELETE?
 
     },

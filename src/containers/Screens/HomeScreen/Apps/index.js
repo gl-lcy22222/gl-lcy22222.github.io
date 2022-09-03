@@ -38,18 +38,11 @@ const Apps = ({
     appSize,
     maxAppsPerPage,
     numOfPages,
+    activeApp,
     currentPage,
     setAppSize,
     setRowsPerPage,
 }) => {
-    const handleRef = (ref) => {
-        if (!ref) return;
-
-        calcRowsPerPage(ref, appSize, setRowsPerPage);
-        calculateAppSize(ref, setAppSize);
-        setClientWidth(ref.clientWidth);
-    };
-
     const classes = useStyles();
 
     const [transformAmount, setTransformAmount] = useState(0);
@@ -64,7 +57,8 @@ const Apps = ({
     }, [currentPage, prevPage]);
 
     return (
-        <div className={classes.rootContainer} ref={handleRef}>
+        <div className={classes.rootContainer}
+            ref={ref => handleRef(ref, appSize, setAppSize, setRowsPerPage, setClientWidth)}>
             {Array(numOfPages)
                 .fill(0)
                 .map((page, pageNum) => (
@@ -83,6 +77,7 @@ const Apps = ({
                             .map((app, i) => (
                                 <App
                                     key={i}
+                                    appNumber={pageNum * maxAppsPerPage + i}
                                     name={app.name}
                                     collection={app.collection}
                                 />
@@ -112,6 +107,14 @@ const calculateAppSize = (ref, setAppSize) => {
     const homeScreenWidth = homeScreen.clientWidth;
 
     setAppSize(homeScreenWidth * percent(APP_SIZE));
+};
+
+const handleRef = (ref, appSize, setAppSize, setRowsPerPage, setClientWidth) => {
+    if (!ref) return;
+
+    calcRowsPerPage(ref, appSize, setRowsPerPage);
+    calculateAppSize(ref, setAppSize);
+    setClientWidth(ref.clientWidth);
 };
 
 export default connect(states, dispatches)(Apps);

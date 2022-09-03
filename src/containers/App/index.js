@@ -19,7 +19,6 @@ const useStyles = makeStyles({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#c4c4c4",
-        position: "relative",
     },
 });
 

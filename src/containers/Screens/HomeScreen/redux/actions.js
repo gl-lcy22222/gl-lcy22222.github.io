@@ -1,4 +1,4 @@
-import { SET_ROWS_PER_PAGE, SET_APP_SIZE, SET_CURRENT_PAGE } from "./types";
+import { SET_ROWS_PER_PAGE, SET_APP_SIZE, SET_CURRENT_PAGE, SET_ACTIVE_APP } from "./types";
 
 export const setAppSize = appSize => ({
     type: SET_APP_SIZE,
@@ -13,4 +13,9 @@ export const setRowsPerPage = rowsPerPage => ({
 export const setCurrentPage = currentPage => ({
     type: SET_CURRENT_PAGE,
     currentPage,
+});
+
+export const setActiveApp = activeApp => ({
+    type: SET_ACTIVE_APP,
+    activeApp,
 });

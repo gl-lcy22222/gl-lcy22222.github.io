@@ -10,3 +10,9 @@ export const SOUND_OFF = 'SOUND_OFF';
 export const APP_SIZE = 16;
 export const APP_SIDE_GAPS = 3;
 export const APP_LEVEL_GAPS = 4;
+
+export const CENTERING_TIME = 1500;
+
+// const activeTime = 3000;
+// const transitionTime = 2000;
+// const centeringTime = 1500;

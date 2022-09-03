@@ -25,6 +25,7 @@ export const initialState = {
     rowsPerPage: 0,
     currentPage: 0,
     isMobile: false,
+    activeApp: null,
 };
 
 const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {

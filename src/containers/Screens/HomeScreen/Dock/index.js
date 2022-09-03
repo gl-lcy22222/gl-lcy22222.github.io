@@ -1,4 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
+import { connect } from "react-redux";
+import { CENTERING_TIME } from "../../../../configs/constants";
+import { states } from "../redux";
 import DockApp from "./DockApp";
 
 const useStyles = makeStyles({
@@ -10,16 +13,21 @@ const useStyles = makeStyles({
         justifyContent: "space-evenly",
         alignItems: "center",
         marginBottom: "5%",
-
-        // transition: `all ${centeringTime}ms ease`,
+        transition: `all ${CENTERING_TIME}ms ease`,
     },
 });
 
-const Dock = () => {
+const Dock = ({
+    activeApp
+}) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.rootContainer}>
+        <div className={classes.rootContainer}
+            style={{
+                opacity: activeApp ? 0 : 1,
+            }}
+        >
             <DockApp />
             <DockApp />
             <DockApp />
@@ -28,4 +36,4 @@ const Dock = () => {
     );
 };
 
-export default Dock;
+export default connect(states)(Dock);

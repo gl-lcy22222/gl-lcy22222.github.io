@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
+import { CENTERING_TIME } from "../../../../configs/constants";
 import { states } from "../redux";
 import PageSectionDots from "./PageSelectionDot";
 
@@ -11,17 +12,22 @@ const useStyles = makeStyles({
         overflow: "auto",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        transition: `all ${CENTERING_TIME}ms ease`,
     },
 });
 
 const PageSelection = ({
     numOfPages,
+    activeApp,
 }) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.rootContainer}>
+        <div className={classes.rootContainer}
+            style={{
+                opacity: activeApp ? 0 : 1
+            }}
+        >
             {Array(numOfPages)
                 .fill()
                 .map((section, num) => (

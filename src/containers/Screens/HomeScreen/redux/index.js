@@ -1,10 +1,11 @@
-import { setAppSize, setCurrentPage, setRowsPerPage } from "./actions";
+import { setAppSize, setCurrentPage, setRowsPerPage, setActiveApp } from "./actions";
 
 export const states = ({
     apps,
     appSize,
     rowsPerPage,
     currentPage,
+    activeApp,
 }) => {
     const maxAppsPerRow = 4;
     const maxAppsPerPage = rowsPerPage * maxAppsPerRow;
@@ -17,6 +18,7 @@ export const states = ({
         currentPage,
         numOfPages,
         maxAppsPerPage,
+        activeApp,
     };
 };
 
@@ -24,4 +26,5 @@ export const dispatches = {
     setAppSize,
     setRowsPerPage,
     setCurrentPage,
+    setActiveApp,
 };
