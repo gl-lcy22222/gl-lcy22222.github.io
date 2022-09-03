@@ -24,21 +24,30 @@ const useStyles = makeStyles({
 
 const HomeScreen = ({
     activeApp,
+    playground,
     setActiveApp,
+    setPlaygroundInfo,
 }) => {
+    const handleRef = ref => {
+        if (ref && !playground.height) {
+            setPlaygroundInfo({
+                width: ref.clientWidth,
+                height: ref.clientHeight,
+            })
+        }
+    };
+
     const classes = useStyles();
     
-    const [playground, setPlayground] = useState();
-
     const isActive = activeApp !== null;
 
     return (
         <div
             className={classes.rootContainer}
-            ref={(ref) => ref && setPlayground(ref)}
+            ref={handleRef}
             onClick={() => isActive && setActiveApp(null)}
         >
-            <Apps playground={playground} />
+            <Apps />
             <PageSelection />
             <Dock />
         </div>

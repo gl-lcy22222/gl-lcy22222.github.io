@@ -25,31 +25,18 @@ const Apps = ({
     numOfPages,
     setAppSize,
     setRowsPerPage,
-    setPlaygroundInfo,
 }) => {
     const classes = useStyles();
 
     const containerRef = useRef();
 
-    console.log(containerRef.current?.clientHeight, '<---   ');
-
     useEffect(() => {
-        // console.log(containerRef?.current.clientHeight)
         if (containerRef.current) {
             const ref = containerRef.current;
 
-            console.log(ref, ref.clientHeight, '--')
             calculateAppSize(containerRef.current, setAppSize);
             calcRowsPerPage(ref, appSize, setRowsPerPage);
-            setPlaygroundInfo({
-                width: ref.clientWidth,
-                height: ref.clientHeight,
-            });
         }
-
-        if (!appSize) {
-        }
-
     }, [appSize]);
 
     return (
@@ -73,15 +60,6 @@ const calcRowsPerPage = (ref, appSize, setRowsPerPage) => {
     const appMarginBottom = appSize * percent(10);
     const appNameHeight = appSize * percent(50);
     const rowHeight = appSize + appMarginTop + appMarginBottom + appNameHeight;
-
-    console.log('height:', height)
-    console.log('appMarginTop:', appMarginTop)
-    console.log('appMarginBottom:', appMarginBottom)
-    console.log('appNameHeight:', appNameHeight)
-    console.log('appSize:', appSize)
-    console.log('rowHeight:', rowHeight)
-    console.log('ref:', ref, ref.clientHeight)    
-
     setRowsPerPage(Math.floor(height / rowHeight));
 };
 
