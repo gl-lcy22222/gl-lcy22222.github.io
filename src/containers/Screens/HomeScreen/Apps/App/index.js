@@ -53,8 +53,18 @@ const App = ({
 }) => {
     const inactiveCleanup = () => {
         if (appRef.current) {
-            appRef.current.style = null;
+            console.log("cleanign up")
+            // appRef.current.style = null;
         }
+        // timerRef.current.cancelled = true;
+
+        // const timers = timerRef.current.timers;
+
+        // for (const timerName in timers) {
+        //     const timer = timers[timerName];
+        //     clearTimeout(timer.timer);
+        //     timer.resolve();
+        // }
     };
 
     const classes = useStyles();
@@ -62,8 +72,10 @@ const App = ({
     const [currentMedia, setCurrentMedia] = useState(0);
 
     const appRef = useRef();
+    const animationRef = useRef({
+        active: false,
+    });
 
-    const animationInactive = activeApp === null;
     const isActive = activeApp === appNumber;
 
     useEffect(() => {
@@ -99,20 +111,27 @@ const App = ({
                     setActiveApp,
                 };
 
+                console.log("ACTI")
                 startAnimation(info);
-            } else {
-                console.log('cleaning up')
-                inactiveCleanup();
+            }
+            else {
+                // inactiveCleanup();
             }
         }
     }, [isActive]);
+
+    // useEffect(() => {
+    //     if (animationActive) {
+    //         inactiveCleanup();
+    //     }
+    // }, [animationActive]);
 
     return (
         <div
             className={classes.rootContainer}
             style={{
-                opacity: isActive || animationInactive ? 1 : 0,
-                pointerEvents: animationInactive ? null : "none",
+                opacity: isActive || !animationRef.current.active ? 1 : 0,
+                pointerEvents: animationRef.current.active ? "none" : null,
             }}
         >
             <div
@@ -130,12 +149,15 @@ const App = ({
                         src={collection?.[currentMedia]?.baseUrl}
                         ref={appRef}
                         alt=""
-                        onClick={() => (!isActive || animationInactive) && setActiveApp(appNumber)}
+                        onClick={() =>
+                            (!isActive || !animationRef.current.active) &&
+                            setActiveApp(appNumber)
+                        }
                         style={{
-                            height: appSize,
-                            width: appSize,
-                            minHeight: appSize,
-                            minWidth: appSize,
+                            // height: appSize,
+                            // width: appSize,
+                            // minHeight: appSize,
+                            // minWidth: appSize,
                             opacity: isActive || activeApp === null ? 1 : 0,
                         }}
                     />
@@ -147,8 +169,7 @@ const App = ({
                     height: appSize / 2,
                     maxWidth: appSize,
                     fontSize: calcFontSize(appSize),
-                    opacity:
-                        animationInactive || activeApp !== appNumber ? 1 : 0,
+                    opacity: !animationRef.current.active || activeApp !== appNumber ? 1 : 0,
                 }}
             >
                 {name}
@@ -198,7 +219,7 @@ const calculateQuadrant = (gridX, gridY, appLeft, appTop) => {
 const startAnimation = async (info) => {
     await center(info);
     await expand(info);
-    await transition(info);
+    // await transition(info);
 };
 
 const center = async (info) => {
@@ -248,8 +269,6 @@ const center = async (info) => {
 };
 
 const expand = async (info) => {
-    console.log("HERE-x-x-")
-
     const { clientCenterX } = info;
     const maxAppSizeRatio = percent(80);
     const maxAppSize = clientCenterX * 2 * maxAppSizeRatio;
