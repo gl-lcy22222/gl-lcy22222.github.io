@@ -49,7 +49,6 @@ const useStyles = makeStyles({
         borderRadius: 10,
         border: "1px solid black",
         zIndex: 1,
-        top: "110%",
         padding: "5%",
     },
 });
@@ -60,6 +59,7 @@ const App = ({
     activeApp,
     collection,
     appSize,
+    maxAppsPerPage,
     playground,
     setActiveApp,
 }) => {
@@ -84,6 +84,7 @@ const App = ({
 
     const isActive = activeApp === appNumber;
     const inactiveAnimation = activeApp === null;
+    const isLastRow = lastRow(appNumber, maxAppsPerPage);
 
     useEffect(() => {
         if (playground) {
@@ -166,7 +167,10 @@ const App = ({
                     <div className={classes.descriptionBubble}
                         style={{
                             fontSize: calcFontSize(appSize),
+                            top: isLastRow ? null : '110%',
+                            bottom: isLastRow ? '110%' : null,  
                         }}
+                        onClick={() => setDescription(null)}
                     >
                         {description}
                     </div>
@@ -179,6 +183,14 @@ const App = ({
                     maxWidth: appSize,
                     fontSize: calcFontSize(appSize),
                     opacity: inactiveAnimation ? 1 : 0,
+                }}
+                onClick={() => {
+                    if (description) {
+                        setDescription(null);
+                    }
+                    else {
+                        setDescription(collection[0].description);
+                    }
                 }}
             >
                 {name}
@@ -223,6 +235,11 @@ const calculateQuadrant = (gridX, gridY, appLeft, appTop) => {
             return 3;
         }
     }
+};
+
+const lastRow = (appNumber, maxAppsPerPage) => {
+    const mod = appNumber % maxAppsPerPage;
+    return maxAppsPerPage - 4 <= mod && mod < maxAppsPerPage;
 };
 
 const startAnimation = async (info) => {
