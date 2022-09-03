@@ -11,7 +11,6 @@ const marginTop = 10;
 const useStyles = makeStyles({
     rootContainer: {
         flex: '1 1 auto',
-
         width: "100%",
         display: "flex",
         flexDirection: "row",
@@ -24,40 +23,39 @@ const useStyles = makeStyles({
 const Apps = ({
     appSize,
     numOfPages,
-    activeApp,
-    playground,
     setAppSize,
     setRowsPerPage,
-    setActiveApp,
     setPlaygroundInfo,
 }) => {
-    const inactiveCleanup = () => {
-        setActiveApp(null);
-    };
-
     const classes = useStyles();
 
     const containerRef = useRef();
 
-    const isActive = activeApp !== null;
+    console.log(containerRef.current?.clientHeight, '<---   ');
 
     useEffect(() => {
+        // console.log(containerRef?.current.clientHeight)
         if (containerRef.current) {
             const ref = containerRef.current;
+
+            console.log(ref, ref.clientHeight, '--')
+            calculateAppSize(containerRef.current, setAppSize);
             calcRowsPerPage(ref, appSize, setRowsPerPage);
-            calculateAppSize(ref, setAppSize);
             setPlaygroundInfo({
                 width: ref.clientWidth,
                 height: ref.clientHeight,
             });
         }
-    }, [containerRef]);
+
+        if (!appSize) {
+        }
+
+    }, [appSize]);
 
     return (
         <div
             className={classes.rootContainer}
             ref={containerRef}
-            onClick={() => isActive && inactiveCleanup()}
         >
             {Array(numOfPages)
                 .fill(0)
@@ -75,6 +73,14 @@ const calcRowsPerPage = (ref, appSize, setRowsPerPage) => {
     const appMarginBottom = appSize * percent(10);
     const appNameHeight = appSize * percent(50);
     const rowHeight = appSize + appMarginTop + appMarginBottom + appNameHeight;
+
+    console.log('height:', height)
+    console.log('appMarginTop:', appMarginTop)
+    console.log('appMarginBottom:', appMarginBottom)
+    console.log('appNameHeight:', appNameHeight)
+    console.log('appSize:', appSize)
+    console.log('rowHeight:', rowHeight)
+    console.log('ref:', ref, ref.clientHeight)    
 
     setRowsPerPage(Math.floor(height / rowHeight));
 };

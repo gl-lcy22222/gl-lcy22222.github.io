@@ -6,7 +6,6 @@ export const sleep = (time, cancellable) => new Promise(resolve => {
     if (cancellable) {
         cancellable.resolve = resolve;
         cancellable.timer = timer;
-        console.log("SETTING CANCELL", cancellable)
     }
 });
 

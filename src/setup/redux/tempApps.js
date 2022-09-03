@@ -1,4 +1,6 @@
 // TODO: DELETE
+const generateNumber = (max) => Math.floor(Math.random() * (max + 1));
+
 const randomImages = [
     "https://play-lh.googleusercontent.com/qyfXLNVM_cLm8NkYX7ZtNBPPnBmu1OJj0nFkaZvAg3HAFf8EzsGuwP_cNvZ6uneTEQI=w480-h960-rw",
     "https://wallpaperaccess.com/full/1933166.jpg",
@@ -71,12 +73,12 @@ const names = [
 
 const apps = [];
 
-const numOfApps = 10;
+const numOfApps = generateNumber(50);
+
 
 export default Array(numOfApps)
     .fill(0)
     .map(() => {
-        const generateNumber = (max) => Math.floor(Math.random() * (max + 1));
         const collection = [];
         const numberOfCollection =
         2;
