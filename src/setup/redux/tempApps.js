@@ -79,7 +79,7 @@ export default Array(numOfApps)
         const generateNumber = (max) => Math.floor(Math.random() * (max + 1));
         const collection = [];
         const numberOfCollection =
-        1;
+        2;
         // generateNumber(30);
 
         for (let i = 0; i < numberOfCollection; i++) {

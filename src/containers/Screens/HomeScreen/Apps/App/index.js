@@ -9,7 +9,7 @@ import {
     TRANSITIONING_TIME,
     zIndex,
 } from "../../../../../configs/constants";
-import { percent, sleep } from "../../../../../helpers";
+import { percent, sleep, wake } from "../../../../../helpers";
 import { dispatches, states } from "../../redux";
 
 const useStyles = makeStyles({
@@ -53,18 +53,10 @@ const App = ({
 }) => {
     const inactiveCleanup = () => {
         if (appRef.current) {
-            console.log("cleanign up")
-            // appRef.current.style = null;
+            appRef.current.style = null;
+            animationRef.current.active = false;
+            wake(animationRef.current);
         }
-        // timerRef.current.cancelled = true;
-
-        // const timers = timerRef.current.timers;
-
-        // for (const timerName in timers) {
-        //     const timer = timers[timerName];
-        //     clearTimeout(timer.timer);
-        //     timer.resolve();
-        // }
     };
 
     const classes = useStyles();
@@ -107,31 +99,26 @@ const App = ({
                     appSize,
                     collection,
                     currentMedia,
+                    animationRef,
                     setCurrentMedia,
                     setActiveApp,
                 };
 
-                console.log("ACTI")
+                animationRef.current.active = true;
                 startAnimation(info);
             }
-            else {
-                // inactiveCleanup();
+            else if (!isActive && animationRef.current.active) {
+                inactiveCleanup();
             }
         }
     }, [isActive]);
-
-    // useEffect(() => {
-    //     if (animationActive) {
-    //         inactiveCleanup();
-    //     }
-    // }, [animationActive]);
 
     return (
         <div
             className={classes.rootContainer}
             style={{
-                opacity: isActive || !animationRef.current.active ? 1 : 0,
-                pointerEvents: animationRef.current.active ? "none" : null,
+                opacity: isActive || activeApp === null ? 1 : 0,
+                pointerEvents: activeApp === null ? null : 'none',
             }}
         >
             <div
@@ -150,7 +137,7 @@ const App = ({
                         ref={appRef}
                         alt=""
                         onClick={() =>
-                            (!isActive || !animationRef.current.active) &&
+                            (!isActive || activeApp !== null) &&
                             setActiveApp(appNumber)
                         }
                         style={{
@@ -158,7 +145,7 @@ const App = ({
                             // width: appSize,
                             // minHeight: appSize,
                             // minWidth: appSize,
-                            opacity: isActive || activeApp === null ? 1 : 0,
+                            // opacity: isActive || activeApp === null ? 1 : 0,
                         }}
                     />
                 )}
@@ -169,7 +156,7 @@ const App = ({
                     height: appSize / 2,
                     maxWidth: appSize,
                     fontSize: calcFontSize(appSize),
-                    opacity: !animationRef.current.active || activeApp !== appNumber ? 1 : 0,
+                    opacity: activeApp === null || activeApp !== appNumber ? 1 : 0,
                 }}
             >
                 {name}
@@ -219,7 +206,7 @@ const calculateQuadrant = (gridX, gridY, appLeft, appTop) => {
 const startAnimation = async (info) => {
     await center(info);
     await expand(info);
-    // await transition(info);
+    await transition(info);
 };
 
 const center = async (info) => {
@@ -231,7 +218,10 @@ const center = async (info) => {
         clientCenterY,
         style,
         appSize,
+        animationRef,
     } = info;
+
+    if (!animationRef.current.active) return;
 
     const appCenterX = x + appSize / 2;
     const appCenterY = y + appSize / 2;
@@ -265,11 +255,14 @@ const center = async (info) => {
     style.maxHeight = `${appSize}px`;
     style.maxWidth = `${appSize}px`;
 
-    await sleep(CENTERING_TIME);
+    await sleep(CENTERING_TIME, animationRef.current);
 };
 
 const expand = async (info) => {
-    const { clientCenterX } = info;
+    const { clientCenterX, animationRef } = info;
+
+    if (!animationRef.current.active) return;
+
     const maxAppSizeRatio = percent(80);
     const maxAppSize = clientCenterX * 2 * maxAppSizeRatio;
     info.appSize = maxAppSize;
@@ -277,22 +270,31 @@ const expand = async (info) => {
 };
 
 const transition = async info => {
-    // TODO: need to fix clicking an app to make active, then quickly inactivate it then click another app, itll stay opened miday 
-    const { collection, currentMedia, style, setCurrentMedia, setActiveApp } = info;
+    const {
+        collection,
+        currentMedia,
+        style,
+        animationRef,
+        setCurrentMedia,
+        setActiveApp,
+    } = info;
+
+    if (!animationRef.current.active) return;
+
     const fadeOut = async () => {
         style.opacity = '0';
-        await sleep(TRANSITIONING_TIME);
+        await sleep(TRANSITIONING_TIME, animationRef.current);
     };
     const fadeIn = async () => {
         style.opacity = '1';
-        await sleep(TRANSITIONING_TIME);
+        await sleep(TRANSITIONING_TIME, animationRef.current);
     };
     const changeMedia = async () => {
         info.currentMedia += 1;
         setCurrentMedia(currentMedia + 1);
     };
 
-    await sleep(ACTIVE_TIME);
+    await sleep(ACTIVE_TIME, animationRef.current);
 
     if (currentMedia + 1 < collection.length) {
         await fadeOut();
@@ -301,6 +303,7 @@ const transition = async info => {
         transition(info);
     }
     else {
+        setCurrentMedia(0);
         setActiveApp(null);
     }
 };

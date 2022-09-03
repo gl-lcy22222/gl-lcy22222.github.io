@@ -1,3 +1,16 @@
 export const percent = num => num / 100;
 
-export const sleep = time => new Promise(res => setTimeout(res, time));
+export const sleep = (time, cancellable) => new Promise(resolve => {
+    let timer = setTimeout(resolve, time);
+
+    if (cancellable) {
+        cancellable.resolve = resolve;
+        cancellable.timer = timer;
+        console.log("SETTING CANCELL", cancellable)
+    }
+});
+
+export const wake = ref => {
+    clearTimeout(ref.timer);
+    ref.resolve();
+};

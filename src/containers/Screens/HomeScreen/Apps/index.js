@@ -51,7 +51,7 @@ const Apps = ({
                 height: ref.clientHeight,
             });
         }
-    }, containerRef);
+    }, [containerRef]);
 
     return (
         <div
@@ -62,7 +62,7 @@ const Apps = ({
             {Array(numOfPages)
                 .fill(0)
                 .map((page, pageNum) => (
-                    <Page pageNum={pageNum} />
+                    <Page pageNum={pageNum} key={pageNum}/>
                 ))}
         </div>
     );
