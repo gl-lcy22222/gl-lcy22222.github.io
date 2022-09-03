@@ -40,6 +40,19 @@ const useStyles = makeStyles({
         textAlign: "center",
         transition: `all ${CENTERING_TIME}ms ease`,
     },
+    descriptionBubble: {
+        backgroundColor: "white",
+        position: "absolute",
+        color: "black",
+        textAlign: "center",
+        borderRadius: 10,
+        border: "1px solid black",
+        zIndex: 1,
+        top: "100%",
+        padding: "5%",
+
+        fontSize: 9,
+    },
 });
 
 const App = ({
@@ -49,7 +62,9 @@ const App = ({
     collection,
     appSize,
     playground,
+    description,
     setActiveApp,
+    setDescription,
 }) => {
     const inactiveCleanup = () => {
         if (appRef.current) {
@@ -107,8 +122,7 @@ const App = ({
 
                 animationRef.current.active = true;
                 startAnimation(info);
-            }
-            else if (!isActive && animationRef.current.active) {
+            } else if (!isActive && animationRef.current.active) {
                 inactiveCleanup();
             }
         }
@@ -119,8 +133,13 @@ const App = ({
             className={classes.rootContainer}
             style={{
                 opacity: isActive || inactiveAnimation ? 1 : 0,
-                pointerEvents: inactiveAnimation ? null : 'none',
+                pointerEvents: inactiveAnimation ? null : "none",
             }}
+            onMouseOver={() => {
+                if (inactiveAnimation)
+                    setDescription(collection[0].description);
+            }}
+            onMouseLeave={() => setDescription()}
         >
             <div
                 className={classes.app}
@@ -137,18 +156,17 @@ const App = ({
                         src={collection?.[currentMedia]?.baseUrl}
                         ref={appRef}
                         alt=""
-                        onClick={() =>
-                            (!isActive || activeApp !== null) &&
-                            setActiveApp(appNumber)
-                        }
-                        style={{
-                            // height: appSize,
-                            // width: appSize,
-                            // minHeight: appSize,
-                            // minWidth: appSize,
-                            // opacity: isActive || inactiveAnimation ? 1 : 0,
+                        onClick={() => {
+                            // if (!isActive || activeApp !== null)
+                            if (inactiveAnimation)
+                                setActiveApp(appNumber);
                         }}
                     />
+                )}
+                {description && (
+                    <div className={classes.descriptionBubble}>
+                        {description}
+                    </div>
                 )}
             </div>
             <div
@@ -270,7 +288,7 @@ const expand = async (info) => {
     await center(info);
 };
 
-const transition = async info => {
+const transition = async (info) => {
     const {
         collection,
         currentMedia,
@@ -283,11 +301,11 @@ const transition = async info => {
     if (!animationRef.current.active) return;
 
     const fadeOut = async () => {
-        style.opacity = '0';
+        style.opacity = "0";
         await sleep(TRANSITIONING_TIME, animationRef.current);
     };
     const fadeIn = async () => {
-        style.opacity = '1';
+        style.opacity = "1";
         await sleep(TRANSITIONING_TIME, animationRef.current);
     };
     const changeMedia = async () => {
@@ -302,8 +320,7 @@ const transition = async info => {
         await changeMedia();
         await fadeIn();
         transition(info);
-    }
-    else {
+    } else {
         setCurrentMedia(0);
         setActiveApp(null);
     }

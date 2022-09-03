@@ -4,6 +4,7 @@ import {
     SET_CURRENT_PAGE,
     SET_ACTIVE_APP,
     SET_PLAYGROUND_INFO,
+    SET_DESCRIPTION,
 } from "./types";
 
 export const setAppSize = (appSize) => ({
@@ -29,4 +30,9 @@ export const setActiveApp = (activeApp) => ({
 export const setPlaygroundInfo = playgroundInfo => ({
     type: SET_PLAYGROUND_INFO,
     playgroundInfo,
+});
+
+export const setDescription = description => ({
+    type: SET_DESCRIPTION,
+    description,
 });

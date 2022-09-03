@@ -22,10 +22,17 @@ const useStyles = makeStyles({
     }
 });
 
-const PageSectionDots = ({ pageNum, currentPage, setCurrentPage }) => {
+const PageSectionDots = ({
+    pageNum,
+    activeApp,
+    currentPage,
+    setCurrentPage,
+}) => {
     const classes = useStyles();
 
     const [size, setSize] = useState(0);
+
+    const isActive = activeApp !== null;
 
     return (
         <div
@@ -34,10 +41,11 @@ const PageSectionDots = ({ pageNum, currentPage, setCurrentPage }) => {
                 width: size,
                 opacity: pageNum === currentPage ? 1 : 0.3,
             }}
-            ref={ref => ref && calcSize(ref, setSize)}
-            onClick={() => setCurrentPage(pageNum)}
+            ref={(ref) => ref && calcSize(ref, setSize)}
+            onClick={() => !isActive && setCurrentPage(pageNum)}
         >
-            <div className={classes.dotContainer}
+            <div
+                className={classes.dotContainer}
                 style={{
                     height: size,
                     width: size,

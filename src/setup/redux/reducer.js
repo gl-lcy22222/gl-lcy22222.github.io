@@ -20,13 +20,14 @@ export const initialState = {
     soundStatus: SOUND_ON,
     volume: 10,
     initialized: false,
+    playground: {},
     apps: apps,
     appSize: 0,
     rowsPerPage: 0,
     currentPage: 0,
     isMobile: false,
     activeApp: null,
-    playground: {},
+    description: null,
 };
 
 const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {

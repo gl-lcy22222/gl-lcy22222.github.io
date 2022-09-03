@@ -7,6 +7,7 @@ export const UPLOAD_SCREEN = 'UPLOAD_SCREEN';
 export const SOUND_ON = 'SOUND_ON';
 export const SOUND_OFF = 'SOUND_OFF';
 
+export const MAX_APPS_PER_ROW = 4;
 export const APP_SIZE = 16;
 export const APP_SIDE_GAPS = 3;
 export const APP_LEVEL_GAPS = 4;

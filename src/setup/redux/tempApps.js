@@ -89,6 +89,7 @@ export default Array(numOfApps)
             const randomImage = randomImages[randomImageNumber];
             collection.push({
                 baseUrl: randomImage,
+                description: 'HENLOOOO :D e 🤗',
             });
         }
 

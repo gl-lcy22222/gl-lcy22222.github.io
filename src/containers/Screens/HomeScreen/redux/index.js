@@ -1,9 +1,11 @@
+import { MAX_APPS_PER_ROW } from "../../../../configs/constants";
 import {
     setAppSize,
     setCurrentPage,
     setRowsPerPage,
     setActiveApp,
     setPlaygroundInfo,
+    setDescription,
 } from "./actions";
 
 export const states = ({
@@ -13,9 +15,9 @@ export const states = ({
     currentPage,
     activeApp,
     playground,
+    description,
 }) => {
-    const maxAppsPerRow = 4;
-    const maxAppsPerPage = rowsPerPage * maxAppsPerRow;
+    const maxAppsPerPage = rowsPerPage * MAX_APPS_PER_ROW;
     const numOfPages = rowsPerPage
         ? Math.ceil(apps.length / maxAppsPerPage)
         : 0;
@@ -29,6 +31,7 @@ export const states = ({
         maxAppsPerPage,
         activeApp,
         playground,
+        description,
     };
 };
 
@@ -38,4 +41,5 @@ export const dispatches = {
     setCurrentPage,
     setActiveApp,
     setPlaygroundInfo,
+    setDescription,
 };

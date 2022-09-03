@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { APP_CONTAINER_WIDTH } from "../../../../../configs/constants";
+import { APP_CONTAINER_WIDTH, MAX_APPS_PER_ROW } from "../../../../../configs/constants";
 import { states } from "../../redux";
 
 import App from "../App";
@@ -69,7 +69,7 @@ const Page = ({
                     />
                 ))}
             {numOfPages === pageNum + 1 &&
-                Array(2)
+                Array(MAX_APPS_PER_ROW - (apps.length % MAX_APPS_PER_ROW))
                     .fill(0)
                     .map(() => <App key={Math.random()} />)}
         </div>
