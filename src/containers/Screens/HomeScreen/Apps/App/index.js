@@ -69,6 +69,7 @@ const App = ({
     });
 
     const isActive = activeApp === appNumber;
+    const inactiveAnimation = activeApp === null;
 
     useEffect(() => {
         if (playground) {
@@ -117,8 +118,8 @@ const App = ({
         <div
             className={classes.rootContainer}
             style={{
-                opacity: isActive || activeApp === null ? 1 : 0,
-                pointerEvents: activeApp === null ? null : 'none',
+                opacity: isActive || inactiveAnimation ? 1 : 0,
+                pointerEvents: inactiveAnimation ? null : 'none',
             }}
         >
             <div
@@ -145,7 +146,7 @@ const App = ({
                             // width: appSize,
                             // minHeight: appSize,
                             // minWidth: appSize,
-                            // opacity: isActive || activeApp === null ? 1 : 0,
+                            // opacity: isActive || inactiveAnimation ? 1 : 0,
                         }}
                     />
                 )}
@@ -156,7 +157,7 @@ const App = ({
                     height: appSize / 2,
                     maxWidth: appSize,
                     fontSize: calcFontSize(appSize),
-                    opacity: activeApp === null || activeApp !== appNumber ? 1 : 0,
+                    opacity: inactiveAnimation ? 1 : 0,
                 }}
             >
                 {name}
