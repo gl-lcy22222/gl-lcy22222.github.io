@@ -37,6 +37,7 @@ const DockApp = ({ appSize, source, handler }) => {
                 minWidth: appSize,
             }}
             onClick={handler}
+            alt=""
         />
     );
 };

@@ -5,6 +5,11 @@ import App from "./containers/App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./setup/redux/store";
 import { Provider } from "react-redux";
+import {
+    initializeGooglePhotos
+} from './setup/google/photos';
+
+initializeGooglePhotos();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

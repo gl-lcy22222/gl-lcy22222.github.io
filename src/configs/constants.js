@@ -21,6 +21,6 @@ export const zIndex = {
     app: 1,
 };
 
-// const activeTime = 3000;
-// const transitionTime = 2000;
-// const centeringTime = 1500;
+export const backgroundImageSource = '/images/background.jpg';
+export const appStoreImageSource = '/images/appStore.png';
+export const backIconImageSource = 'images/backIcon.png';

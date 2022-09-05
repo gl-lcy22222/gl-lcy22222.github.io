@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { CENTERING_TIME } from "../../../../configs/constants";
-import { states } from "../redux";
+import { appStoreImageSource, CENTERING_TIME, UPLOAD_SCREEN } from "../../../../configs/constants";
+import { dispatches, states } from "../redux";
 import DockApp from "./DockApp";
 
 const useStyles = makeStyles({
@@ -18,7 +18,8 @@ const useStyles = makeStyles({
 });
 
 const Dock = ({
-    activeApp
+    activeApp,
+    updateScreen
 }) => {
     const classes = useStyles();
 
@@ -28,9 +29,13 @@ const Dock = ({
         <div className={classes.rootContainer}
             style={{
                 opacity: isActive ? 0 : 1,
+                pointerEvents: isActive ? 'none' : null,
             }}
         >
-            <DockApp />
+            <DockApp
+                source={appStoreImageSource}
+                handler={() => updateScreen(UPLOAD_SCREEN)}
+            />
             <DockApp />
             <DockApp />
             <DockApp />
@@ -38,4 +43,4 @@ const Dock = ({
     );
 };
 
-export default connect(states)(Dock);
+export default connect(states, dispatches)(Dock);

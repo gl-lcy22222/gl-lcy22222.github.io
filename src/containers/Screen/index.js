@@ -7,19 +7,21 @@ import {
     HOME_SCREEN,
     LOCK_SCREEN,
     PASSCODE_SCREEN,
+    UPLOAD_SCREEN,
 } from "../../configs/constants";
 
 import BlackScreen from "../Screens/BlackScreen";
 import LockScreen from "../Screens/LockScreen";
 import PasscodeScreen from "../Screens/PasscodeScreen";
 import HomeScreen from "../Screens/HomeScreen";
-// import UploadScreen from "./Screens/UploadScreen";
+import UploadScreen from "../Screens/UploadScreen";
 
 const useStyles = makeStyles({
     rootContainer: {
         height: "100%",
         width: "100%",
-        transition: "1s", //DELETE?
+
+        // transition: "1s", //DELETE?
 
         // position: "relative",
         // zIndex: 1, //DELETE?
@@ -32,13 +34,31 @@ const screenMapping = {
     [LOCK_SCREEN]: <LockScreen />,
     [PASSCODE_SCREEN]: <PasscodeScreen />,
     [HOME_SCREEN]: <HomeScreen />,
-    // [UPLOAD_SCREEN]: <UploadScreen />,
+    [UPLOAD_SCREEN]: <UploadScreen />,
 };
 
-const Screen = ({ screen }) => {
+const Screen = ({
+    screen,
+    setPlaygroundInfo,
+}) => {
     const classes = useStyles();
 
-    return <div className={classes.rootContainer}>{screenMapping[screen]}</div>;
+    return (
+        <div className={classes.rootContainer}
+            ref={ref => handleRef(ref, setPlaygroundInfo)}
+        >
+            {screenMapping[screen]}
+        </div>
+    );
+};
+
+const handleRef = (ref, setPlaygroundInfo) => {
+    if (ref) {
+        setPlaygroundInfo({
+            width: ref.clientWidth,
+            height: ref.clientHeight,
+        })
+    }
 };
 
 export default connect(states, dispatches)(Screen);

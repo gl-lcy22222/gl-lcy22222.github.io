@@ -71,8 +71,6 @@ const names = [
     "insurance",
 ];
 
-const apps = [];
-
 const numOfApps = generateNumber(50);
 
 

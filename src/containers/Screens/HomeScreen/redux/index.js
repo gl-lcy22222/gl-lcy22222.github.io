@@ -4,8 +4,11 @@ import {
     setCurrentPage,
     setRowsPerPage,
     setActiveApp,
-    setPlaygroundInfo,
 } from "./actions";
+
+import {
+    updateScreen,
+} from '../../../Screen/redux/actions';
 
 export const states = ({
     apps,
@@ -37,5 +40,5 @@ export const dispatches = {
     setRowsPerPage,
     setCurrentPage,
     setActiveApp,
-    setPlaygroundInfo,
+    updateScreen,
 };

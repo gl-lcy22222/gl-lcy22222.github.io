@@ -4,9 +4,13 @@
 * swipe to switch pages
 * description
     - centers
-    - if lower quadrants descriptions should be above?
     - should set max height and then scroll on overflow
+* swiping all the way to the left is a gallery
+* adding into an album
+* uploading media to google
 
 // add tests
 // thik of ways to optimize
 // pass in only the required variables <-- google this? 
+
+// the app still does fade out when i close the app right before it transitions

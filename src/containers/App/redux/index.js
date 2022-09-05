@@ -1,6 +1,9 @@
 import {
     setIsMobile
 } from './actions';
+import {
+    setApps
+} from '../../Screens/HomeScreen/redux/actions';
 
 export const states = ({
     volume,
@@ -14,4 +17,5 @@ export const states = ({
 
 export const dispatches = {
     setIsMobile,
+    setApps,
 };

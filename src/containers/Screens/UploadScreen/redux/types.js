@@ -1,0 +1,5 @@
+export const SET_CURRENT_UPLOAD_PAGE = 'SET_CURRENT_UPLOAD_PAGE';
+export const SET_APP_NAME = 'SET_APP_NAME';
+export const SET_DESCRIPTION = 'SET_DESCRIPTION';
+
+export const ADD_MEDIA = 'ADD_MEDIA';

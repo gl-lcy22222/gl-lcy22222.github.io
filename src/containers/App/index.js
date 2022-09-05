@@ -10,6 +10,7 @@ import {
     states,
     dispatches,
 } from './redux';
+import { getAlbumContents, getAlbums } from "../../google/requests";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -29,12 +30,30 @@ const App = ({
     volume,
     isMobile,
     setIsMobile,
+    setApps,
 }) => {
     const classes = useStyles();
 
     useEffect(() => {
         setIsMobile();
-    }, [setIsMobile]);
+        getAlbums()
+            .then(({ data }) => data.albums)
+            .then(async albums => {
+                return await Promise.all(albums.map(async album => {
+                    return await getAlbumContents(album.id)
+                        .then(({ data }) => {
+                            preloadMediaItems(data.mediaItems);
+                            return {
+                                name: album.title,
+                                description: data.mediaItems[0].description,
+                                collection: data.mediaItems,
+                            };
+                        })
+                }));
+            })
+            .then((apps) => setApps(apps))
+            .catch((err) => console.log(err, "getAlbums Error"));
+    }, []);
 
     return (
         <div
@@ -48,5 +67,7 @@ const App = ({
         </div>
     );
 };
+
+const preloadMediaItems = mediaItems => mediaItems.forEach(item => new Image().src = item.baseUrl);
 
 export default connect(states, dispatches)(App);

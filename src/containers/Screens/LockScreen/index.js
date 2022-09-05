@@ -7,7 +7,7 @@ import TodaysDate from "./TodaysDate";
 
 import { dispatches } from "./redux";
 
-import { PASSCODE_SCREEN } from "../../../configs/constants";
+import { backgroundImageSource, PASSCODE_SCREEN } from "../../../configs/constants";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundImage: `url(/images/background.jpg)`,
+        backgroundImage: `url(${backgroundImageSource})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

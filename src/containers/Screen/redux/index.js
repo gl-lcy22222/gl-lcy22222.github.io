@@ -1,12 +1,11 @@
-export const states = ({
-    screen,
-}) => {
+import { setPlaygroundInfo } from "../../Screens/HomeScreen/redux/actions";
 
+export const states = ({ screen }) => {
     return {
-        screen
+        screen,
     };
 };
 
 export const dispatches = {
-    // updateScreen,
+    setPlaygroundInfo,
 };

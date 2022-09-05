@@ -5,6 +5,7 @@ import InputBox from "./InputBox";
 import NumPad from "./NumPad";
 import Text from "./Text";
 import LockIcon from "../../../components/LockIcon";
+import { backgroundImageSource } from "../../../configs/constants";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundImage: `url(/images/background.jpg)`,
+        backgroundImage: `url(${backgroundImageSource})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

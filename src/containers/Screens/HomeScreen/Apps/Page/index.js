@@ -63,8 +63,7 @@ const Page = ({
                     <App
                         key={i}
                         appNumber={pageNum * maxAppsPerPage + i}
-                        name={app.name}
-                        collection={app.collection}
+                        app={app}
                         playground={playground}
                     />
                 ))}

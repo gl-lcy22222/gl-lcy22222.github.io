@@ -41,7 +41,7 @@ const useStyles = makeStyles({
         transition: `all ${CENTERING_TIME}ms ease`,
         position: 'relative'
     },
-    descriptionBubble: {
+    descriptionActiveBubble: {
         backgroundColor: "white",
         position: "absolute",
         color: "black",
@@ -54,37 +54,40 @@ const useStyles = makeStyles({
 });
 
 const App = ({
-    name,
     appNumber,
+    app,
     activeApp,
-    collection,
     appSize,
     maxAppsPerPage,
     playground,
     setActiveApp,
 }) => {
+    
     const inactiveCleanup = () => {
         if (appRef.current) {
             appRef.current.style = null;
             animationRef.current.active = false;
             wake(animationRef.current);
-            setDescription(null);
+            setDescriptionActive(false);
         }
     };
-
+    
     const classes = useStyles();
-
+    
     const [currentMedia, setCurrentMedia] = useState(0);
-    const [description, setDescription] = useState();
-
+    const [descriptionActive, setDescriptionActive] = useState(false);
+    
     const appRef = useRef();
     const animationRef = useRef({
         active: false,
     });
-
+    
     const isActive = activeApp === appNumber;
     const inactiveAnimation = activeApp === null;
     const isLastRow = lastRow(appNumber, maxAppsPerPage);
+    const name = app?.name;
+    const collection = app?.collection;
+    const description = app?.description;
 
     useEffect(() => {
         if (playground) {
@@ -118,7 +121,7 @@ const App = ({
                     animationRef,
                     setActiveApp,
                     setCurrentMedia,
-                    setDescription,
+                    setDescriptionActive,
                 };
 
                 startAnimation(info);
@@ -133,13 +136,13 @@ const App = ({
             className={classes.rootContainer}
             style={{
                 opacity: isActive || inactiveAnimation ? 1 : 0,
-                pointerEvents: inactiveAnimation ? null : "none",
+                pointerEvents: !inactiveAnimation || !app ? "none" : null,
             }}
             onMouseOver={() => {
                 if (inactiveAnimation)
-                    setDescription(collection[0].description);
+                    setDescriptionActive(collection[0].descriptionActive);
             }}
-            onMouseLeave={() => setDescription()}
+            onMouseLeave={() => setDescriptionActive()}
         >
             <div
                 className={classes.app}
@@ -148,7 +151,7 @@ const App = ({
                     width: appSize,
                     minHeight: appSize,
                     minWidth: appSize,
-                    position: description ? 'relative' : null,
+                    position: descriptionActive ? 'relative' : null,
                 }}
             >
                 {collection && (
@@ -163,14 +166,14 @@ const App = ({
                         }}
                     />
                 )}
-                {description && (
-                    <div className={classes.descriptionBubble}
+                {descriptionActive && (
+                    <div className={classes.descriptionActiveBubble}
                         style={{
                             fontSize: calcFontSize(appSize),
                             top: isLastRow ? null : '110%',
                             bottom: isLastRow ? '110%' : null,  
                         }}
-                        onClick={() => setDescription(null)}
+                        onClick={() => setDescriptionActive(false)}
                     >
                         {description}
                     </div>
@@ -184,14 +187,7 @@ const App = ({
                     fontSize: calcFontSize(appSize),
                     opacity: inactiveAnimation ? 1 : 0,
                 }}
-                onClick={() => {
-                    if (description) {
-                        setDescription(null);
-                    }
-                    else {
-                        setDescription(collection[0].description);
-                    }
-                }}
+                onClick={() => setDescriptionActive(!descriptionActive)}
             >
                 {name}
             </div>
@@ -243,10 +239,10 @@ const lastRow = (appNumber, maxAppsPerPage) => {
 };
 
 const startAnimation = async (info) => {
-    const { animationRef, setDescription} = info;
+    const { animationRef, setDescriptionActive} = info;
 
     animationRef.current.active = true;
-    setDescription(null);
+    setDescriptionActive(false);
 
     await center(info);
     await expand(info);

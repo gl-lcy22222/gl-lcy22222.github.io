@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
-import { useState } from "react";
 import { connect } from "react-redux";
+import { backgroundImageSource } from "../../../configs/constants";
 import Apps from "./Apps";
 import Dock from "./Dock";
 import PageSelection from "./PageSelection";
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         height: "100%",
         maxHeight: "100%",
         width: "100%",
-        backgroundImage: `url(/images/background.jpg)`,
+        backgroundImage: `url(${backgroundImageSource})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -24,19 +24,8 @@ const useStyles = makeStyles({
 
 const HomeScreen = ({
     activeApp,
-    playground,
     setActiveApp,
-    setPlaygroundInfo,
 }) => {
-    const handleRef = ref => {
-        if (ref && !playground.height) {
-            setPlaygroundInfo({
-                width: ref.clientWidth,
-                height: ref.clientHeight,
-            })
-        }
-    };
-
     const classes = useStyles();
     
     const isActive = activeApp !== null;
@@ -44,7 +33,6 @@ const HomeScreen = ({
     return (
         <div
             className={classes.rootContainer}
-            ref={handleRef}
             onClick={() => isActive && setActiveApp(null)}
         >
             <Apps />
