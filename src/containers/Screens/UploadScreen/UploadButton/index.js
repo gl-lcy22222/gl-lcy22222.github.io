@@ -2,6 +2,9 @@ import { makeStyles } from "@material-ui/styles";
 import { Button } from "@material-ui/core";
 import { connect } from "react-redux";
 import { dispatches, states } from "../redux";
+import {
+    INFO_PAGE, UPLOADING_PAGE, UPLOAD_PAGE,
+} from '../configs';
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -20,6 +23,7 @@ const UploadButton = ({
     appName,
     description,
     currentUploadPage,
+    medias,
     setCurrentUploadPage,
 }) => {
     const classes = useStyles();
@@ -38,6 +42,7 @@ const UploadButton = ({
                         appName,
                         description,
                         currentUploadPage,
+                        medias,
                         setCurrentUploadPage
                     )
                 }
@@ -52,12 +57,13 @@ const handleOnClick = (
     appName,
     description,
     currentUploadPage,
+    medias,
     setCurrentUploadPage
 ) => {
-    if (currentUploadPage < 1) {
-        setCurrentUploadPage(currentUploadPage + 1);
+    if (currentUploadPage === UPLOAD_PAGE && medias.length) {
+        setCurrentUploadPage(INFO_PAGE);
     } else if (appName && description) {
-        setCurrentUploadPage(currentUploadPage + 1);
+        setCurrentUploadPage(UPLOADING_PAGE);
     }
 };
 

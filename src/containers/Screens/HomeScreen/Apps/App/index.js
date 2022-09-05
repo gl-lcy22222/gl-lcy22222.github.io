@@ -65,9 +65,9 @@ const App = ({
     
     const inactiveCleanup = () => {
         if (appRef.current) {
-            appRef.current.style = null;
             animationRef.current.active = false;
             wake(animationRef.current);
+            appRef.current.style = null;
             setDescriptionActive(false);
         }
     };

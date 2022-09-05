@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
 import { backIconImageSource, HOME_SCREEN } from "../../../../configs/constants";
+import { UPLOAD_PAGE } from "../configs";
 import { dispatches, states } from "../redux";
 
 const useStyles = makeStyles({
@@ -35,11 +36,11 @@ const BackIcon = ({
 }
 
 const handleOnClick = (currentUploadPage, setCurrentUploadPage, updateScreen) => {
-    if (currentUploadPage === 0) {
+    if (currentUploadPage === UPLOAD_PAGE) {
         updateScreen(HOME_SCREEN);
     }
     else {
-        setCurrentUploadPage(currentUploadPage - 1);
+        setCurrentUploadPage(UPLOAD_PAGE);
     }
 };
 
