@@ -322,14 +322,17 @@ const transition = async (info) => {
     if (!animationRef.current.active) return;
 
     const fadeOut = async () => {
+        if (!animationRef.current.active) return;
         style.opacity = "0";
         await sleep(TRANSITIONING_TIME, animationRef.current);
     };
     const fadeIn = async () => {
+        if (!animationRef.current.active) return;
         style.opacity = "1";
         await sleep(TRANSITIONING_TIME, animationRef.current);
     };
     const changeMedia = async () => {
+        if (!animationRef.current.active) return;
         info.currentMedia += 1;
         setCurrentMedia(currentMedia + 1);
     };
