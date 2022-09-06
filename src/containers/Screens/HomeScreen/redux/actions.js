@@ -5,6 +5,7 @@ import {
     SET_ACTIVE_APP,
     SET_PLAYGROUND_INFO,
     SET_APPS,
+    ADD_APP,
 } from "./types";
 
 export const setAppSize = (appSize) => ({
@@ -35,4 +36,9 @@ export const setPlaygroundInfo = playgroundInfo => ({
 export const setApps = apps => ({
     type: SET_APPS,
     apps,
+});
+
+export const addApp = app => ({
+    type: ADD_APP,
+    app,
 });

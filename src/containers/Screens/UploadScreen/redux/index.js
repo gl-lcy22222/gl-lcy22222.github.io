@@ -1,4 +1,5 @@
 import { updateScreen } from "../../../Screen/redux/actions";
+import { addApp } from "../../HomeScreen/redux/actions";
 import { addMedia, setAppName, setCurrentUploadPage, setDescription } from "./actions";
 
 export const states = ({ playground, uploadScreen }) => {
@@ -18,4 +19,5 @@ export const dispatches = {
     setCurrentUploadPage,
     updateScreen,
     addMedia,
+    addApp,
 };

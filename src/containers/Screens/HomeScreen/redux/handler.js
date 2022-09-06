@@ -5,6 +5,7 @@ import {
     SET_ACTIVE_APP,
     SET_PLAYGROUND_INFO,
     SET_APPS,
+    ADD_APP,
 } from "./types";
 
 const homeScreenHandler = (state, action) => {
@@ -40,6 +41,14 @@ const homeScreenHandler = (state, action) => {
             return {
                 ...state,
                 apps: action.apps,
+            };
+        case ADD_APP:
+            return {
+                ...state,
+                apps: [
+                    ...state.apps,
+                    action.app,
+                ],
             };
     }
 };
