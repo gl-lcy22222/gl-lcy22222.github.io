@@ -342,6 +342,7 @@ const transition = async (info) => {
         await fadeIn();
         transition(info);
     } else {
+        await fadeOut();
         setCurrentMedia(0);
         setActiveApp(null);
     }
