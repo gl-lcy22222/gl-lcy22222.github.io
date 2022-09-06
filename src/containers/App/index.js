@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 import HeartAnimation from "../Heart Animation";
-// import Phone from "../Phone";
+import Phone from "../Phone";
 import Screen from "../Screen";
 
 import {
@@ -35,7 +35,7 @@ const App = ({
 }) => {
     const classes = useStyles();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setIsMobile();
         getAlbums()
             .then(({ data }) => data.albums)
@@ -63,8 +63,11 @@ const App = ({
             onDragOver={(e) => e.preventDefault()}
             // onClick={playAudio}
         >
-            <Screen/>
-            {!isMobile && <HeartAnimation />}
+            {isMobile && <Screen/>}
+            {!isMobile && (
+                <Phone/>
+                // <HeartAnimation />
+            )}
         </div>
     );
 };

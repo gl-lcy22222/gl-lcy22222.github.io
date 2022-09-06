@@ -161,8 +161,6 @@ const App = ({
                         ref={appRef}
                         alt=""
                         onClick={e => {
-                            console.log("E")
-
                             if (inactiveAnimation)
                                 setActiveApp(appNumber);
                             else {

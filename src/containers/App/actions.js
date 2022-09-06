@@ -11,5 +11,6 @@ export const mobileAndTabletCheck = () => {
         )
             check = true;
     })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
+
+    return check || (window.innerWidth < window.innerHeight);
 };
