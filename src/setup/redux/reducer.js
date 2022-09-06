@@ -15,7 +15,7 @@ import homeScreenHandler from "../../containers/Screens/HomeScreen/redux/handler
 import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/handler";
 
 export const initialState = {
-    screen: UPLOAD_SCREEN,
+    screen: HOME_SCREEN,
     passcodeEntry: "", // passcodeScreen
     soundStatus: SOUND_ON,
     volume: 10,

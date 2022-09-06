@@ -11,6 +11,7 @@ import {
     dispatches,
 } from './redux';
 import { getAlbumContents, getAlbums } from "../../google/requests";
+import { shuffle } from "../../helpers";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -46,12 +47,12 @@ const App = ({
                             return {
                                 name: album.title,
                                 description: data.mediaItems[0].description,
-                                collection: data.mediaItems,
+                                collection: shuffle(data.mediaItems),
                             };
                         })
                 }));
             })
-            .then((apps) => setApps(apps))
+            .then((apps) => setApps(shuffle(apps)))
             .catch((err) => console.log(err, "getAlbums Error"));
     }, []);
 
