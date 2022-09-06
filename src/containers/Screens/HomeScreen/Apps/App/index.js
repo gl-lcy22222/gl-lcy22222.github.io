@@ -66,8 +66,8 @@ const App = ({
     const inactiveCleanup = () => {
         if (appRef.current) {
             animationRef.current.active = false;
-            wake(animationRef.current);
             appRef.current.style = null;
+            wake(animationRef.current);
             setDescriptionActive(false);
         }
     };
@@ -160,9 +160,14 @@ const App = ({
                         src={collection?.[currentMedia]?.baseUrl}
                         ref={appRef}
                         alt=""
-                        onClick={() => {
+                        onClick={e => {
+                            console.log("E")
+
                             if (inactiveAnimation)
                                 setActiveApp(appNumber);
+                            else {
+                                e.preventDefault();
+                            }
                         }}
                     />
                 )}
@@ -240,13 +245,14 @@ const lastRow = (appNumber, maxAppsPerPage) => {
 
 const startAnimation = async (info) => {
     const { animationRef, setDescriptionActive} = info;
+    const initialActiveTime = 500;
 
     animationRef.current.active = true;
     setDescriptionActive(false);
 
     await center(info);
     await expand(info);
-    await transition(info);
+    await transition(info, initialActiveTime);
 };
 
 const center = async (info) => {
@@ -309,7 +315,7 @@ const expand = async (info) => {
     await center(info);
 };
 
-const transition = async (info) => {
+const transition = async (info, activeTime) => {
     const {
         collection,
         currentMedia,
@@ -337,13 +343,13 @@ const transition = async (info) => {
         setCurrentMedia(currentMedia + 1);
     };
 
-    await sleep(ACTIVE_TIME, animationRef.current);
+    await sleep(activeTime, animationRef.current);
 
     if (currentMedia + 1 < collection.length) {
         await fadeOut();
         await changeMedia();
         await fadeIn();
-        transition(info);
+        transition(info, ACTIVE_TIME);
     } else {
         await fadeOut();
         setCurrentMedia(0);
