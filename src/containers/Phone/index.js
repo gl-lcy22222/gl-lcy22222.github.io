@@ -36,6 +36,7 @@ import { percent } from '../../helpers';
 import SideButton from './SideButton';
 import Screen from '../Screen';
 import { height, heightWidthRatio } from './configs';
+import ScreenTop from './ScreenTop';
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -57,6 +58,7 @@ const useStyles = makeStyles({
     screenContainer: {
         height: '98%',
         overflow: 'hidden',
+        position: 'relative',
     },
 
     strip: {
@@ -160,6 +162,7 @@ const Phone = ({
                         borderRadius: screenContainerBorderRadius
                     }}
                 >
+                    <ScreenTop/>
                     <Screen />
                 </div>
 

@@ -16,15 +16,15 @@ import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/han
 
 export const initialState = {
     screen: HOME_SCREEN,
-    passcodeEntry: "", // passcodeScreen
     soundStatus: SOUND_ON,
     volume: 10,
     playground: {},
+    isMobile: false,
+    passcodeEntry: "", // passcodeScreen
     apps: [], // homeScreen
     appSize: 0, // homeScreen
     rowsPerPage: 0, // homeScreen
     currentPage: 0, // homeScreen
-    isMobile: false,
     activeApp: null, // homeScreen
     uploadScreen: {
         currentUploadPage: 0,

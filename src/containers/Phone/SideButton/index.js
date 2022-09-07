@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 const Button = ({
     height,
     width,
-    color = 'black',
     side,
     top,
     action,
@@ -28,7 +27,7 @@ const Button = ({
             style={{
                 height,
                 width,
-                backgroundColor: color,
+                backgroundColor: 'black',
                 [position[side]]: '100%',
                 top
             }}
