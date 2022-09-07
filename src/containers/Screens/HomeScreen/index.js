@@ -5,6 +5,7 @@ import Apps from "./Apps";
 import Dock from "./Dock";
 import PageSelection from "./PageSelection";
 import { dispatches, states } from "./redux";
+import HeartAnimation from '../../Heart Animation';
 
 const useStyles = makeStyles({
     rootContainer: {

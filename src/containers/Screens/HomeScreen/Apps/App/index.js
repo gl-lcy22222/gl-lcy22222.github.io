@@ -1,13 +1,13 @@
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
+import { zIndex } from "../../../../../configs";
 import {
     ACTIVE_TIME,
     APP_LEVEL_GAPS,
     APP_SIDE_GAPS,
     CENTERING_TIME,
     TRANSITIONING_TIME,
-    zIndex,
 } from "../../../../../configs/constants";
 import { percent, sleep, wake } from "../../../../../helpers";
 import { dispatches, states } from "../../redux";
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
         textAlign: "center",
         borderRadius: 10,
         border: "1px solid black",
-        zIndex: 1,
+        zIndex: zIndex.descriptionActiveBubble,
         padding: "5%",
     },
 });

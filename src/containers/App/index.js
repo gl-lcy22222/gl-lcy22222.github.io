@@ -64,10 +64,8 @@ const App = ({
             // onClick={playAudio}
         >
             {isMobile && <Screen/>}
-            {!isMobile && (
-                <Phone/>
-                // <HeartAnimation />
-            )}
+            {!isMobile && <Phone/>}
+            {!isMobile && <HeartAnimation/>}
         </div>
     );
 };

@@ -20,12 +20,6 @@ const useStyles = makeStyles({
     rootContainer: {
         height: "100%",
         width: "100%",
-
-        // transition: "1s", //DELETE?
-
-        // position: "relative",
-        // zIndex: 1, //DELETE?
-
     },
 });
 

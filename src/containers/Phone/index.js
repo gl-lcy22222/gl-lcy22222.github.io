@@ -1,42 +1,10 @@
-// import { makeStyles } from "@material-ui/styles";
-// import { percent } from "../../helpers";
-// import Screen from "../Screen";
-// import { height, heightWidthRatio } from "./configs";
-
-// const useStyles = makeStyles({
-//     rootContainer: {
-//         height: `${height}%`,
-//         backgroundColor: 'red',
-//         borderRadius: '5%',
-//         overflow: 'hidden',
-//     },
-// });
-
-// const Phone = () => {
-//     const classes = useStyles();
-
-//     const width = window.innerHeight * percent(height) / heightWidthRatio;
-
-//     return (
-//         <div className={classes.rootContainer}
-//             style={{
-//                 width,
-//             }}
-//         >
-//             <Screen/>
-//         </div>
-//     );
-// };
-
-// export default Phone;
-
-
 import { makeStyles } from '@material-ui/styles';
 import { percent } from '../../helpers';
 import SideButton from './SideButton';
 import Screen from '../Screen';
 import { height, heightWidthRatio } from './configs';
 import ScreenTop from './ScreenTop';
+import { zIndex } from '../../configs';
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -47,6 +15,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
+        zIndex: zIndex.phone
     },
     innerContainer: {
         height: '99%',
