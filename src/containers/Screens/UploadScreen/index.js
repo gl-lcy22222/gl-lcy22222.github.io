@@ -41,11 +41,13 @@ const UploadScreen = ({
     playground,
     currentUploadPage,
     appName,
+    appId,
     description,
     medias,
     addApp,
     updateScreen,
     setCurrentUploadPage,
+    clearUploadScreen,
 }) => {
     const classes = useStyles();
 
@@ -59,19 +61,33 @@ const UploadScreen = ({
         }
 
         if (currentUploadPage === UPLOADING_PAGE) {
-            createApp(appName, description, medias)
-                .then(({ data }) => {
-                    addApp({
-                        name: appName,
-                        description,
-                        collection: data.mediaItems,
-                    });
-                    updateScreen(HOME_SCREEN);
+            if (appId) {
+                uploadMedia(medias, appId, description)
+                .then(() => {
+                    clearUploadScreen();
+                    updateScreen(HOME_SCREEN)
                 })
                 .catch((err) => {
-                    console.log(err.response, "createApp Error");
+                    console.log(err.response, "uploadMedia Error");
                     setCurrentUploadPage(UPLOAD_PAGE);
                 });
+            }
+            else {
+                createApp(appName, description, medias)
+                    .then(({ data }) => {
+                        addApp({
+                            name: appName,
+                            description,
+                            collection: data.mediaItems,
+                        });
+                        clearUploadScreen();
+                        updateScreen(HOME_SCREEN);
+                    })
+                    .catch((err) => {
+                        console.log(err.response, "createApp Error");
+                        setCurrentUploadPage(UPLOAD_PAGE);
+                    });
+            }
         }
     }, [currentUploadPage, playground]);
 
@@ -88,7 +104,7 @@ const UploadScreen = ({
     );
 };
 
-const createApp = async (appName, description, medias, updateScreen) => {
+const createApp = async (appName, description, medias) => {
     const albumId = await createAlbum(appName)
         .then(({ data }) => {
             const { id } = data;

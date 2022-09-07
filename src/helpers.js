@@ -18,3 +18,5 @@ export const shuffle = (arr) => {
     arr.sort(() => (Math.random() < 0.5 ? 1 : -1));
     return arr;
 };
+
+export const isString = val => typeof val === 'string' || val instanceof String

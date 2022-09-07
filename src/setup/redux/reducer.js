@@ -13,9 +13,10 @@ import screenHandler from "../../containers/Screen/redux/handler";
 import passcodeScreenHandler from "../../containers/Screens/PasscodeScreen/redux/handler";
 import homeScreenHandler from "../../containers/Screens/HomeScreen/redux/handler";
 import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/handler";
+import { UPLOAD_PAGE } from "../../containers/Screens/UploadScreen/configs";
 
 export const initialState = {
-    screen: HOME_SCREEN,
+    screen: UPLOAD_SCREEN,
     soundStatus: SOUND_ON,
     volume: 10,
     playground: {},
@@ -27,7 +28,7 @@ export const initialState = {
     currentPage: 0, // homeScreen
     activeApp: null, // homeScreen
     uploadScreen: {
-        currentUploadPage: 0,
+        currentUploadPage: UPLOAD_PAGE,
         appName: '',
         description: '',
         medias: [],

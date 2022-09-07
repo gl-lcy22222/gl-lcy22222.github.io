@@ -47,6 +47,7 @@ const App = ({
                             return {
                                 name: album.title,
                                 description: data.mediaItems[0].description,
+                                id: album.id,
                                 collection: shuffle(data.mediaItems),
                             };
                         })

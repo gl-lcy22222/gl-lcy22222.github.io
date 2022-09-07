@@ -3,6 +3,8 @@ import {
     SET_CURRENT_UPLOAD_PAGE,
     SET_DESCRIPTION,
     ADD_MEDIA,
+    SET_APP_ID,
+    CLEAR_UPLOAD_SCREEN,
 } from './types';
 
 export const setCurrentUploadPage = currentUploadPage => ({
@@ -20,7 +22,16 @@ export const setDescription = description => ({
     description,
 });
 
+export const setAppId = appId => ({
+    type: SET_APP_ID,
+    appId,
+});
+
 export const addMedia = media => ({
     type: ADD_MEDIA,
     media,
+});
+
+export const clearUploadScreen = () => ({
+    type: CLEAR_UPLOAD_SCREEN,
 });

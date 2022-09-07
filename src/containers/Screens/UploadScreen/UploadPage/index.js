@@ -33,8 +33,11 @@ const useStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         color: "white",
-
         border: "1px dashed white",
+
+        '&:hover': {
+            cursor: 'pointer',
+        }
     },
     file: {
         height: 0,

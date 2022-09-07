@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CREATE } from "../configs/constants";
 import { getCookie } from "./helpers";
 
 const albumUrl = "https://photoslibrary.googleapis.com/v1/albums/";
@@ -101,7 +102,7 @@ export const uploadBytes = file => {
     );
 };
 
-export const uploadMedia = (medias, albumId, description) => {
+export const uploadMedia = (medias, albumId, description, type = CREATE) => {
     const newMediaItems = medias.map(media => {
         return {
             description,
