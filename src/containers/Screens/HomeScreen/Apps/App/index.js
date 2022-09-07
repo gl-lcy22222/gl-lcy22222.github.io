@@ -18,6 +18,10 @@ const useStyles = makeStyles({
         marginLeft: `${APP_SIDE_GAPS}%`,
         marginRight: `${APP_SIDE_GAPS}%`,
         transition: `all ${CENTERING_TIME}ms ease`,
+
+        '&:hover': {
+            cursor: 'pointer',
+        }
     },
     app: {
         marginBottom: "10%",
@@ -50,6 +54,11 @@ const useStyles = makeStyles({
         border: "1px solid black",
         zIndex: zIndex.descriptionActiveBubble,
         padding: "5%",
+        maxHeight: '200%',
+        overflow: 'auto',
+        alignSelf: 'center',
+        left: 0,
+        right: 0,
     },
 });
 
@@ -140,9 +149,9 @@ const App = ({
             }}
             onMouseOver={() => {
                 if (inactiveAnimation)
-                    setDescriptionActive(collection[0].descriptionActive);
+                    setDescriptionActive(true);
             }}
-            onMouseLeave={() => setDescriptionActive()}
+            onMouseLeave={() => setDescriptionActive(false)}
         >
             <div
                 className={classes.app}
