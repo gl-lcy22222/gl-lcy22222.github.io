@@ -110,11 +110,11 @@ const App = ({
 
             if (isActive) {
                 const { x, y } = appRef.current.getBoundingClientRect();
-                const clientCenterX = playgroundWidth / 2;
-                const clientCenterY = playgroundHeight / 2;
+                const xInterceptPosition = window.innerWidth / 2;
+                const yInterceptPosition = window.innerHeight / 2;
                 const quadrant = calculateQuadrant(
-                    clientCenterX,
-                    clientCenterY,
+                    xInterceptPosition,
+                    yInterceptPosition,
                     appLeft,
                     appTop
                 );
@@ -124,8 +124,9 @@ const App = ({
                     y,
                     quadrant,
                     style,
-                    clientCenterX,
-                    clientCenterY,
+                    playgroundWidth,
+                    xInterceptPosition,
+                    yInterceptPosition,
                     appSize,
                     collection,
                     currentMedia,
@@ -254,14 +255,13 @@ const lastRow = (appNumber, maxAppsPerPage) => {
 
 const startAnimation = async (info) => {
     const { animationRef, setDescriptionActive} = info;
-    const initialActiveTime = 500;
 
     animationRef.current.active = true;
     setDescriptionActive(false);
 
     await center(info);
     await expand(info);
-    await transition(info, initialActiveTime);
+    await transition(info);
 };
 
 const center = async (info) => {
@@ -269,8 +269,8 @@ const center = async (info) => {
         x,
         y,
         quadrant,
-        clientCenterX,
-        clientCenterY,
+        xInterceptPosition,
+        yInterceptPosition,
         style,
         appSize,
         animationRef,
@@ -286,20 +286,20 @@ const center = async (info) => {
 
     switch (quadrant) {
         case 1:
-            centerAmountX = -(appCenterX - clientCenterX);
-            centerAmountY = clientCenterY - appCenterY;
+            centerAmountX = -(appCenterX - xInterceptPosition);
+            centerAmountY = yInterceptPosition - appCenterY;
             break;
         case 2:
-            centerAmountX = clientCenterX - appCenterX;
-            centerAmountY = clientCenterY - appCenterY;
+            centerAmountX = xInterceptPosition - appCenterX;
+            centerAmountY = yInterceptPosition - appCenterY;
             break;
         case 3:
-            centerAmountX = clientCenterX - appCenterX;
-            centerAmountY = -(appCenterY - clientCenterY);
+            centerAmountX = xInterceptPosition - appCenterX;
+            centerAmountY = -(appCenterY - yInterceptPosition);
             break;
         default:
-            centerAmountX = -(appCenterX - clientCenterX);
-            centerAmountY = -(appCenterY - clientCenterY);
+            centerAmountX = -(appCenterX - xInterceptPosition);
+            centerAmountY = -(appCenterY - yInterceptPosition);
             break;
     }
 
@@ -314,17 +314,17 @@ const center = async (info) => {
 };
 
 const expand = async (info) => {
-    const { clientCenterX, animationRef } = info;
+    const { playgroundWidth, animationRef } = info;
 
     if (!animationRef.current.active) return;
 
     const maxAppSizeRatio = percent(80);
-    const maxAppSize = clientCenterX * 2 * maxAppSizeRatio;
+    const maxAppSize = playgroundWidth * maxAppSizeRatio;
     info.appSize = maxAppSize;
     await center(info);
 };
 
-const transition = async (info, activeTime) => {
+const transition = async (info, activeTime = 500) => {
     const {
         collection,
         currentMedia,
