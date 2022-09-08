@@ -2,12 +2,14 @@ import { makeStyles } from "@material-ui/styles";
 import { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { backgroundImageSource, HOME_SCREEN } from "../../../configs/constants";
+import { fetchApps } from "../../../google/helpers";
 import {
     createAlbum,
     getAlbumContents,
     shareAlbum,
     uploadMedia,
 } from "../../../google/requests";
+import { setApps } from "../HomeScreen/redux/actions";
 import BackIcon from "./BackIcon";
 import { UPLOADING_PAGE, UPLOAD_PAGE } from "./configs";
 import InfoPage from "./InfoPage";
@@ -44,7 +46,7 @@ const UploadScreen = ({
     appId,
     description,
     medias,
-    addApp,
+    setApps,
     updateScreen,
     setCurrentUploadPage,
     clearUploadScreen,
@@ -64,8 +66,12 @@ const UploadScreen = ({
             if (appId) {
                 uploadMedia(medias, appId, description)
                 .then(() => {
+                    fetchApps(false)
+                        .then((apps) => setApps(apps))
+                        .catch((err) => console.log(err, "fetchApps Error"));
+
                     clearUploadScreen();
-                    updateScreen(HOME_SCREEN)
+                    updateScreen(HOME_SCREEN);
                 })
                 .catch((err) => {
                     console.log(err.response, "uploadMedia Error");
@@ -75,11 +81,11 @@ const UploadScreen = ({
             else {
                 createApp(appName, description, medias)
                     .then(({ data }) => {
-                        addApp({
-                            name: appName,
-                            description,
-                            collection: data.mediaItems,
-                        });
+                        // addApp({
+                        //     name: appName,
+                        //     description,
+                        //     collection: data.mediaItems,
+                        // });
                         clearUploadScreen();
                         updateScreen(HOME_SCREEN);
                     })

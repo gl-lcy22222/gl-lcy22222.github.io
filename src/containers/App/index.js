@@ -10,8 +10,7 @@ import {
     states,
     dispatches,
 } from './redux';
-import { getAlbumContents, getAlbums } from "../../google/requests";
-import { shuffle } from "../../helpers";
+import { fetchApps } from "../../google/helpers";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -37,24 +36,9 @@ const App = ({
 
     useLayoutEffect(() => {
         setIsMobile();
-        getAlbums()
-            .then(({ data }) => data.albums)
-            .then(async albums => {
-                return await Promise.all(albums.map(async album => {
-                    return await getAlbumContents(album.id)
-                        .then(({ data }) => {
-                            preloadMediaItems(data.mediaItems);
-                            return {
-                                name: album.title,
-                                description: data.mediaItems[0].description,
-                                id: album.id,
-                                collection: shuffle(data.mediaItems),
-                            };
-                        })
-                }));
-            })
-            .then((apps) => setApps(shuffle(apps)))
-            .catch((err) => console.log(err, "getAlbums Error"));
+        fetchApps()
+            .then((apps) => setApps(apps))
+            .catch((err) => console.log(err, "fetchApps Error"));
     }, []);
 
     return (
@@ -70,7 +54,5 @@ const App = ({
         </div>
     );
 };
-
-const preloadMediaItems = mediaItems => mediaItems.forEach(item => new Image().src = item.baseUrl);
 
 export default connect(states, dispatches)(App);

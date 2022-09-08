@@ -20,3 +20,7 @@ export const shuffle = (arr) => {
 };
 
 export const isString = val => typeof val === 'string' || val instanceof String
+
+export const preloadImage = src => new Image().src = src;
+
+export const preloadImages = sources => sources.forEach(src => preloadImage(src));

@@ -1,3 +1,6 @@
+import { preloadImages, shuffle } from "../helpers";
+import { getAlbumContents, getAlbums } from "./requests";
+
 export const multipleClasses = (...classes) => classes.join(" ");
 
 export const setCookie = (name, value, days) => {
@@ -25,3 +28,29 @@ export const eraseCookie = (name) => {
     document.cookie =
         name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
+
+export const fetchApps = (preload = true) =>
+    getAlbums()
+        .then(({ data }) => data.albums)
+        .then(async (albums) => {
+            return await Promise.all(
+                shuffle(albums).map(async (album) => {
+                    return await getAlbumContents(album.id).then(({ data }) => {
+                        if (preload) {
+                            const sources = data.mediaItems.map(
+                                (item) => item.baseUrl
+                            );
+                            preloadImages(sources);
+                        }
+
+                        return {
+                            name: album.title,
+                            description: data.mediaItems[0].description,
+                            id: album.id,
+                            collection: shuffle(data.mediaItems),
+                        };
+                    });
+                })
+            );
+        })
+        .catch((err) => console.log(err, "getAlbums Error"));
