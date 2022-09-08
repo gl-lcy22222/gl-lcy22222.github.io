@@ -18,6 +18,7 @@ const useStyles = makeStyles({
         marginLeft: `${APP_SIDE_GAPS}%`,
         marginRight: `${APP_SIDE_GAPS}%`,
         transition: `all ${CENTERING_TIME}ms ease`,
+        '-webkit-tap-highlight-color': 'transparent',
 
         '&:hover': {
             cursor: 'pointer',
@@ -25,10 +26,6 @@ const useStyles = makeStyles({
     },
     app: {
         marginBottom: "10%",
-
-        "&:active": {
-            opacity: 0.4,
-        },
     },
     image: {
         borderRadius: "25%",
@@ -59,6 +56,11 @@ const useStyles = makeStyles({
         alignSelf: 'center',
         left: 0,
         right: 0,
+        scrollbarWidth: 'none',
+        '-ms-overflow-style': 'none',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        }
     },
 });
 

@@ -3,6 +3,7 @@
 * swipe to switch pages
 * swiping all the way to the left is a gallery
 * functionality on buttons
+* refresh functionality for getting apps
 
 // add tests
 // thik of ways to optimize
