@@ -1,13 +1,8 @@
-* descriptions below photos when transitioning
 * notifications
 * rosefall
 * swipe to switch pages
-* description
-    - centers
-    - should set max height and then scroll on overflow
 * swiping all the way to the left is a gallery
-* adding into an album
-* uploading media to google
+* functionality on buttons
 
 // add tests
 // thik of ways to optimize
