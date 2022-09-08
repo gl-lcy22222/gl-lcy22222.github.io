@@ -102,7 +102,7 @@ export const uploadBytes = file => {
     );
 };
 
-export const uploadMedia = (medias, albumId, description, type = CREATE) => {
+export const uploadMedia = (medias, albumId, description) => {
     const newMediaItems = medias.map(media => {
         return {
             description,
