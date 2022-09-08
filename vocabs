@@ -3,3 +3,4 @@ UPDATE -> edit some of the items
 SET -> defining the item
 DELETE -> delete some of the items
 CLEAR -> clear all items
+FETCH -> GET and SET

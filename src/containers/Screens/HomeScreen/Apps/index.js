@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         flexDirection: "row",
         marginTop: `${marginTop}%`,
 
-        overflow: 'hidden',
+        // overflow: 'hidden', // UNCOMMENT?
     },
 });
 
