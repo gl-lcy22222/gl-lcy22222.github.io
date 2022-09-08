@@ -81,6 +81,7 @@ const UploadPage = ({
             <div
                 className={classes.dropArea}
                 onClick={() => fileUploadRef.current.click()}
+                onDrop={ref => handleFiles(ref, addMedia)}
             >
                 {!medias.length && <div>Add Item Here</div>}
                 {medias.length !== 0 && (
