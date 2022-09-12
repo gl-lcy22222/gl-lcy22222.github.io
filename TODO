@@ -4,10 +4,10 @@
 * swiping all the way to the left is a gallery
 * functionality on buttons
 * refresh functionality for getting apps
-* the uncomment, tryna not 
+* the uncomment, tryna not use overflow hidden
+* music
+
 
 // add tests
 // thik of ways to optimize
 // pass in only the required variables <-- google this? 
-
-// the app still does fade out when i close the app right before it transitions

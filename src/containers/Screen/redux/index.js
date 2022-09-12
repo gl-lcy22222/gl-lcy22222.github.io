@@ -1,4 +1,5 @@
 import { setPlaygroundInfo } from "../../Screens/HomeScreen/redux/actions";
+import { updateScreen } from "./actions";
 
 export const states = ({ screen }) => {
     return {
@@ -8,4 +9,5 @@ export const states = ({ screen }) => {
 
 export const dispatches = {
     setPlaygroundInfo,
+    updateScreen,
 };

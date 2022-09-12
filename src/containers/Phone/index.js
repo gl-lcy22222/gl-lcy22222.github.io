@@ -1,10 +1,13 @@
 import { makeStyles } from '@material-ui/styles';
-import { percent } from '../../helpers';
+import { percent, playAudio } from '../../helpers';
 import SideButton from './SideButton';
 import Screen from '../Screen';
 import { height, heightWidthRatio } from './configs';
 import ScreenTop from './ScreenTop';
 import { zIndex } from '../../configs';
+import { BLACK_SCREEN, LOCK_SCREEN, LOCKING_SOUND } from '../../configs/constants';
+import { connect } from 'react-redux';
+import { dispatches, states } from '../Screen/redux';
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -94,6 +97,8 @@ const useStyles = makeStyles({
 });
 
 const Phone = ({
+    screen,
+    updateScreen,
 }) => {
     const classes = useStyles();
 
@@ -167,15 +172,15 @@ const Phone = ({
                     top={"20%"}
                     height={buttonHeight}
                     width={buttonWidth}
-                    // action={() => {
-                    //     if (screen === BLACK_SCREEN) {
-                    //         updateScreen(LOCKED_SCREEN);
-                    //     }
-                    //     else {
-                    //         updateScreen(BLACK_SCREEN);
-                    //         playAudio(LOCKING_SOUND);
-                    //     }
-                    // }}
+                    action={() => {
+                        if (screen === BLACK_SCREEN) {
+                            updateScreen(LOCK_SCREEN);
+                        }
+                        else {
+                            updateScreen(BLACK_SCREEN);
+                            playAudio(LOCKING_SOUND);
+                        }
+                    }}
                 />
 
             </div>
@@ -183,4 +188,4 @@ const Phone = ({
     );
 };
 
-export default Phone;
+export default connect(states, dispatches)(Phone);

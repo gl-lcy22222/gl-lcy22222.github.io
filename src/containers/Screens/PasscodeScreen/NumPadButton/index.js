@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/styles";
 import { useState } from "react";
 import { connect } from "react-redux";
+import { TAPPING_SOUND } from "../../../../configs/constants";
+import { playAudio } from "../../../../helpers";
 import { dispatches } from "../redux";
 
 const useStyles = makeStyles({
@@ -50,7 +52,7 @@ const NumPadButton = ({
             onClick={e => {
                 e.preventDefault();
                 updatePasscodeEntry(number);
-                // playAudio(TAPPING_SOUND);
+                playAudio(TAPPING_SOUND);
             }}
         >
             <div style={{

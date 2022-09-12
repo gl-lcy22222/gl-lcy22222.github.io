@@ -36,12 +36,10 @@ export const fetchApps = (preload = true) =>
             return await Promise.all(
                 shuffle(albums).map(async (album) => {
                     return await getAlbumContents(album.id).then(({ data }) => {
-                        if (preload) {
-                            const sources = data.mediaItems.map(
-                                (item) => item.baseUrl
-                            );
-                            preloadImages(sources);
-                        }
+                        const sources = data.mediaItems.map(
+                            (item) => item.baseUrl
+                        );
+                        preloadImages(sources);
 
                         return {
                             name: album.title,

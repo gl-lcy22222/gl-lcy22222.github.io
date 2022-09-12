@@ -50,6 +50,7 @@ const UploadScreen = ({
     updateScreen,
     setCurrentUploadPage,
     clearUploadScreen,
+    addApp,
 }) => {
     const classes = useStyles();
 
@@ -66,7 +67,7 @@ const UploadScreen = ({
             if (appId) {
                 uploadMedia(medias, appId, description)
                 .then(() => {
-                    fetchApps(false)
+                    fetchApps()
                         .then((apps) => setApps(apps))
                         .catch((err) => console.log(err, "fetchApps Error"));
 
@@ -81,11 +82,11 @@ const UploadScreen = ({
             else {
                 createApp(appName, description, medias)
                     .then(({ data }) => {
-                        // addApp({
-                        //     name: appName,
-                        //     description,
-                        //     collection: data.mediaItems,
-                        // });
+                        addApp({
+                            name: appName,
+                            description,
+                            collection: data.mediaItems,
+                        });
                         clearUploadScreen();
                         updateScreen(HOME_SCREEN);
                     })

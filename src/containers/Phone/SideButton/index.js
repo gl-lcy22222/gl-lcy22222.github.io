@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     }
 });
 
-const Button = ({
+const SideButton = ({
     height,
     width,
     side,
@@ -38,4 +38,4 @@ const Button = ({
     )
 };
 
-export default Button;
+export default SideButton;

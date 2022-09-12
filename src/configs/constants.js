@@ -7,6 +7,10 @@ export const UPLOAD_SCREEN = 'UPLOAD_SCREEN';
 export const SOUND_ON = 'SOUND_ON';
 export const SOUND_OFF = 'SOUND_OFF';
 
+export const TAPPING_SOUND = 'TAPPING_SOUND';
+export const LOCKING_SOUND = 'LOCKING_SOUND';
+export const ERIC_CHOU_SOUND = 'ERIC_CHOU_SOUND';
+
 export const MAX_APPS_PER_ROW = 4;
 export const APP_SIZE = 16;
 export const APP_SIDE_GAPS = 3;

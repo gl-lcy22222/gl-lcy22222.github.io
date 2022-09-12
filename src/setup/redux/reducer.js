@@ -16,7 +16,7 @@ import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/han
 import { UPLOAD_PAGE } from "../../containers/Screens/UploadScreen/configs";
 
 export const initialState = {
-    screen: UPLOAD_SCREEN,
+    screen: HOME_SCREEN,
     soundStatus: SOUND_ON,
     volume: 10,
     playground: {},
