@@ -28,3 +28,17 @@ export const preloadImage = src => new Image().src = src;
 export const preloadImages = sources => sources.forEach(src => preloadImage(src));
 
 export const playAudio = audio => sounds[audio].play();
+
+export const generateInRange = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+export const milliSecond = time => time;
+
+export const second = time => milliSecond(time * 1000);
+
+export const minute = time => second(time * 60);
+
+export const hour = time => minute(time * 60);

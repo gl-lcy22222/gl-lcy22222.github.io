@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
+import { zIndex } from "../../../../configs";
 import { appStoreImageSource, CENTERING_TIME, UPLOAD_SCREEN } from "../../../../configs/constants";
 import { dispatches, states } from "../redux";
 import DockApp from "./DockApp";
@@ -14,6 +15,7 @@ const useStyles = makeStyles({
         alignItems: "center",
         marginBottom: "5%",
         transition: `all ${CENTERING_TIME}ms ease`,
+        zIndex: zIndex.homeScreen.dock
     },
 });
 

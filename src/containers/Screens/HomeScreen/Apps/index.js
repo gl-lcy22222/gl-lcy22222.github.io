@@ -5,6 +5,7 @@ import { dispatches, states } from "../redux";
 import { percent } from "../../../../helpers";
 import Page from "./Page";
 import { useEffect, useRef } from "react";
+import { zIndex } from "../../../../configs";
 
 const marginTop = 10;
 
@@ -16,7 +17,9 @@ const useStyles = makeStyles({
         flexDirection: "row",
         marginTop: `${marginTop}%`,
 
-        // overflow: 'hidden', // UNCOMMENT?
+        zIndex: zIndex.homeScreen.apps,
+
+        // overflow: 'hidden', // TODO: UNCOMMENT?
     },
 });
 

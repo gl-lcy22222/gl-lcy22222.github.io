@@ -6,6 +6,7 @@ import Dock from "./Dock";
 import PageSelection from "./PageSelection";
 import { dispatches, states } from "./redux";
 import HeartAnimation from '../../Heart Animation';
+import BackgroundAnimations from "./BackgroundAnimations";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -39,6 +40,7 @@ const HomeScreen = ({
             <Apps />
             <PageSelection />
             <Dock />
+            <BackgroundAnimations />
         </div>
     );
 };

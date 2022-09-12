@@ -15,7 +15,20 @@ export const zIndex = {
     app: 3,
     appName: 3,
     dock: 3,
-    descriptionActiveBubble: 4,
+    descriptionActiveBubble: 4, // TODO: prob need to restructure these into which parent they belong in
+
+    homeScreen: {
+        apps: 2,
+        pageSelection: 2,
+        dock: 2,
+        
+        backgroundAnimation: {
+            rosePetal: 1,
+        }
+    },
+    phone: {
+        screenTop: 2,
+    }
 };
 
 export const sounds = {

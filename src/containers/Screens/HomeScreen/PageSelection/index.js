@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
+import { zIndex } from "../../../../configs";
 import { CENTERING_TIME } from "../../../../configs/constants";
 import { states } from "../redux";
 import PageSectionDots from "./PageSelectionDot";
@@ -14,6 +15,7 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         transition: `all ${CENTERING_TIME}ms ease`,
+        zIndex: zIndex.homeScreen.pageSelection,
     },
 });
 

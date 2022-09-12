@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { useState } from 'react';
+import { zIndex } from '../../../configs';
 import { percent } from '../../../helpers';
 
 const useStyles = makeStyles({
@@ -10,6 +11,7 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        zIndex: zIndex.phone.screenTop,
     },
     strip: {
         borderRadius: '0px 0px 23px 23px',
