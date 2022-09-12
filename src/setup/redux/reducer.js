@@ -9,6 +9,7 @@ import {
 } from "../../configs/constants";
 
 import appHandler from "../../containers/App/redux/handler";
+import phoneHandler from "../../containers/Phone/redux/handler";
 import screenHandler from "../../containers/Screen/redux/handler";
 import passcodeScreenHandler from "../../containers/Screens/PasscodeScreen/redux/handler";
 import homeScreenHandler from "../../containers/Screens/HomeScreen/redux/handler";
@@ -16,10 +17,14 @@ import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/han
 import { UPLOAD_PAGE } from "../../containers/Screens/UploadScreen/configs";
 
 export const initialState = {
-    anniversary: "2/22/2022",
-    screen: HOME_SCREEN,
-    soundStatus: SOUND_ON,
-    volume: 10,
+    anniversary: '2/22/2022',
+    phone: {
+        notification: '',
+        notificationDuration: 3,
+    },
+    screen: HOME_SCREEN, // phone,
+    soundStatus: SOUND_ON, // phone,
+    volume: 10, // phone,
     playground: {},
     isMobile: false,
     passcodeEntry: "", // passcodeScreen
@@ -39,6 +44,7 @@ export const initialState = {
 const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {
     const handlers = [
         appHandler,
+        phoneHandler,
         screenHandler,
         passcodeScreenHandler,
         homeScreenHandler,

@@ -5,6 +5,9 @@ import {
     setRowsPerPage,
     setActiveApp,
 } from "./actions";
+import {
+    setNotification
+} from '../../../Phone/redux/actions'
 
 import {
     updateScreen,
@@ -18,6 +21,7 @@ export const states = ({
     activeApp,
     playground,
     anniversary,
+    phone,
 }) => {
     const maxAppsPerPage = rowsPerPage * MAX_APPS_PER_ROW;
     const numOfPages = rowsPerPage
@@ -34,6 +38,7 @@ export const states = ({
         activeApp,
         playground,
         anniversary,
+        phone,
     };
 };
 
@@ -42,5 +47,6 @@ export const dispatches = {
     setRowsPerPage,
     setCurrentPage,
     setActiveApp,
+    setNotification,
     updateScreen,
 };

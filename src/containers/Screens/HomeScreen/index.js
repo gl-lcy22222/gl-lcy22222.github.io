@@ -7,6 +7,8 @@ import PageSelection from "./PageSelection";
 import { dispatches, states } from "./redux";
 import HeartAnimation from '../../Heart Animation';
 import BackgroundAnimations from "./BackgroundAnimations";
+import { useEffect } from "react";
+import { second } from "../../../helpers";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -26,11 +28,33 @@ const useStyles = makeStyles({
 
 const HomeScreen = ({
     activeApp,
+    anniversary,
+    phone,
+    setNotification,
     setActiveApp,
 }) => {
     const classes = useStyles();
     
     const isActive = activeApp !== null;
+
+    useEffect(() => {
+        const date = new Date();
+        const anniversaryDate = new Date(anniversary);
+
+        if (date.getDate() === anniversaryDate.getDate()) {
+            // yearly anni
+            if (date.getMonth() === anniversaryDate.getMonth()) {
+                setNotification("YEARLY ANNI");
+            }
+            // monthly anni
+            else {
+                setNotification("Monthly ANNI");
+            }
+
+            setTimeout(() => setNotification(''), second(phone.notificationDuration));
+        }
+
+    }, []);
 
     return (
         <div

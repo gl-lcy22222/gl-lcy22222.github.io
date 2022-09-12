@@ -1,9 +1,11 @@
 import { makeStyles } from "@material-ui/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { generateInRange } from "../../../../helpers";
 import { states } from "../redux";
+
 import RosePetal from "./RosePetal";
+import Fireworks from "./Fireworks";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -17,7 +19,7 @@ const BackgroundAnimations = ({
 }) => {
     const classes = useStyles();
 
-    const [roses] = useState(generateInRange(30, 50));
+    const [numOfRoses] = useState(generateInRange(30, 50));
 
     const anniversaryDate = new Date(anniversary);
     const todaysDate = new Date();
@@ -28,9 +30,10 @@ const BackgroundAnimations = ({
     return (
         <div className={classes.rootContainer}>
             {isAnniversary &&
-                Array(roses)
+                Array(numOfRoses)
                     .fill(0)
                     .map((rose, id) => <RosePetal key={id} />)}
+            <Fireworks/>
         </div>
     );
 };
