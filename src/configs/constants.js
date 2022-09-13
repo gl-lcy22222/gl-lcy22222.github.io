@@ -30,3 +30,5 @@ export const backIconImageSource = 'images/backIcon.png';
 
 export const CREATE = 'CREATE';
 export const ADD = 'ADD';
+
+export const TEST_HOST = 'http://localhost:3000';

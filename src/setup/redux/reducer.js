@@ -6,7 +6,9 @@ import {
     UPLOAD_SCREEN,
     LOCKED,
     SOUND_ON,
+    TEST_HOST,
 } from "../../configs/constants";
+import googleConfig from '../../google/config.json';
 
 import appHandler from "../../containers/App/redux/handler";
 import screenHandler from "../../containers/Screen/redux/handler";
@@ -39,7 +41,33 @@ export const initialState = {
     },
 };
 
-const reducer = (state = JSON.parse(JSON.stringify(initialState)), action) => {
+export const testState = {
+    anniversary: new Date(),
+    homeScreen: {
+        notification: '',
+    },
+    screen: HOME_SCREEN, // phone,
+    soundStatus: SOUND_ON, // phone,
+    volume: 10, // phone,
+    playground: {},
+    isMobile: false,
+    passcodeEntry: "", // passcodeScreen
+    apps: [], // homeScreen
+    appSize: 0, // homeScreen
+    rowsPerPage: 0, // homeScreen
+    currentPage: 0, // homeScreen
+    activeApp: null, // homeScreen
+    uploadScreen: {
+        currentUploadPage: UPLOAD_PAGE,
+        appName: '',
+        description: '',
+        medias: [],
+    },
+};
+
+const reducerState = googleConfig.redirectUri === TEST_HOST ? testState : initialState;
+
+const reducer = (state = JSON.parse(JSON.stringify(reducerState)), action) => {
     const handlers = [
         appHandler,
         screenHandler,
