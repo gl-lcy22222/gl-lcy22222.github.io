@@ -22,13 +22,13 @@ const RosePetal = ({
     const classes = useStyles();
 
     const [degree, setDegree] = useState(0);
-    const [animationTime] = useState(generateInRange(5, 60));
+    const [animationTime] = useState(generateInRange(5, 40));
     const [negative] = useState(generateInRange(0, 1) === 0);
     const [xPosition] = useState(generateInRange(5, 95));
     const [yTranslation, setYTranslation] = useState(0);
     const [size] = useState(generateInRange(3, 7))
     
-    const lifeSpan = animationTime * 10;
+    const lifeSpan = animationTime * 3;
 
     useEffect(() => {
         setYTranslation(playground.height * 2);
