@@ -10,7 +10,7 @@ const iconPath = 'https://static.vecteezy.com/system/resources/previews/009/758/
 
 const useStyles = makeStyles({
     rootContainer: {
-        zIndex: zIndex.homeScreen.notification,
+        zIndex: zIndex.notification,
         height: '10%',
         width: '70%',
         backgroundColor: 'white',

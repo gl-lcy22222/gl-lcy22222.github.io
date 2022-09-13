@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     rootContainer: {
         position: 'absolute',
         backgroundSize: '100% 100%',
-        zIndex: zIndex.homeScreen.backgroundAnimation.rosePetal,
+        zIndex: zIndex.rosePetal,
         background: `url(${redRosePetal})`,
     },
 });

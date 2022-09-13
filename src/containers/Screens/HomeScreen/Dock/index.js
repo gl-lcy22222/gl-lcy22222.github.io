@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         alignItems: "center",
         marginBottom: "5%",
         transition: `all ${CENTERING_TIME}ms ease`,
-        zIndex: zIndex.homeScreen.dock
+        zIndex: zIndex.dock
     },
 });
 

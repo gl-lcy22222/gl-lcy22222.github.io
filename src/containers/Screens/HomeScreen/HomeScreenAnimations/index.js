@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         position: 'absolute',
         height: '100%',
         width: '100%',
-        zIndex: zIndex.homeScreenAnimation,
+        // zIndex: zIndex.home,
     },
 });
 

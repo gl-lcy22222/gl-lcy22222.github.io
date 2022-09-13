@@ -43,7 +43,7 @@ export const initialState = {
 
 export const testState = {
     ...initialState,
-    anniversary: new Date(),
+    anniversary: new Date("9/13/2021"),
     screen: HOME_SCREEN
 };
 

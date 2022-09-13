@@ -9,29 +9,44 @@ export const app = {
     color: 'pink',
 };
 
-export const zIndex = {
-    heartAnimation: 0,
-    phone: 1,
-    phoneAnimations: 2,
-    app: 3,
-    appName: 3,
-    dock: 3,
-    descriptionActiveBubble: 4, // TODO: prob need to restructure these into which parent they belong in
+export const zIndex = (() => {
+    // Each layer is + 10, so that it gives me more wiggle room in case there are stuff in betw
+    // for example, different background animations go on top of one another
+    const onTopOf = val => val + 10;
 
-    homeScreen: {
-        notification: 3,
-        apps: 2,
-        pageSelection: 2,
-        dock: 2,
-        
-        backgroundAnimation: {
-            rosePetal: 1,
-        }
-    },
-    phone: {
-        screenTop: 4,
-    }
-};
+    const reactAppBackground = 1;
+    
+    const heartAnimation = onTopOf(reactAppBackground);
+
+    const phone = onTopOf(heartAnimation);
+
+    const homeScreen = onTopOf(phone);
+
+    const homeScreenAnimation = onTopOf(homeScreen);
+    const rosePetal = homeScreenAnimation;
+
+    const homeScreenContents = onTopOf(homeScreenAnimation);
+    const apps = homeScreenContents;
+    const dock = homeScreenContents;
+    const pageSelection = homeScreenContents;
+    const descriptionActiveBubble = homeScreenContents + 1;
+    const notification = homeScreenContents + 2;
+
+    const phoneScreenTop = onTopOf(homeScreenContents);
+
+    return {
+        reactAppBackground,
+        heartAnimation,
+        phone,
+        rosePetal,
+        apps,
+        dock,
+        pageSelection,
+        descriptionActiveBubble,
+        notification,
+        phoneScreenTop,
+    };
+})();
 
 export const sounds = {
     [TAPPING_SOUND]: new Audio(TAPPING_SOUND_SOURCE),

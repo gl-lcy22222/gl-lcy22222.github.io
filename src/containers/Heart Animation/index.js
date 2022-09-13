@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         width: '100%',
         position: 'absolute',
         overflow: 'hidden',
-        zIndex: -1
+        zIndex: zIndex.heartAnimation
     },
 });
 

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         display: "flex",
         justifyContent: "center",
         transition: `all ${CENTERING_TIME}ms ease`,
-        zIndex: zIndex.homeScreen.pageSelection,
+        zIndex: zIndex.pageSelection,
     },
 });
 

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         flexDirection: "row",
         marginTop: `${marginTop}%`,
 
-        zIndex: zIndex.homeScreen.apps,
+        zIndex: zIndex.apps,
 
         // overflow: 'hidden', // TODO: UNCOMMENT?
     },

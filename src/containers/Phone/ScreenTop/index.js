@@ -11,7 +11,7 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        zIndex: zIndex.phone.screenTop,
+        zIndex: zIndex.phoneScreenTop,
     },
     strip: {
         borderRadius: '0px 0px 23px 23px',

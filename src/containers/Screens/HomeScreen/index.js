@@ -44,8 +44,9 @@ const HomeScreen = ({
         if (date.getDate() === anniversaryDate.getDate()) {
             // yearly anni
             if (date.getMonth() === anniversaryDate.getMonth()) {
+                const numOfYears = date.getFullYear() -  anniversaryDate.getFullYear();
                 delay(
-                    () => setNotification("YEARLY ANNI"),
+                    () => setNotification(`Happy ${numOfYears} year${numOfYears > 1 ? 's' : ''}!`),
                     second(NOTIFICATION_DURATION)
                 );
             }
@@ -53,7 +54,7 @@ const HomeScreen = ({
             else {
                 if (date.getFullYear() - anniversaryDate.getFullYear() > 1) {
                     delay(
-                        () => setNotification(`Happy ${1}!`),
+                        () => setNotification(`Happy ${1} year!`),
                         second(NOTIFICATION_DURATION)
                     );
                 }
