@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { backgroundImageSource } from "../../../configs/constants";
+import { backgroundImageSource, NOTIFICATION_DURATION } from "../../../configs/constants";
 import Apps from "./Apps";
 import Dock from "./Dock";
 import PageSelection from "./PageSelection";
@@ -8,7 +8,8 @@ import { dispatches, states } from "./redux";
 import HeartAnimation from '../../Heart Animation';
 import BackgroundAnimations from "./BackgroundAnimations";
 import { useEffect } from "react";
-import { second } from "../../../helpers";
+import { delay, second } from "../../../helpers";
+import Notification from "./Notification";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -29,7 +30,6 @@ const useStyles = makeStyles({
 const HomeScreen = ({
     activeApp,
     anniversary,
-    phone,
     setNotification,
     setActiveApp,
 }) => {
@@ -38,20 +38,37 @@ const HomeScreen = ({
     const isActive = activeApp !== null;
 
     useEffect(() => {
-        const date = new Date();
+        const date = new Date("9/22/2022");
         const anniversaryDate = new Date(anniversary);
 
         if (date.getDate() === anniversaryDate.getDate()) {
             // yearly anni
             if (date.getMonth() === anniversaryDate.getMonth()) {
-                setNotification("YEARLY ANNI");
+                delay(
+                    () => setNotification("YEARLY ANNI"),
+                    second(NOTIFICATION_DURATION)
+                );
             }
             // monthly anni
             else {
-                setNotification("Monthly ANNI");
+                if (date.getFullYear() - anniversaryDate.getFullYear() > 1) {
+                    delay(
+                        () => setNotification(`Happy ${1}!`),
+                        second(NOTIFICATION_DURATION)
+                    );
+                }
+                else {
+                    delay(
+                        () =>
+                            setNotification(
+                                `Happy ${
+                                    date.getMonth() - anniversaryDate.getMonth()
+                                } months!`
+                            ),
+                        second(NOTIFICATION_DURATION)
+                    );
+                }
             }
-
-            setTimeout(() => setNotification(''), second(phone.notificationDuration));
         }
 
     }, []);
@@ -61,6 +78,7 @@ const HomeScreen = ({
             className={classes.rootContainer}
             onClick={() => isActive && setActiveApp(null)}
         >
+            <Notification />
             <Apps />
             <PageSelection />
             <Dock />

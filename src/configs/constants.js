@@ -21,6 +21,9 @@ export const CENTERING_TIME = 1500;
 export const TRANSITIONING_TIME = 2000;
 export const ACTIVE_TIME = 3000;
 
+export const NOTIFICATION_DURATION = 5;
+export const NOTIFICATION_TRANSITION_TIME = 1;
+
 export const backgroundImageSource = '/images/background.jpg';
 export const appStoreImageSource = '/images/appStore.png';
 export const backIconImageSource = 'images/backIcon.png';

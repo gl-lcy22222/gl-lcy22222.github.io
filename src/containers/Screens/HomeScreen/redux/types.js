@@ -4,4 +4,6 @@ export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_ACTIVE_APP = 'SET_ACTIVE_APP';
 export const SET_PLAYGROUND_INFO = 'SET_PLAYGROUND_INFO';
 export const SET_APPS = 'SET_APPS';
+export const SET_NOTIFICATION = 'SET_NOTIFICATION';
+
 export const ADD_APP = 'ADD_APP';

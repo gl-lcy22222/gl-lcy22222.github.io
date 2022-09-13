@@ -1,12 +1,11 @@
-* notifications
-* rosefall
+* notifications for front page
 * swipe to switch pages
 * swiping all the way to the left is a gallery
 * functionality on buttons
-* refresh functionality for getting apps
 * the uncomment, tryna not use overflow hidden
 * music
 
+// calc font for notifications
 
 // buttons arent wrking
 // add tests

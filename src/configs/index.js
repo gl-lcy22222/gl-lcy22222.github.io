@@ -18,6 +18,7 @@ export const zIndex = {
     descriptionActiveBubble: 4, // TODO: prob need to restructure these into which parent they belong in
 
     homeScreen: {
+        notification: 3,
         apps: 2,
         pageSelection: 2,
         dock: 2,
@@ -27,7 +28,7 @@ export const zIndex = {
         }
     },
     phone: {
-        screenTop: 2,
+        screenTop: 4,
     }
 };
 

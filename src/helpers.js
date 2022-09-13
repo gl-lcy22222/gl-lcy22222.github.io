@@ -16,6 +16,12 @@ export const wake = ref => {
     ref.resolve();
 };
 
+export const delay = async (func, time) => {
+    await sleep(time);
+
+    func();
+};
+
 export const shuffle = (arr) => {
     arr.sort(() => (Math.random() < 0.5 ? 1 : -1));
     return arr;
