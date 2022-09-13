@@ -1,4 +1,5 @@
 import confetti from 'canvas-confetti';
+import { useEffect } from 'react';
 
 const Fireworks = () => {
     var duration = 7 * 1000;
@@ -9,28 +10,36 @@ const Fireworks = () => {
         return Math.random() * (max - min) + min;
     }
 
-    var interval = setInterval(function () {
-        var timeLeft = animationEnd - Date.now();
+    useEffect(() => {
+        var interval = setInterval(function () {
+            var timeLeft = animationEnd - Date.now();
 
-        if (timeLeft <= 0) {
-            return clearInterval(interval);
-        }
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
 
-        var particleCount = 50 * (timeLeft / duration);
-        // since particles fall down, start a bit higher than random
-        confetti(
-            Object.assign({}, defaults, {
-                particleCount,
-                origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-            })
-        );
-        confetti(
-            Object.assign({}, defaults, {
-                particleCount,
-                origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-            })
-        );
-    }, 250);
+            var particleCount = 50 * (timeLeft / duration);
+            // since particles fall down, start a bit higher than random
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.1, 0.3),
+                        y: Math.random() - 0.2,
+                    },
+                })
+            );
+            confetti(
+                Object.assign({}, defaults, {
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.7, 0.9),
+                        y: Math.random() - 0.2,
+                    },
+                })
+            );
+        }, 250);
+    }, []);
 };
 
 export default Fireworks;
