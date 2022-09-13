@@ -22,7 +22,7 @@ export const initialState = {
     homeScreen: {
         notification: '',
     },
-    screen: LOCK_SCREEN, // phone,
+    screen: BLACK_SCREEN, // phone,
     soundStatus: SOUND_ON, // phone,
     volume: 10, // phone,
     playground: {},
@@ -42,27 +42,9 @@ export const initialState = {
 };
 
 export const testState = {
+    ...initialState,
     anniversary: new Date(),
-    homeScreen: {
-        notification: '',
-    },
-    screen: HOME_SCREEN, // phone,
-    soundStatus: SOUND_ON, // phone,
-    volume: 10, // phone,
-    playground: {},
-    isMobile: false,
-    passcodeEntry: "", // passcodeScreen
-    apps: [], // homeScreen
-    appSize: 0, // homeScreen
-    rowsPerPage: 0, // homeScreen
-    currentPage: 0, // homeScreen
-    activeApp: null, // homeScreen
-    uploadScreen: {
-        currentUploadPage: UPLOAD_PAGE,
-        appName: '',
-        description: '',
-        medias: [],
-    },
+    screen: HOME_SCREEN
 };
 
 const reducerState = googleConfig.redirectUri === TEST_HOST ? testState : initialState;
