@@ -10,6 +10,7 @@ export const app = {
 };
 
 export const zIndex = {
+    heartAnimation: 0,
     phone: 1,
     phoneAnimations: 2,
     app: 3,

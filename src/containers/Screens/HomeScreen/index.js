@@ -38,7 +38,7 @@ const HomeScreen = ({
     const isActive = activeApp !== null;
 
     useEffect(() => {
-        const date = new Date("9/22/2022");
+        const date = new Date();
         const anniversaryDate = new Date(anniversary);
 
         if (date.getDate() === anniversaryDate.getDate()) {

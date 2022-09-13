@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useRef, useState } from "react";
+import { zIndex } from "../../configs";
 import Heart from "./Heart";
 
 const useStyles = makeStyles({
@@ -8,6 +9,7 @@ const useStyles = makeStyles({
         width: '100%',
         position: 'absolute',
         overflow: 'hidden',
+        zIndex: -1
     },
 });
 

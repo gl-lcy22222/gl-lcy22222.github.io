@@ -28,9 +28,7 @@ const BackgroundAnimations = ({
 
     const anniversaryDate = new Date(anniversary);
     const todaysDate = new Date();
-    const isAnniversary = 
-    true; 
-    // anniversaryDate.getDate() === todaysDate.getDate();
+    const isAnniversary = anniversaryDate.getDate() === todaysDate.getDate();
 
     return (
         <div className={classes.rootContainer}>
@@ -38,7 +36,7 @@ const BackgroundAnimations = ({
                 Array(numOfRoses)
                     .fill(0)
                     .map((rose, id) => <RosePetal key={id} />)}
-            <Fireworks/>
+            {isAnniversary && <Fireworks/>}
         </div>
     );
 };

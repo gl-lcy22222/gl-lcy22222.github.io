@@ -20,7 +20,7 @@ export const initialState = {
     homeScreen: {
         notification: '',
     },
-    screen: HOME_SCREEN, // phone,
+    screen: LOCK_SCREEN, // phone,
     soundStatus: SOUND_ON, // phone,
     volume: 10, // phone,
     playground: {},
