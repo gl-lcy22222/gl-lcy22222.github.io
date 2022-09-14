@@ -7,8 +7,8 @@ import PageSelection from "./PageSelection";
 import { dispatches, states } from "./redux";
 import HeartAnimation from '../../Heart Animation';
 import BackgroundAnimations from "./BackgroundAnimations";
-import { useEffect } from "react";
-import { delay, second } from "../../../helpers";
+import { useEffect, useState } from "react";
+import { delay, percent, second } from "../../../helpers";
 import Notification from "./Notification";
 
 const useStyles = makeStyles({
@@ -30,11 +30,17 @@ const useStyles = makeStyles({
 const HomeScreen = ({
     activeApp,
     anniversary,
+    playground,
+    currentPage,
+    numOfPages,
     setNotification,
     setActiveApp,
+    setCurrentPage,
 }) => {
     const classes = useStyles();
     
+    const [capturedPosition, setCapturedPosition] = useState(0);
+
     const isActive = activeApp !== null;
 
     useEffect(() => {
@@ -78,6 +84,10 @@ const HomeScreen = ({
         <div
             className={classes.rootContainer}
             onClick={() => isActive && setActiveApp(null)}
+            onMouseDown={e => setCapturedPosition(e.clientX)}
+            onMouseUp={e => changePage(e.clientX, capturedPosition, currentPage, numOfPages, setCurrentPage, playground.width)}
+            onTouchStart={e => setCapturedPosition(e.changedTouches[0].screenX)}
+            onTouchEnd={e => changePage(e.changedTouches[0].screenX, capturedPosition, currentPage, numOfPages, setCurrentPage, playground.width)}
         >
             <Notification />
             <Apps />
@@ -86,6 +96,16 @@ const HomeScreen = ({
             <BackgroundAnimations />
         </div>
     );
+};
+
+const changePage = (finalPosition, startPosition, currentPage, numOfPages, setCurrentPage, playgroundWidth) => {
+    const difference = finalPosition - startPosition;
+    const changePage = Math.abs(difference) > (playgroundWidth * percent(10));
+
+    if (changePage) {
+        const nextPage = difference > 0 ? Math.max(currentPage - 1, 0) : Math.min(currentPage + 1, numOfPages - 1);
+        setCurrentPage(nextPage);
+    }
 };
 
 export default connect(states, dispatches)(HomeScreen);
