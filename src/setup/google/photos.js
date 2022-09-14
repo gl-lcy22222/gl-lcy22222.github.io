@@ -1,6 +1,7 @@
 import config from "../../google/config.json";
 import axios from "axios";
 import { getCookie, setCookie } from '../../google/helpers';
+import { TEST_HOST } from "../../configs/constants";
 
 const params = {};
 const { clientId, redirectUri, scopes, test } = config;
@@ -28,6 +29,8 @@ const parseParams = () => {
 };
 
 export const initializeGooglePhotos = () => {
+    if (config.redirectUri === TEST_HOST) return;
+
     if (window.location.href.includes("#")) {
         parseParams();
     }
