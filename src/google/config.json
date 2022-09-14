@@ -1,7 +1,7 @@
 {
     "clientId": "490240428902-jhlkp59dk8md8dbl4sndb5m0ouvvf15h.apps.googleusercontent.com",
     "clientSecret": "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",
-    "redirectUri": "http://localhost:3000",
+    "redirectUri": "https://gl-lcy22222.github.io/",
     "scopes": [
         "https://www.googleapis.com/auth/photoslibrary",
         "https://www.googleapis.com/auth/photoslibrary.sharing",
