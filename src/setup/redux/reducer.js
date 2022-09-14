@@ -17,6 +17,8 @@ import homeScreenHandler from "../../containers/Screens/HomeScreen/redux/handler
 import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/handler";
 import { UPLOAD_PAGE } from "../../containers/Screens/UploadScreen/configs";
 
+import tempApps from './tempApps';
+
 export const initialState = {
     anniversary: '2/22/2022',
     homeScreen: {
@@ -43,8 +45,9 @@ export const initialState = {
 
 export const testState = {
     ...initialState,
-    anniversary: new Date("9/13/2021"),
-    screen: HOME_SCREEN
+    anniversary: new Date(),
+    screen: PASSCODE_SCREEN,
+    apps: tempApps
 };
 
 const reducerState = googleConfig.redirectUri === TEST_HOST ? testState : initialState;
