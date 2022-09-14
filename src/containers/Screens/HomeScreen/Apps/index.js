@@ -16,10 +16,9 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "row",
         marginTop: `${marginTop}%`,
-
         zIndex: zIndex.apps,
 
-        // overflow: 'hidden', // TODO: UNCOMMENT?
+        overflow: 'hidden', // TODO: UNCOMMENT? <- idr why i put this
     },
 });
 
