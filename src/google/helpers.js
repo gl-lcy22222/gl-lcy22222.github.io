@@ -1,5 +1,7 @@
+import { isTest } from "../configs";
 import { preloadImages, shuffle } from "../helpers";
 import { getAlbumContents, getAlbums } from "./requests";
+import tempApps from '../setup/redux/tempApps';
 
 export const multipleClasses = (...classes) => classes.join(" ");
 
@@ -29,8 +31,12 @@ export const eraseCookie = (name) => {
         name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
 
-export const fetchApps = (preload = true) =>
-    getAlbums()
+export const fetchApps = (preload = true) => {
+    if (isTest) {
+        return new Promise((res) => res(tempApps));
+    }
+
+    return getAlbums()
         .then(({ data }) => data.albums)
         .then(async (albums) => {
             return await Promise.all(
@@ -52,3 +58,4 @@ export const fetchApps = (preload = true) =>
             );
         })
         .catch((err) => console.log(err, "getAlbums Error"));
+}

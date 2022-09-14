@@ -76,7 +76,7 @@ const numOfApps = generateNumber(50);
 
 export default Array(numOfApps)
     .fill(0)
-    .map(() => {
+    .map((i, id) => {
         const collection = [];
         const numberOfCollection =
         2;
@@ -95,5 +95,7 @@ export default Array(numOfApps)
         return {
             name: names[nameNumber],
             collection,
+            id,
+            description: 'HdsdsdsENLO fds fsfs df sfdf s fsd fss ffds  sfOOf  f d   O :D e 🤗',
         };
     });

@@ -8,7 +8,6 @@ import {
     SOUND_ON,
     TEST_HOST,
 } from "../../configs/constants";
-import googleConfig from '../../google/config.json';
 
 import appHandler from "../../containers/App/redux/handler";
 import screenHandler from "../../containers/Screen/redux/handler";
@@ -17,7 +16,7 @@ import homeScreenHandler from "../../containers/Screens/HomeScreen/redux/handler
 import uploadScreenHandler from "../../containers/Screens/UploadScreen/redux/handler";
 import { UPLOAD_PAGE } from "../../containers/Screens/UploadScreen/configs";
 
-import tempApps from './tempApps';
+import { isTest } from "../../configs";
 
 export const initialState = {
     anniversary: '2/22/2022',
@@ -46,11 +45,10 @@ export const initialState = {
 export const testState = {
     ...initialState,
     anniversary: new Date(),
-    screen: PASSCODE_SCREEN,
-    apps: tempApps
+    screen: HOME_SCREEN,
 };
 
-const reducerState = googleConfig.redirectUri === TEST_HOST ? testState : initialState;
+const reducerState = isTest ? testState : initialState;
 
 const reducer = (state = JSON.parse(JSON.stringify(reducerState)), action) => {
     const handlers = [

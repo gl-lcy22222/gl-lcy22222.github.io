@@ -1,6 +1,7 @@
 import ERIC_CHOU_AUDIO_SOURCE from '../sources/eric.mp3';
 import TAPPING_SOUND_SOURCE from '../sources/tappingSound.mov';
-import { ERIC_CHOU_SOUND, LOCKING_SOUND, TAPPING_SOUND } from './constants';
+import { ERIC_CHOU_SOUND, LOCKING_SOUND, TAPPING_SOUND, TEST_HOST } from './constants';
+import googleConfigs from '../google/config.json';
 
 export const uploadScreen = {
 };
@@ -53,3 +54,5 @@ export const sounds = {
     [LOCKING_SOUND]: new Audio("https://picturetosound.com/content/A8CA14EE1B24F5D038E4336EBD519A88A1D329F7/audio_preview.mp3"),
     [ERIC_CHOU_SOUND]: new Audio(ERIC_CHOU_AUDIO_SOURCE),
 };
+
+export const isTest = googleConfigs.redirectUri === TEST_HOST;
