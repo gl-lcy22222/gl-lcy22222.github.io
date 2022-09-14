@@ -24,12 +24,13 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
+    "info:": "echo 'make sure you read up on https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "update": "git push && yarn deploy",
+    "update": "yarn info && git push && yarn deploy",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
