@@ -24,7 +24,7 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "info:": "echo 'make sure you read up on https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site'",
+    "info:": "echo 'make sure you read up on ",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
