@@ -51,10 +51,18 @@ export const hour = time => minute(time * 60);
 
 export const padding = (val, numOfPadding) => {
     let result = val.toString();
-  
+
     while (result.length < numOfPadding) {
-      result = "0" + result;
+        result = "0" + result;
     }
-  
+
     return result;
-  };
+};
+
+export const multiply = (arr, times) => [
+    ...Array(times)
+        .fill(0)
+        .map((i) => arr).flat()
+];
+
+export const choose = list => list[generateInRange(0, list.length - 1)];

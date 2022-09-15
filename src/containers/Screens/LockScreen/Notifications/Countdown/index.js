@@ -6,7 +6,8 @@ import { states } from "../../redux";
 
 const useStyles = makeStyles({
     rootContainer: {
-        height: '25%',
+        // height: '25%',
+        // minHeight: '25%',
         width: '100%',
         backgroundColor: 'blue',
         backgroundColor: 'white',
@@ -65,8 +66,8 @@ const useStyles = makeStyles({
 
 const Countdown = ({
     playground,
-    title = "Eric Chou Concert",
-    end = 'Nov 05 2022 19:00:00 GMT-0700 (Pacific Daylight Time)'
+    title,
+    end,
 }) => {
     const classes = useStyles();
 
@@ -81,6 +82,7 @@ const Countdown = ({
 
     const borderRadius = playground.width ? playground.width * percent(3) : 0;
     const timerBlockBorderRadius = playground.width ? playground.width * percent(1) : 0;
+    const height = playground.height ? playground.height * percent(15) : 0;
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -105,8 +107,6 @@ const Countdown = ({
             minutes = padding(Math.floor(minutes), 2);
             seconds = padding(Math.floor(seconds), 2);
 
-            console.log(seconds)
-
             setDayA(days[0]);
             setDayB(days[1]);
             setHourA(hours[0]);
@@ -124,7 +124,10 @@ const Countdown = ({
 
     return (
         <div className={classes.rootContainer}
-            style={{ borderRadius }}
+            style={{
+                borderRadius,
+                height,
+            }}
         >
             <div className={classes.title}>
                 {title}
