@@ -3,7 +3,9 @@
 * functionality on buttons
 * the uncomment, tryna not use overflow hidden
 * music when unlocking homescreen
+* countdown timer
 
+// move tempApps to redux/data
 // the roses fly over the apps at a certain point
 // calc font for notifications
 

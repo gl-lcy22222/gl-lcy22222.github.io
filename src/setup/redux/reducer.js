@@ -45,7 +45,7 @@ export const initialState = {
 export const testState = {
     ...initialState,
     anniversary: new Date(),
-    screen: HOME_SCREEN,
+    screen: LOCK_SCREEN,
 };
 
 const reducerState = isTest ? testState : initialState;
