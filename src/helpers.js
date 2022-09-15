@@ -48,3 +48,13 @@ export const second = time => milliSecond(time * 1000);
 export const minute = time => second(time * 60);
 
 export const hour = time => minute(time * 60);
+
+export const padding = (val, numOfPadding) => {
+    let result = val.toString();
+  
+    while (result.length < numOfPadding) {
+      result = "0" + result;
+    }
+  
+    return result;
+  };

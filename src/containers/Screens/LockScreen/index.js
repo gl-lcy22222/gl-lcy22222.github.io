@@ -8,6 +8,7 @@ import TodaysDate from "./TodaysDate";
 import { dispatches } from "./redux";
 
 import { backgroundImageSource, PASSCODE_SCREEN } from "../../../configs/constants";
+import Notifications from "./Notifications";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -35,6 +36,7 @@ const LockScreen = ({ updateScreen }) => {
             <LockIcon />
             <Time />
             <TodaysDate />
+            <Notifications />
         </div>
     );
 };
