@@ -179,6 +179,7 @@ const App = ({
                                 e.preventDefault();
                             }
                         }}
+                        draggable={false}
                     />
                 )}
                 {descriptionActive && (
