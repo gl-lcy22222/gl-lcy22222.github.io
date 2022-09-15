@@ -2,7 +2,7 @@ import axios from "axios";
 import { CREATE } from "../configs/constants";
 import { getCookie } from "./helpers";
 
-const albumUrl = "https://photoslibrary.googleapis.com/v1/albums/";
+const albumUrl = "https://photoslibrary.googleapis.com/v1/albums?pageSize=50";
 const uploadBytesUrl = "https://photoslibrary.googleapis.com/v1/uploads";
 const createMediaUrl = "https://photoslibrary.googleapis.com/v1/mediaItems:batchCreate/";
 const shareAlbumUrl = albumId => `https://photoslibrary.googleapis.com/v1/albums/${albumId}:share`;
