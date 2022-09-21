@@ -16,6 +16,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         flexDirection: 'column',
         overflow: 'hidden',
+        opacity: 0.9
     },
     title: {
         height: '30%',

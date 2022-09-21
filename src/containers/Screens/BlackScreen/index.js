@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { connect } from "react-redux";
-import { LOCK_SCREEN } from "../../../configs/constants";
+import { PASSCODE_SCREEN } from "../../../configs/constants";
 
 import { dispatches } from "./redux/redux";
 
@@ -22,7 +22,7 @@ const BlackScreen = ({ updateScreen }) => {
     return (
         <div
             className={classes.rootContainer}
-            onClick={() => updateScreen(LOCK_SCREEN)}
+            onClick={() => updateScreen(PASSCODE_SCREEN)}
         />
     );
 };
