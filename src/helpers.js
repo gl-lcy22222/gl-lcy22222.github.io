@@ -31,7 +31,8 @@ export const isString = val => typeof val === 'string' || val instanceof String
 
 export const preloadImage = src => new Image().src = src;
 
-export const preloadImages = sources => sources.forEach(src => preloadImage(src));
+// export const preloadImages = sources => sources.forEach(src => preloadImage(src));
+export const preloadImages = sources => sources.map(src => preloadImage(src));
 
 export const playAudio = audio => sounds[audio].play();
 

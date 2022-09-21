@@ -26,9 +26,14 @@ export const NOTIFICATION_TRANSITION_TIME = 1;
 
 export const backgroundImageSource = '/images/background.jpg';
 export const appStoreImageSource = '/images/appStore.png';
-export const backIconImageSource = 'images/backIcon.png';
+export const backIconImageSource = '/images/backIcon.png';
 
 export const CREATE = 'CREATE';
 export const ADD = 'ADD';
 
 export const TEST_HOST = 'http://localhost:3000';
+
+export const SWIPE = {
+    POSITIVE: 'POSITIVE',
+    NEGATIVE: 'NEGATIVE',
+};

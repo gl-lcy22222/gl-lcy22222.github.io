@@ -6,6 +6,7 @@ import NumPad from "./NumPad";
 import Text from "./Text";
 import LockIcon from "../../../components/LockIcon";
 import { backgroundImageSource } from "../../../configs/constants";
+import LockScreen from "../LockScreen";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -19,6 +20,8 @@ const useStyles = makeStyles({
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         "-webkit-tap-highlight-color": "transparent",
+
+        position: 'relative',
     },
 });
 
@@ -27,6 +30,7 @@ const PasscodeScreen = () => {
 
     return (
         <div className={classes.rootContainer}>
+            <LockScreen/>
             <LockIcon />
             <Text />
             <InputBox />
