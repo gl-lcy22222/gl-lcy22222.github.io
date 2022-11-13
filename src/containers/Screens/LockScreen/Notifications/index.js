@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import Countdown from "./Countdown";
-import countdowns from '../../../../setup/redux/data/countdowns.json';
+import countdowns from '../../../../setup/redux/data/countdowns.js';
 import { useState } from "react";
 import { multiply } from "../../../../helpers";
 
@@ -35,9 +35,13 @@ const Notifications = () => {
     const classes = useStyles();
 
     const [expandedGroups, setExpandedGroups] = useState(true);
+    const currentDate = new Date();
 
     const notifications = [
-        ...countdowns.map((countdown, i) => {
+        ...countdowns
+        .filter(countdown => new Date(countdown.date) >= currentDate)
+        .slice(0, 1)
+        .map((countdown, i) => {
             return (i, numOfNotifications) => (
                 <div
                     className={classes.notification}
