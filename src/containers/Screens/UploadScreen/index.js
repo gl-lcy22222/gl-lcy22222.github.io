@@ -9,6 +9,8 @@ import {
     shareAlbum,
     uploadMedia,
 } from "../../../google/requests";
+import twilioRequest from '../../../requests/twilio';
+
 import { setApps } from "../HomeScreen/redux/actions";
 import BackIcon from "./BackIcon";
 import { UPLOADING_PAGE, UPLOAD_PAGE } from "./configs";
@@ -71,6 +73,7 @@ const UploadScreen = ({
                         .then((apps) => setApps(apps))
                         .catch((err) => console.log(err, "fetchApps Error"));
 
+                    twilioRequest(`Updated ${appName}`);
                     clearUploadScreen();
                     updateScreen(HOME_SCREEN);
                 })
@@ -87,6 +90,8 @@ const UploadScreen = ({
                             description,
                             collection: data.mediaItems,
                         });
+
+                        twilioRequest(`Created new app: ${appName}`);
                         clearUploadScreen();
                         updateScreen(HOME_SCREEN);
                     })
