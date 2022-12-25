@@ -24,14 +24,20 @@ export const ACTIVE_TIME = 3000;
 export const NOTIFICATION_DURATION = 5;
 export const NOTIFICATION_TRANSITION_TIME = 1;
 
-export const backgroundImageSource = '/images/background.jpg';
+export const isChristmas = new Date().getMonth() === 11 && new Date().getDate() === 25;
+export const isChristmasTime = new Date().getMonth() === 11;
+
+export const backgroundImageSource = isChristmasTime
+    ? '/images/ChristmasTree.jpg'
+    : '/images/background.jpg';
 export const appStoreImageSource = '/images/appStore.png';
 export const backIconImageSource = '/images/backIcon.png';
 
 export const CREATE = 'CREATE';
 export const ADD = 'ADD';
 
-export const TEST_HOST = 'http://localhost:3000';
+export const TEST_HOST = ''
+// 'http://localhost:3000';
 
 export const SWIPE = {
     POSITIVE: 'POSITIVE',

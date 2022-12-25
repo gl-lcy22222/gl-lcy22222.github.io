@@ -5,6 +5,7 @@ import { states, dispatches } from "./redux";
 import {
     BLACK_SCREEN,
     HOME_SCREEN,
+    isChristmasTime,
     LOCK_SCREEN,
     PASSCODE_SCREEN,
     UPLOAD_SCREEN,
@@ -15,6 +16,7 @@ import LockScreen from "../Screens/LockScreen";
 import PasscodeScreen from "../Screens/PasscodeScreen";
 import HomeScreen from "../Screens/HomeScreen";
 import UploadScreen from "../Screens/UploadScreen";
+import SnowfallAnimations from "../Screens/HomeScreen/SnowfallAnimations";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -42,6 +44,7 @@ const Screen = ({
             ref={ref => handleRef(ref, setPlaygroundInfo)}
         >
             {screenMapping[screen]}
+            {isChristmasTime && <SnowfallAnimations/>}
         </div>
     );
 };
