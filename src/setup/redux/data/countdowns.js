@@ -15,4 +15,12 @@ export default [
         "title": "Christmas",
         "date": "Dec 25 2022 00:00:00 GMT-0700 (Pacific Daylight Time)"
     },
+    {
+        "title": "New Year",
+        "date": "Jan 01 2023 00:00:00 GMT-0700 (Pacific Daylight Time)"
+    },
+    {
+        "title": "Japan",
+        "date": "Feb 24 2023 10:35:00 GMT-0700 (Pacific Daylight Time)"
+    }
 ]
