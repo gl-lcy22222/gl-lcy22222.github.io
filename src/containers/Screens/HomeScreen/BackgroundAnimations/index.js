@@ -7,6 +7,7 @@ import { states } from "../redux";
 import RosePetal from "./RosePetal";
 import Fireworks from "./Fireworks";
 import SnowfallAnimations from "../SnowfallAnimations";
+import NewYearsFireworks from "./NewYearsFireworks";
 
 const useStyles = makeStyles({
     rootContainer: {
@@ -31,6 +32,7 @@ const BackgroundAnimations = ({
     const todaysDate = new Date();
     const isAnniversary = anniversaryDate.getDate() === todaysDate.getDate();
     const isChristmasTime = todaysDate.getMonth() === 11;
+    const isNewYears = todaysDate.getMonth() === 0 && todaysDate.getDate() === 1;
 
     return (
         <div className={classes.rootContainer}>
@@ -40,6 +42,7 @@ const BackgroundAnimations = ({
                     .map((rose, id) => <RosePetal key={id} />)}
             {isAnniversary && <Fireworks/>}
             {isChristmasTime && <SnowfallAnimations/>}
+            <NewYearsFireworks/>
         </div>
     );
 };
