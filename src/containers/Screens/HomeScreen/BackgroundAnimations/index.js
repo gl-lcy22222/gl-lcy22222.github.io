@@ -42,7 +42,7 @@ const BackgroundAnimations = ({
                     .map((rose, id) => <RosePetal key={id} />)}
             {isAnniversary && <Fireworks/>}
             {isChristmasTime && <SnowfallAnimations/>}
-            {/* {isNewYears && <NewYearsFireworks/>} */}
+            {isNewYears && <NewYearsFireworks/>}
         </div>
     );
 };
